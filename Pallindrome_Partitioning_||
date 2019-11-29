@@ -1,0 +1,108 @@
+def minCut(s):
+        #TIME COMPLEXITY: O(N^3)
+        #SPACE COMPLEXITY: O(N^2)
+        n=len(s)
+        #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+        Pallindrome=[[False for j in range(0,n)]for i in range(0,n)]
+        
+        #BASE CASE:
+        for i in range(0,n):
+            Pallindrome[i][i]=True
+
+        ls=2
+
+        for i in range(0,n-ls+1):
+
+                j=i+ls-1
+
+                if(s[i]==s[j]):
+
+                        Pallindrome[i][j]=True
+            
+        #RECURSIVE CASE:
+        for ls in range(3,n+1):
+            
+                for i in range(0,n-ls+1):
+        
+                        j=i+ls-1
+                
+                        if(s[i]==s[j]):
+                    
+                            Pallindrome[i][j]=Pallindrome[i+1][j-1]
+                    
+                        else:
+                    
+                            Pallindrome[i][j]=False
+
+        #PRINT THE ENTIRE PALLINDROME TABLE
+        for i in range(0,n):
+
+                for j in range(0,n):
+
+                        print(Pallindrome[i][j],end=" ")
+
+                print()
+
+                
+                    
+        #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+        Min_cut=[[0 for j in range(0,n)]for i in range(0,n)]
+        
+        
+        #FOR LENGTH 2 SUBSTRING
+        ls=2
+        
+        for i in range(0,n-ls+1):
+            
+                j=i+ls-1
+
+                if(Pallindrome[i][j]):
+            
+                        Min_cut[i][j]= 0
+
+                else:
+                        Min_cut[i][j]=1
+            
+        for ls in range(3,n+1):
+            
+                for i in range(0,n-ls+1):
+                
+                        j=i+ls-1
+                        x=10000
+                        if(Pallindrome[i][j]):
+                    
+                                Min_cut[i][j]=0
+                    
+                        else:
+                            #if(ls==4):    
+                                    #import pdb;pdb.set_trace()    
+                            for k in range(i,j):
+
+                                print((i,k),end="------->")
+                                print(Min_cut[i][k])
+                                    
+                                print((k+1,j),end="-------->")
+                                print(Min_cut[k+1][j])
+
+                                Min_cut[i][j]=Min_cut[i][k] + Min_cut[k+1][j]
+                            
+                                x=min(x,Min_cut[i][j])
+                        
+                            Min_cut[i][j]=1+x
+
+        #PRINT THE ENTIRE DP TABLE FOR MIN CUT
+        for i in range(0,n):
+
+                    for j in range(0,n):
+
+                        print(Min_cut[i][j],end=" ")
+
+                    print()
+
+        return(Min_cut[0][n-1])
+
+
+s="r"
+x=minCut(s)
+print("The Min cut required to make the entire string a pallindrome or not is {}".format(x))
+
