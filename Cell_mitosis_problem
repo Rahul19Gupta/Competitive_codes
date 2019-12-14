@@ -1,0 +1,40 @@
+#BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+#--------------------------------------
+#TIME COMPLEXITY:O(N)
+#SPACE COMPLEXITY:O(N)
+
+def Cell_Mitiosis(n,x,y,z):
+
+    #INITIIALIZE THE ENTIRE DP TABLE
+    DP=[0 for i in range(0,n+1)]
+
+    #NOT USEFUL
+    DP[0]=0
+    #BCZ INITIALLY IT HAS ONE CELL SO IT'S COST IS ZERO BCZ IT ALREADY HAS WE ARE NOT GENERATING THE CELL
+    DP[1]=0
+
+    #RECUSRIVE CASE
+    for i in range(2,n+1):
+
+        #IF i IS EVEN
+        if(i%2==0):
+            DP[i]=min(DP[i//2]+x,DP[i-1]+y)
+
+        #IF i is ODD
+        else:
+            DP[i]=min(DP[i-1]+y,DP[(i+1)//2]+x+z)
+
+    #PRINT THE ENTIRE DP TABLE
+    print(DP)
+
+    return(DP[n])
+
+n=5
+x=2
+y=1
+z=3
+x=Cell_Mitiosis(n,x,y,z)
+print("MIN COST TO GENERATE N CELLS: {0}".format(x))
+
+
+
