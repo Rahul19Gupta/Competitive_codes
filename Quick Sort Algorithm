@@ -1,0 +1,58 @@
+
+def Partition_algorithm(arr,start,end):
+    #TIME COMPELXITY: O(N)
+    #SPACE COMPELXITY: O(1)
+    pivot=end
+
+    i=start-1
+
+    for j in range(start,end):
+
+        if(arr[j]<=arr[pivot]):
+
+            i+=1
+            
+            arr[i],arr[j]=arr[j],arr[i]
+
+
+    #FINALLY SWAP THE PIVOT ELEMENT WITH i+1 bcz i+1 is the correct position for arr[pivot]
+
+    arr[i+1],arr[pivot]=arr[pivot],arr[i+1]
+
+    return(i+1)
+
+def Quick_Sort_Algorithm(arr,start,end):
+        
+    #BASE CASE:
+    #FOR ZERO ELEMNTS OR ONLY ONE ELEMENT IN THE ARRAY
+
+    #WORST CASE T(n)= T(n-1) + O(n)-------------> ASCENDING ORDER---------> (WHEN AN ARRAY IS ALREADY SORTED)
+    #TIME COMPELXITY: O(N^2)
+    #SPACE COMPLEXITY: O(n)
+
+    #BASE CASE: 
+    #AVERAGE CASE: T(n)= 2*T(n/2) + O(n)------------------------------> otherwise
+    #TIME COMPELXITY : O(NLOGN)
+    #SPACE COMPELXITY: O(logn)
+
+    
+    if(start>=end):
+        return
+
+    pivot=Partition_algorithm(arr,start,end)
+    
+    #CALL QUICK SORT ON REGION 1------> ALL ELEMENTS LESS THAN THE ARR[PIVOT]
+    Quick_Sort_Algorithm(arr,start,pivot-1)
+
+    #CALL QUICK SORT ON REGION 2------> ALL ELEMENTS GREATER THAN THE ARR[PIVOT]
+    Quick_Sort_Algorithm(arr,pivot+1,end)
+
+
+arr=[1,4,2,23,6,90,12]
+start=0
+end=len(arr)-1
+Quick_Sort_Algorithm(arr,start,end)
+print(arr)
+    
+    
+
