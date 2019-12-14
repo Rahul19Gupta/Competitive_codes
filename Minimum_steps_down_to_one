@@ -1,0 +1,49 @@
+#TOP DOWN DYNAMIC PROGRAMMING APPROACH
+#-------------------------------------
+
+import sys
+#INITIALIZE THE DP ARRAY
+DP=[0 for i in range(100)]
+
+
+def Minimum_steps_down_to_one(n):
+    x=y=z=100000
+    #TOP DOWN DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    #import pdb;pdb.set_trace()
+    global DP
+    
+    #BASE CASE:
+    if(n==1):
+        return(0)
+    
+    if(DP[n]):
+        return(DP[n])
+
+    #RECURSIVE CASE
+
+    if(n%3==0):
+        x=Minimum_steps_down_to_one(int(n/3))+1
+
+    if(n%2==0):
+        y=Minimum_steps_down_to_one(int(n/2))+1
+
+    z=Minimum_steps_down_to_one(n-1)+1
+
+    ans=min(x,y,z)
+
+    DP[n]=ans
+
+    return(ans)
+
+
+n=10
+print(Minimum_steps_down_to_one(n))
+
+    
+        
+
+    
+
+    
