@@ -1,0 +1,43 @@
+def Convert_land_to_a_water(islands,i,j):
+    #DEPTH FIRST SEARCH ALGORITHM
+    #BOUNDARY CONDITIONS
+    if(i<0 or i>=len(islands) or j<0 or j>=len(islands[0]) or islands[i][j]==0):
+        return
+
+    islands[i][j]=0
+    Convert_land_to_a_water(islands,i+1,j)
+    Convert_land_to_a_water(islands,i-1,j)
+    Convert_land_to_a_water(islands,i,j-1)
+    Convert_land_to_a_water(islands,i,j+1)
+    
+    
+def Count_the_number_of_islands_in_a_graph(islands,i,j):
+    #TIME COMPLEXITY: O(V^2)
+    #SPACE COMPELXITY: O(V)
+    Number_of_islands=0
+
+    for i in range(0,len(islands)):
+
+        for j in range(0,len(islands[0])):
+
+            if(islands[i][j]==1):
+
+                Number_of_islands+=1
+
+                Convert_land_to_a_water(islands,i,j)
+
+    return(Number_of_islands)
+
+                
+islands=[[1,1,0,0],
+         [1,1,0,0],
+         [0,0,1,0],
+         [0,0,1,1]]
+
+x=Count_the_number_of_islands_in_a_graph(islands,0,0)
+
+print("Number of islands in a graph {}".format(x))
+
+
+
+    
