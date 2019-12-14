@@ -1,0 +1,68 @@
+class Stack:
+
+    def __init__(self):
+        self.stack=[]
+
+    def append(self,data):
+        self.stack.append(data)
+
+    def pop(self):
+        if(len(self.stack)):
+            return(self.stack.pop())
+
+        return(None)
+
+    def isEmpty(self):
+        return(len(self.stack)==0)
+
+    def peek(self):
+
+        return(self.stack[-1])
+
+    def print(self):
+        print(self.stack)
+
+    
+
+def decodeString(arr):
+
+    result=""
+    #INITALIZE THE STACK
+    s=Stack()
+    #import pdb;pdb.set_trace()
+    #INITIALIZE THE VARIABLES
+    Open=0
+    Close=0
+    n=len(arr)
+    i=0
+    while(i<n):
+
+        if(arr[i]=='['):
+            Open+=1
+
+        if(arr[i]==']'):
+            Close+=1
+        
+        if(Open and Close and (Open-Close==1 or Open-Close==0)):
+            
+            while(97<=ord(s.peek())<=122 and not s.isEmpty()):
+
+                result=result+s.pop()
+
+            if(result!=""):
+
+                result=result*int(s.pop())
+                Open-=1
+                Close-=1
+
+        print(s.print())
+        if(49<=ord(arr[i])<=57 or 97<=ord(arr[i])<=122):
+            s.append(arr[i])
+
+        i+=1
+
+    return(result[::-1])
+
+                
+arr="3[a2[c]]"
+print(decodeString(arr))
