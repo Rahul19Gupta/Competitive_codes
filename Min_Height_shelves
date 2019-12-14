@@ -1,0 +1,48 @@
+def minHeightShelves(books, shelf_width,width):
+        Same_height=10000
+        Different_Height=10000
+        n=len(books)
+        #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+        DP=[0 for i in range(0,n)]
+        
+        DP[0]=books[0][1]
+        
+        shelf_width-=books[0][0]
+        #import pdb;pdb.set_trace()
+        for i in range(1,n):
+            
+            Same_height=10000
+            Different_Height=10000
+
+            if(shelf_width>=0):
+            
+                if(shelf_width>=books[i][0]):
+                    
+                    #IF I CAN PLACE THE BOOK AT THE SAME LEVEL OR HEIGHT------> I WILL PLACE THE BOOK AT THE SAME LEVEL 
+                    Same_height=max(DP[i-1],books[i][1])
+
+                #IF I PLACE THE BOOK OR I CANNOT PLACE THE BOOK-----> I WILL ALWAYS TRY TO PLACE THE BOOK AT DIFFERENT LEVEL
+                Different_Height=DP[i-1]+books[i][1]
+
+                print(Same_height)
+                print(Different_Height)
+                DP[i]=min(Same_height,Different_Height)
+               
+
+                if(DP[i]==Same_height):
+
+                    shelf_width-=books[i][0]
+
+                    print(shelf_width)
+
+                if(DP[i]==Different_Height):
+
+                    shelf_width=width
+                    
+
+        #PRINT THRE ENTIRE DP TABLE
+        print(DP)
+
+books = [[7,3],[8,7],[2,7],[2,5]]
+shelf_width = 10
+minHeightShelves(books,shelf_width,10)
