@@ -1,0 +1,32 @@
+
+def Egg_Dropping_Problem(N,n,e):
+    
+    #TOP DOWN DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:
+    #SPACE COMPLEXITY:
+
+    #BASE CASE:
+    if(n==1):
+        return(1)
+
+    if(e==1):
+        return(n)
+
+    if(DP[n][e]):
+        return(DP[i][j])
+
+    #RECURSIVE CASE:
+    
+    for x in range(0,N):
+
+        ans=min(ans,max(Egg_Dropping_Problem(x-1,e-1),Egg_Dropping_Problem(n-x,e))+1)
+        
+    DP[i][j]=ans    
+
+
+n=8
+e=3
+#INITIALIZE THE DP ARRAY
+DP=[[0 for j in range(0,n)]for i in range(0,n)]
+Egg_Dropping_Problem(n,e)
+
