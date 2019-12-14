@@ -1,0 +1,95 @@
+class ListNode:
+    def __init__(self,val):
+        self.val=val
+        self.next=None
+
+def Print_list(head):
+
+    while(head):
+        print(head.val,end="-->")
+        head=head.next
+        
+def addTwoNumbers(l1, l2):
+        
+        result=[]
+        temp1=l1
+        s1=""
+        s2=""
+        temp2=l2
+        
+        while(temp1):
+            
+            s1=s1+str(temp1.val)
+            temp1=temp1.next
+            
+        while(temp2):
+            
+            s2=s2+str(temp2.val)
+            temp2=temp2.next
+
+
+        s1=s1[::-1]
+        s2=s2[::-1]
+        #import pdb;pdb.set_trace()
+        a=int(s1)
+        
+        b=int(s2)
+        
+        final_ans=str(a+b)
+
+        final_ans=final_ans[::-1]
+        
+        final_ans=list(final_ans)
+        n=len(final_ans)
+        head=ListNode(int(final_ans[0]))
+        
+        temp=head
+        i=1
+        while(i<n):
+            
+            node=ListNode(int(final_ans[i]))
+            
+            if(i==n-1):
+
+                temp.next=node
+                node.next=None
+                
+            else:
+            
+                temp.next=node
+
+                temp=node
+                
+            i+=1
+
+        Print_list(head)
+        return(head)
+
+
+
+#LIST1
+
+node1=ListNode(2)
+node2=ListNode(4)
+#node3=ListNode(3)
+
+
+node4=ListNode(5)
+node5=ListNode(6)
+#node6=ListNode(4)
+
+#CONNECTIONS
+
+node1.next=node2
+#node2.next=node3
+
+node4.next=node5
+#node5.next=node6
+
+
+addTwoNumbers(node1, node4)
+
+
+
+
+
