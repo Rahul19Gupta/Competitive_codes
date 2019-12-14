@@ -1,0 +1,34 @@
+#TIME COMPLEXITY: O(N)
+#SPACE COMPLEXITY: O(N)
+def Find_the_equilibrium_index_in_an_array(arr):
+    n=len(arr)
+    #LETS'S FIRST CALCULATE THE CUMULATIVE LEFT SUM
+    Cumulative_left_sum=[]
+    Cumulative_left_sum.append(arr[0])
+    for i in range(1,n):
+
+        Cumulative_left_sum.append(arr[i]+Cumulative_left_sum[i-1])
+
+    print(Cumulative_left_sum)
+
+    #LETS'S FIRST CALCULATE THE CUMULATIVE RIGHT SUM
+    Cumulative_right_sum=[]
+    Cumulative_right_sum.append(arr[n-1])
+    for i in range(n-2,-1,-1):
+
+        Cumulative_right_sum.insert(0,arr[i]+Cumulative_right_sum[0])
+
+    print(Cumulative_right_sum)
+
+    #PROCESSING
+
+    for i in range(0,len(arr)-1):
+
+        if(Cumulative_left_sum[i]==Cumulative_right_sum[i+1]):
+
+            return(i)
+
+    
+
+arr=[10,15,5,3,4,21,2]
+print(Find_the_equilibrium_index_in_an_array(arr))
