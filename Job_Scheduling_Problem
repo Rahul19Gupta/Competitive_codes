@@ -1,0 +1,37 @@
+class Job:
+    def __init__(self,deadline,profit,name):
+        self.deadline=deadline
+        self.profit=profit
+        self.name=name
+
+def Job_Sequencing_with_deadlines(jobs):
+    n=len(jobs)
+    #import pdb;pdb.set_trace()
+    #SORT THE JOBS IN THE DECREASING ORDER OF THE PROFIT
+    jobs=sorted(jobs,key=lambda j:j.profit,reverse=True)
+
+    for i in range(0,len(jobs)):
+        print(jobs[i].profit,end=" ,")
+
+    #VISITED ARRAY TO KEEP TRACK OF WHETEHR THAT PARTICULAR JOB IS VISITED OR NOT
+    visited=[0 for i in range(0,n)]
+    jobs_order=[0 for i in range(0,n)]
+    Sum=0
+    #import pdb;pdb.set_trace()
+    for i in range(0,n):
+        for j in range(jobs[i].deadline-1,-1,-1):
+            if(visited[j]==0):
+                visited[j]=1
+                jobs_order[j]=jobs[i].name
+                Sum+=jobs[j].profit
+                break
+                
+    print("Jobs order {}".format(jobs_order))
+    print("Maxium profit that u can get by scheduling the jobs {}".format(Sum))
+    
+
+#jobs=[Job(3,2,'J1'),Job(3,4,'J2'),Job(3,3,'J3'),Job(4,1,'J4'),Job(4,10,'J5')]
+jobs=[Job(7,15,'J1'),Job(2,20,'J2'),Job(5,30,'J3'),Job(3,18,'J4'),Job(4,18,'J5'),Job(5,10,'J6'),Job(2,23,'J7'),Job(7,16,'J8'),Job(3,25,'J9')]
+Job_Sequencing_with_deadlines(jobs)
+    
+    
