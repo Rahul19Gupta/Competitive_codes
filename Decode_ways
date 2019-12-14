@@ -1,0 +1,37 @@
+
+def Number_of_ways_to_decode_string(String):
+    n=len(String)
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    No_of_ways=[0 for i in range(0,len(String)+1)]
+
+    #BASE CASE:
+    #NO OF WAYS TO DECODE STRING OF LENGTH 0 IS -----------> ONE WAY
+    No_of_ways[0]=1
+    if(1<=int(String[0])<=9):
+        No_of_ways[1]=1
+        
+    else:
+        No_of_ways[1]=0
+        
+
+            
+
+    #PROCESSING THE ARRAY
+    for i in range(2,len(String)+1):
+
+        one_digit=String[i-1:i]
+        if(1<=int(one_digit)<=9):
+            No_of_ways[i]+=No_of_ways[i-1]
+        two_digit=String[i-2:i]
+
+        val=int(two_digit)
+        if(1<=val<=26):
+            No_of_ways[i]+=No_of_ways[i-2]
+
+    #PRINT THE ENTIRE DP TABLE
+    print(No_of_ways)
+
+String="62"
+Number_of_ways_to_decode_string(String)
