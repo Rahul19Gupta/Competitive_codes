@@ -1,0 +1,38 @@
+
+#TIME COMPLEXITY: O(N^2)
+#SPACE COMPLEXITY: O(1)
+def Find_triplet_in_a_given_array_that_sum_to_a_given_value_x(arr,x):
+
+    #DECLARE SOME POINTERS
+    n=len(arr)
+    k=n-1
+    i=0
+    j=1
+
+    #SORT THE ENTIRE ARRAY
+    arr.sort()
+
+    #PROCESSING THE ARRAY ELEMENTS
+    while(i<j):
+
+        while(j<k):
+
+            if(arr[i]+arr[j]+arr[k]<x):
+
+                j+=1
+
+            elif(arr[i]+arr[j]+arr[k]>x):
+
+                k-=1
+
+            else:
+
+                return((arr[i],arr[j],arr[k]))
+
+        i+=1
+
+arr=[1,5,3,8,7,2]
+x=13
+print(Find_triplet_in_a_given_array_that_sum_to_a_given_value_x(arr,x))
+
+    
