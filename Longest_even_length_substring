@@ -1,0 +1,72 @@
+from collections import defaultdict
+
+
+def length_of_longest_even_length_substring(arr):
+    global max_length
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:
+    #SPACE COMPLEXITY:
+    n=len(arr)    
+    #INITILAIZE THE DP TABLE
+    DP=[[0 for j in range(0,n)]for i in range(0,n)]
+
+    #BASE CASE:
+    #SUBSTRING OF LENGTH 1
+    for i in range(0,n):
+        DP[i][i]=arr[i]
+
+    #RECURSIVE CASE:
+    for ls in range(2,n+1):
+        Hash_table=defaultdict(list)
+        for i in range(0,n-ls+1):
+            
+            j=i+ls-1     
+
+            DP[i][j]=DP[i][i]+DP[i+1][j]
+
+            if((j-i)%2 !=0):
+
+                Hash_table[DP[i][j]].append((i,j))
+
+        
+        print(Hash_table)
+        
+        #PROCESSING IN THE HASH TABLE TO REMOVE OVERLAPPING SUBSTRING
+        for keys in Hash_table.keys():
+
+            if(len(Hash_table[keys])>1):
+
+                p=0
+                q=len(Hash_table[keys])-1
+                while(p<q):
+
+                    if(abs(Hash_table[keys][p][0]-Hash_table[keys][q][0])==ls and Hash_table[keys][p][1]<Hash_table[keys][q][0]):
+                        
+                        length=2*ls
+
+                        if(length>max_length):
+
+                            max_length=length
+
+                    p+=1
+                    q-=1
+
+                
+
+    #PRINT THE ENTIRE DP TABLE
+    for i in range(0,n):
+
+        for j in range(0,n):
+
+            print(DP[i][j],end=" ")
+
+        print()
+
+    print("Max length of Even length non repeating substring is {0}".format(length))
+
+
+max_length=100000
+arr=[3,1,2,5,3,0,8]
+length_of_longest_even_length_substring(arr)   
+
+    
