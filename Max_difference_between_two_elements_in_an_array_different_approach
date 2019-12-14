@@ -1,0 +1,32 @@
+#APPROACH3----------------> INTUTION
+#TIME COMPLEXITY:O(N)
+#SPACE COMPELXITY:O(1)
+
+
+def Maxium_Difference_between_two_elements_in_an_array(arr):
+    n=len(arr)
+    i=0
+    a=0
+    b=0
+    Max_Diff=-10000
+    for j in range(0,n):
+
+        if(arr[j]>=arr[i]):
+
+            Current_diff=arr[j]-arr[i]
+
+            if(Max_Diff<Current_diff):
+                Max_Diff=Current_diff
+                a=arr[i]
+                b=arr[j]
+
+        else:
+
+            i=j
+
+    print(Max_Diff)
+    print(a)
+    print(b)
+
+arr=[10,-5,-3,4,2,12,-8,-12,19]
+Maxium_Difference_between_two_elements_in_an_array(arr)
