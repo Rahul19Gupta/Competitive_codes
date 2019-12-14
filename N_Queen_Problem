@@ -1,0 +1,88 @@
+def isSafe(ChessBoard,i,j):
+
+    #LETS CHECK BOUNDARY CONDITIONS
+    if(i<0 or i>=len(ChessBoard) or j<0 or j>=len(ChessBoard[0]) or ChessBoard[i][j]==1):
+       return(False)
+
+    #LETS CHECK FOR COL
+    for row in range(0,len(ChessBoard)):
+
+        if(ChessBoard[row][j]==1):
+
+            return(False)
+
+    #LETS CHECK FOR LEFT DIAGONAL
+    x=i
+    y=j
+    while(x>=0 and y>=0):
+
+        if(ChessBoard[x][y]==1):
+
+            return(False)
+            
+
+        x-=1
+        y-=1
+
+    #LETS CHECK FOR RIGHT DIAGONAL
+    x=i
+    y=j
+    while(x>=0 and y<len(ChessBoard[0])):
+
+        if(ChessBoard[x][y]==1):
+
+            return(False)
+
+        x-=1
+        y+=1
+
+    return(True)
+    
+
+
+    
+def Solve_N_Queen_Problem(ChessBoard,i):
+
+    #BASE CONDITION:
+    if(i==len(ChessBoard)):
+
+        for i in range(0,len(ChessBoard)):
+
+            for j in range(0,len(ChessBoard[0])):
+
+                print(ChessBoard[i][j],end=" ")
+
+            print()
+
+        print("-----------------------------------------------------")
+
+    #FOR THE CORRESSPONDING ROW--------> I NEED TO ITERATE OVER ALL COLOUMNS
+    for j in range(0,len(ChessBoard[0])):
+
+        #CHECK IS IT SAFE TO PLACE THE QUEEN--------> IF IT IS SAFE TO PLACE THE QUEEN THEN PLACE THE QUEEN
+        if(isSafe(ChessBoard,i,j)):
+
+            #GO AND PLACE THE QUEEN
+            ChessBoard[i][j]=1
+
+            #NOW CALL ON THE REMAINING PART AND CHECK NEXT POSITION PE RAKH PAYE KE NAI
+
+            nextPositionPeRakhPaye=Solve_N_Queen_Problem(ChessBoard,i+1)
+
+            if(nextPositionPeRakhPaye):
+
+                return(True)
+
+            #IF WE ARE NOT ABLE TO PLACE QUEEN AT THE NEXT POSITION THEN OUR PREVIOUS ASSUMPTION IS WRONG------>Go Back---> BACKTRACK and correct our previous step
+            ChessBoard[i][j]=0
+
+    #IE WE ARE NOT ABLE TO PLACE IN ANY OF THE COLOUMN-------> THEN RETURN FALSE
+    return(False)
+
+N=8
+ChessBoard=[[0 for j in range(0,N)]for i in range(0,N)]
+Solve_N_Queen_Problem(ChessBoard,0)            
+
+            
+
+    
