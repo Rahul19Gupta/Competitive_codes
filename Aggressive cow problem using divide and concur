@@ -1,0 +1,62 @@
+        
+def Can_I_Place_Cows_at_minimum_distance_of_k(Stalls,cows,index):
+    #import pdb;pdb.set_trace()
+    
+   
+    #I PLACED A At first stall COW HERE
+
+    cows-=1
+
+    pos=Stalls[0]
+    
+    for i in range(1,len(Stalls)):
+
+        if(abs(pos-Stalls[i])>=index):
+
+            #PLACE A COW THERE
+            cows-=1
+
+            pos=Stalls[i]
+
+    #CHECK IF I AM ABLE TO PLACE ALL COWS RETURN TRUE OTHERWISE RETURN FALSE
+    if(cows<=0):
+
+        return(True)
+
+    return(False)
+
+
+def Agressive_cows(Stalls,cows,start,end):
+    #import pdb;pdb.set_trace()
+    #TIME COMPLEXITY: O(nlogn)
+    #SPACE COMPLEXITY: O(logn)
+    if(start>end):
+        return
+
+    if(start==end):
+        print("The maximum distance by which all the cows will be placed is {}".format(start))
+        return(1)
+
+    
+    mid=(start+end)//2
+    
+    #AM I ABLE TO PLACE COWS AT MIN DISTANCE K THEN-----------------------> GO AND SERACH ON THE RIGHT SIDE----------> BCZ I NEED TO FIND OUT THE MAXIMUM DISTANCE FROM WHICH I CAN PLACE THE COWS
+    if(Can_I_Place_Cows_at_minimum_distance_of_k(Stalls,cows,mid)):
+
+        Agressive_cows(Stalls,cows,mid+1,end)
+
+    else:
+
+        Agressive_cows(Stalls,cows,start,mid-1)
+
+
+Stalls=[1,2,4,8,9]
+cows=3
+start=Stalls[0]
+n=len(Stalls)
+end=Stalls[n-1]
+Agressive_cows(Stalls,cows,start,end)
+
+
+
+        
