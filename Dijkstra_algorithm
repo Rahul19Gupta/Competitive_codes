@@ -1,0 +1,102 @@
+from collections import defaultdict
+        
+class Graph:
+    def __init__(self):
+        self.graph=defaultdict(list)
+
+    def addEdge(self,u,v,weight,bidirectional=True):
+
+        self.graph[u].append((v,weight))
+        if(bidirectional):
+            self.graph[v].append((u,weight))
+
+    def Print(self):
+        print(self.graph)
+
+    def Min_heapify(self,arr,i):
+
+        heapsize=len(arr)
+
+        #FIRST DECLARE THE POINTERS
+        left= 2 * i + 1
+        right=2 * i + 2
+
+        #NOW COMPARE THE arr[i] with arr[left]-> arr
+
+        if(left< heapsize and arr[left]<arr[i]):
+            Minimum=left
+
+        else:
+
+            Minimum=i
+            
+        if(right<heapsize and arr[right]<arr[Minimum]):
+            
+            Minimum=right
+
+        if(Minimum !=i):
+
+            self.Min_Heapify(arr,Minimum)
+
+    def Extract_Min(self,arr):
+
+        heapsize=len(arr)
+        if(heapsize<1):
+            print("Heap is underflow")
+            return
+
+        Min=arr[0][0]
+
+        arr.pop(0)
+
+        self.Min_heapify(arr,0)
+
+        return(Min)
+        
+
+    def Single_Source_Shortest_Path_Algorithm(self,source,n):
+
+        import pdb;pdb.set_trace()    
+        #DECLARATIONS
+        infinity=1000000
+
+        Shortest_distance=[[i,infinity] for i in range(0,n)]
+
+        #UPDATE THE SHORTEST DISTANCE OF SOURCE
+        Shortest_distance[source][1]=0
+
+        print(Shortest_distance)
+        
+        #CURRENTLY ENTIRE GRAPH ITSELF IS UNVISITED
+        visited=[0 for i in range(0,n)]
+
+        #Find The minimum node having minimum value
+        while(len(Shortest_distance)):
+
+            
+            node=self.Extract_Min(Shortest_distance)
+
+            visited[node]=1
+
+            for neighbour in self.graph[node]:
+                cost=neighbour[1]
+                if(Shortest_distance[neighbour[0]]>Shortest_distance[node] + cost):
+
+                   Shortest_distance[neighbour[0]]=Shortest_distance[node] + cost
+
+g=Graph()
+g.addEdge(0,1,10,False)
+g.addEdge(0,2,5,False)
+g.addEdge(1,2,2,False)
+g.addEdge(1,4,1,False)
+g.addEdge(2,1,3,False)
+g.addEdge(2,3,2,False)
+g.addEdge(2,4,9,False)
+g.addEdge(3,0,7,False)
+g.addEdge(3,4,6,False)
+g.addEdge(4,3,4,False)
+
+n=5
+g.Single_Source_Shortest_Path_Algorithm(0,n)        
+        
+
