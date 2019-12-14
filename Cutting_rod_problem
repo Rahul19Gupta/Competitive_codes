@@ -1,0 +1,64 @@
+
+def Cutting_rod_Problem(prices_per_length,total_length):
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(N^2)
+    #SPACE COMPLEXITY:O(N^2)
+    #INITIALZE THE DP TABLE
+    #i------------> Per Piece length
+    #j------------> Total length 
+    Maximum_Profit=[[0 for j in range(0,total_length+1)]for i in range(0,len(prices_per_length)+1)]
+
+    for i in range(0,len(prices_per_length)+1):
+
+        for j in range(0,total_length+1):
+
+            #BASE CASE:
+            if(i==0):
+                Maximum_Profit[i][j]=0
+
+            elif(j==0):
+
+                Maximum_Profit[i][j]=0
+
+            
+            else:
+
+                #IF TOTAL LENGTH>= PER PIECE LENGTH
+
+                if(j>=i):
+                    Profit_including_it=prices_per_length[i-1]+Maximum_Profit[i][j-i]
+                    
+                    Profit_excluding_it=Maximum_Profit[i-1][j]
+
+                    Maximum_Profit[i][j]=max(Profit_including_it,Profit_excluding_it)
+                    
+                #IF TOTAL LENGTH < PER PIECE LENGTH
+                else:
+
+                    Maximum_Profit[i][j]=Maximum_Profit[i-1][j]
+
+                
+
+
+    #PRINT THE ENTIRE DP TABLE
+    for i in range(0,len(prices_per_length)+1):
+
+        for j in range(0,total_length+1):
+
+            print(Maximum_Profit[i][j],end=" ")
+
+        print()
+
+    return(Maximum_Profit[len(prices_per_length)][total_length])
+
+        
+
+                
+prices_per_length=[1, 5, 8, 9, 10, 17, 17, 20]
+total_length=len(prices_per_length)
+x=Cutting_rod_Problem(prices_per_length,total_length)
+print("Maximum Profit we can obtained {0}".format(x))
+
+                
+    
+    
