@@ -1,0 +1,55 @@
+
+def Generate_all_valid_parenthesis(Open,Close,val,n,temp):
+
+    temp.append(val)
+   
+    #BASE CASE
+    if(len(temp)== 2*n):
+        print("".join(temp),end=" ")
+        return
+        
+
+    if(Open==0 and Close==0):
+        return
+
+    if(Open and not Close):
+        return
+
+
+    #RECURSIVE CASE:
+
+    #CASE1:
+    #IF OPEN==0 AND CLOSE>0---------> THEN I CAN ONLY CLOSED THE PARENTHESIS
+    if(Open==0 and Close>0):
+        Generate_all_valid_parenthesis(Open,Close-1,')',n,temp)
+        temp.pop()
+
+    #CASE2:-------------> THEN I HAVE TWO CHOICES EITHER I CAN OPEN OR I CAN CLOSE
+    if(Open>0 and Close>0 and Open<Close):
+
+        #FOR CLOSING THE PARENTHESIS
+        Generate_all_valid_parenthesis(Open,Close-1,')',n,temp)
+        temp.pop()
+
+        #FOR OPENING THE PARENTHESIS
+        Generate_all_valid_parenthesis(Open-1,Close,'(',n,temp)
+        temp.pop()
+
+    #CASE3:
+    if(Open>=Close and Open>0 and Close>=0):
+        #I CAN ONLY OPEN THE PARENTHESIS
+        Generate_all_valid_parenthesis(Open-1,Close,'(',n,temp)
+        temp.pop()
+      
+    return    
+    
+temp=[]   
+Open=3
+Close=3
+val="("
+n=3
+Generate_all_valid_parenthesis(Open-1,Close,val,n,temp)
+        
+        
+
+    
