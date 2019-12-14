@@ -1,0 +1,16 @@
+#TIME COMPLEXITY:O(No of set bits)
+#SPACE COMPLEXITY:O(1)
+#EFFICIENT METHOD-------------> n & (n-1) Method
+def Number_of_set_bits(number):
+
+    count=0
+    while(number>0):
+        number=number & (number-1)
+        count+=1
+
+    print(count)
+
+number=10
+Number_of_set_bits(number)
+
+    
