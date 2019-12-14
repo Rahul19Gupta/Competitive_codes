@@ -1,0 +1,100 @@
+from collections import defaultdict
+class Stack:
+    def __init__(self):
+        self.stack=[]
+
+    def push(self,data):
+        self.stack.append(data)
+
+    def pop(self):
+        if(len(self.stack)!=0):
+            return(self.stack.pop())
+
+    def isEmpty(self):
+        return(len(self.stack)==0)
+
+    def peek(self):
+        return(self.stack[-1])
+
+
+class Graph:
+    def __init__(self):
+        self.graph=defaultdict(list)
+
+
+    def addEdge(self,u,v,bidirectional=True):
+        self.graph[u].append(v)
+        if(bidirectional):
+            self.graph[v].append(u)
+
+    def Print(self):
+        print(self.graph)
+
+    
+    def Depth_First_Search_algorithm(self,start,n):
+        #TIME COMPLEXITY:----------> O(V+E)
+        #SPACE COMPLEXITY:-----------> O(V) 
+
+        #DECLARATIONS
+        visited=[0 for i in range(0,n)]
+
+        s=Stack()
+
+        #LETS PUSH THE START NODE INTO THE STACK
+        s.push(start)
+
+        print(start,end="------->")
+
+        #JUST MARK THAT NODE AS VISITED
+        visited[start]=1
+
+        while(not s.isEmpty()):
+
+            node=s.peek()
+            
+            for neighbour in self.graph[node]:
+
+                if(visited[neighbour]==0):
+
+                    s.push(neighbour)
+
+                    print(neighbour,end="--------->")
+
+                    visited[neighbour]=1
+
+                    break
+
+            else:
+
+                node=s.pop()
+
+
+g=Graph()
+g.addEdge(0,1)
+g.addEdge(0,2)
+g.addEdge(1,2)
+g.addEdge(2,3)
+g.addEdge(1,4)
+g.addEdge(3,4)
+
+
+            
+start=0
+n=5
+g.Depth_First_Search_algorithm(start,n)
+            
+
+        
+
+            
+
+        
+
+            
+                
+
+        
+        
+    
+
+    
