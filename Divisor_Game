@@ -1,0 +1,40 @@
+
+def Divisor_Game(N):
+    #import pdb;pdb.set_trace()
+    alice_wins=False
+
+    #LET'S ALICE FIRST TRY TO PICK A NUMBER FROM 1 T0 N
+    
+    while(1):
+        if(N==1):
+            return(False)
+        for i in range(1,N):
+
+            if(N%i==0):
+                Alice_wins=True
+                N=N-i
+                break
+        else:
+
+            return(False)
+
+
+        #NOW BOB'S TURN TO PICK A NUMBER
+        
+        if(N==1):
+            return(True)
+        for j in range(1,N):
+
+            if(N%j==0):
+                Bobs_wins=True
+                N=N-j
+                break
+
+            else:
+
+                return(True)
+
+
+
+N=3
+print(Divisor_Game(N))                    
