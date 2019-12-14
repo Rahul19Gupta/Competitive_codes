@@ -1,0 +1,33 @@
+
+
+def Count_the_number_of_ways_to_reach_the_given_score_in_a_game(score):
+
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(N)
+    #SPACE COMPLEXITY:O(N)
+
+    #INITIALIZE THE DP TABLE:
+    Count=[0 for i in range(0,score+1)]
+
+    #BASE CASE:
+    Count[0]=0
+    Count[1]=1
+    Count[2]=2
+    Count[3]=4
+
+    #RECURSIVE CASE:
+    for i in range(4,score+1):
+
+        Count[i]=Count[i-1]+Count[i-2]+Count[i-3]
+
+
+    #PRINT THE ENTIRE DP TABLE
+    print(Count)
+
+    return(Count[score])
+
+score=8
+x=Count_the_number_of_ways_to_reach_the_given_score_in_a_game(score//2)
+print("Number of ways in which u can score a point {0} is {1}".format(score//2,x))
+
+    
