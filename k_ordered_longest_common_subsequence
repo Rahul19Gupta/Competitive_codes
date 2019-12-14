@@ -1,0 +1,65 @@
+
+def k_ordered_longest_common_sunsequence(s1,s2,i,j,k,n):
+    global LCS
+    #Top Down DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(N^3)
+    #SPACE COMPLEXITY:O(N^3)
+
+    #BASE CASE:
+    if(i==n):
+        return(0)
+
+    if(j==n):
+        return(0)
+
+    if(LCS[i][j][k]):
+        return(LCS[i][j][k])
+
+
+    #I NEED TO MOVE DIAGONALLY
+
+    if(s1[i]==s2[j]):
+
+        LCS[i][j][k]=1+k_ordered_longest_common_sunsequence(s1,s2,i+1,j+1,k,n)
+
+    else:
+        op1=-1000
+        op2=-10001
+        if(k>0):
+            op1=1+ k_ordered_longest_common_sunsequence(s1,s2,i+1,j+1,k-1,n)
+        else:
+            op2=max(k_ordered_longest_common_sunsequence(s1,s2,i+1,j,k,n),k_ordered_longest_common_sunsequence(s1,s2,i,j+1,k,n))
+            
+        LCS[i][j][k]=max(op1,op2)
+
+    return(LCS[i][j][k])
+
+
+s1="12345"
+s2="53142"
+i=0
+j=0
+k=1
+n=len(s1)
+#INITIALIZE THE DP TABLE
+#-----------------------
+LCS=[[[0 for r in range(0,k+1)]for q in range(0,n+1)]for p in range(0,n+1)]
+print(k_ordered_longest_common_sunsequence(s1,s2,i,j,k,n))
+
+#PRINT THE ENTIRE DP TABLE
+for i in range(0,n+1):
+
+    for j in range(0,n+1):
+
+        for r in range(0,k+1):
+
+            print(LCS[i][j][r],end=" ")
+
+        print(" ")
+
+    
+
+    
+
+
+        
