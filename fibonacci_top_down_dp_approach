@@ -1,0 +1,31 @@
+#TOP DOWN DP APPROACH------->RECURSION
+fib=[0 for i in range(0,100)]
+def fibonacci(num):
+    #import pdb;pdb.set_trace()
+    global fib
+    #INILTIALIZE THE DP ARRAY FIRST
+    
+    #BASE CASE:
+    #CASE1:
+    if(num==0):
+        fib[0]=0
+        return(0)
+
+    #CASE2:
+    if(num==1):
+        fib[1]=1
+        return(1)
+
+    #IF IT IS ALREADY COMPUTED THAN RETURN
+    if(fib[num]):
+        return(fib[num])
+
+    #RECURSIVE CASE:
+
+    ans=fibonacci(num-1)+fibonacci(num-2)
+
+    fib[num]=ans
+    return(fib[num])
+
+num=10
+print(fibonacci(num))
