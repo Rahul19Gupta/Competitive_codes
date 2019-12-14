@@ -1,0 +1,20 @@
+def countPrimes(n: int):
+        count=0
+        #import pdb;pdb.set_trace()
+        if(n==1 or n==2):
+            return(0)
+        for i in range(3,n+1):
+            x=-1
+            for j in range(2,i):
+                
+                if(i%j==0):
+                    x=1
+                    break
+                    
+            if(x==-1):
+                count+=1
+                
+        return(count)
+
+n=5
+print(countPrimes(n))
