@@ -1,0 +1,67 @@
+#M : NO OF STUDENTS
+#N: NO OF BOOKS
+def Book_allocation_problem_using_binary_search_algorithm(Books,M,N):
+
+    No_of_students=1
+    start=Books[0]
+    pages_read=0
+    sum=0
+    for i in range(0,N):
+        sum+=Books[i]
+
+    end=sum
+
+    while(start<end):
+
+        mid=(start+end)//2
+
+        upper_limit=mid
+
+        import pdb;pdb.set_trace()
+        i=0
+        while(i<N):
+ 
+            if(pages_read<=upper_limit and i<N):
+
+                pages_read+=Books[i]
+
+                i+=1
+
+            else:
+                i-=1
+                No_of_students+=1
+                pages_read=0
+            
+
+        if(No_of_students>M):
+
+            #IT MEANS I NEED TO SEARCH ON THE RIGHT PART
+            start=mid
+
+        else:
+
+            #IT MEANS I NEED TO SEARCH ON THE LEFT HALF
+            end=mid
+
+            
+
+        print(No_of_students)
+
+
+M=2
+N=4
+Books=[10,20,30,40]
+Book_allocation_problem_using_binary_search_algorithm(Books,M,N)
+        
+
+            
+
+            
+            
+        
+        
+
+    
+
+    
+    
