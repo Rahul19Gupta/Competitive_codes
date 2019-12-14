@@ -1,0 +1,22 @@
+from flask import Flask
+
+from flask_restful import Resource,Api
+
+
+app=Flask(__name__)
+
+api=app(Api)
+
+class Student(Resource):
+
+    def get_name(self,name):
+
+        return {'student':name}
+
+#U NEED TO CREATE AN ENDPOINTS
+api.add_resource(Student,'student/<string::name>')
+        
+
+#FINALLY TO RUN IT
+app.run(port=5000,DEBUG=True)
+
