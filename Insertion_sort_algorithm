@@ -1,0 +1,32 @@
+
+def Insertion_sort_algorithm(arr):
+
+    #TIME COMPLEXITY: O(N^2)---------------> ARRAY ELEMENTS ARRANGED IN DESCENDING ORDER
+    #SPACE COMPLEXITY: O(1)
+    n=len(arr)
+
+    for j in range(1,n):
+
+        x=arr[j]
+        i=j-1
+
+        while(i>=0 and arr[i]>x):
+
+            #SWAP arr[i] and arr[j]
+            arr[i],arr[j]=arr[j],arr[i]
+
+            i-=1
+            j-=1
+
+
+        #EXCHANGE arr[i] and arr[j]
+
+        arr[i+1]=x
+
+
+    #PRINT THE ARRAY
+    print(arr)
+
+
+arr=[4,1,23,5,90,2,-90,123]
+Insertion_sort_algorithm(arr)
