@@ -1,0 +1,58 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class Stack:
+    def __init__(self):
+        self.data=[]
+
+    def append(self,data):
+        self.data.append(data)
+
+    def pop(self):
+        return(self.data.pop())
+
+    def isEmpty(self):
+        return(len(self.data)==0)
+
+def Linked_list_is_a_pallindrome_or_not(head):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    temp=head
+    s=Stack()
+    while(temp):
+
+        s.append(temp.data)
+        temp=temp.next
+
+    #NOW TRAVERSE THE ENTIRE LIST AND COMPARE WITH THE DATA FROM THE STACK
+    temp=head
+    while(temp):
+
+        if(temp.data!=s.pop()):
+            print("It's not a pallindrome")
+            return
+
+        temp=temp.next
+    print("It's a Pallindrome")
+
+
+node1=Node('M')
+node2=Node('a')
+node3=Node('d')
+node4=Node('a')
+node5=Node('m')
+
+
+node1.next=node2
+node2.next=node3
+node3.next=node4
+node4.next=node5
+
+
+Linked_list_is_a_pallindrome_or_not(node1)
+        
+
+    
+        
