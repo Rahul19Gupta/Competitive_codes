@@ -1,0 +1,39 @@
+
+def Egg_Dropping_Problem(N,e):
+
+    #INITIALIZE THE DP TABLE
+    DP=[[100000 for j in range(0,e+1)]for i in range(0,N+1)]
+
+    #BASE CASE:
+    #CASE1:
+    #IF WE HAVE ONLY ONE EGG LEFT AND N FLOORS
+    for i in range(0,N+1):
+        DP[i][1]=i
+
+    #CASE2:
+    #IF WE HAVE 1 FLOOR AND e EGGS
+    for j in range(0,e+1):
+        DP[1][j]=1
+
+    #RECURSIVE CASE
+
+    for i in range(2,N+1):
+
+        for j in range(2,e+1):
+
+            for x in range(0,N+1):
+
+                DP[i][j]=min(DP[i][j],max(DP[i-1][j-1],DP[i-x][e])+1)
+
+    #PRINT THE ENTIRE DP TABLE
+    for i in range(0,N+1):
+
+        for j in range(0,e+1):
+
+            print(DP[i][j],end=" ")
+
+        print()
+
+N=7
+e=3
+Egg_Dropping_Problem(N,e)
