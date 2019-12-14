@@ -1,0 +1,55 @@
+class Stack:
+    def __init__(self):
+        self.stack=[]
+
+    def push(self,data):
+        self.stack.append(data)
+
+    def pop(self):
+        return(self.stack.pop())
+
+    def isEmpty(self):
+        return(len(self.stack)==0)
+    
+def Frog_Jump(Stones):
+    #import pdb;pdb.set_trace()
+    lastposition=Stones[-1]
+    visited=set()
+    for i in range(0,len(Stones)):
+        visited.add(Stones[i])
+        
+    StackPositions=Stack()
+    StackJumps=Stack()
+
+    #INITIALLY THEY START AT POSITION 0 AND THE JUMP WE ASSUME TO BE 0
+    StackPositions.push(0)
+    StackJumps.push(0)
+
+    while(not StackPositions.isEmpty()):
+        position=StackPositions.pop()
+
+        jump=StackJumps.pop()
+        
+        for i in range(jump-1,jump+2):
+
+            if(i<=0):
+                continue
+
+            nextposition=position + i
+
+            if(nextposition==lastposition):
+                return(True)
+
+            if(nextposition in visited):
+
+                StackPositions.push(nextposition)
+                StackJumps.push(i)
+
+    return(False)
+
+
+Stones=[0,1,3,5,6,8,12,17]
+print(Frog_Jump(Stones))           
+    
+
+    
