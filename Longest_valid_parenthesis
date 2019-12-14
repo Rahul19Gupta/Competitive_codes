@@ -1,0 +1,64 @@
+class Stack:
+    def __init__(self):
+        self.stack=[]
+
+    def push(self,data):
+        self.stack.append(data)
+
+    def pop(self):
+        if(len(self.stack)>=0):
+            return(self.stack.pop())
+
+        print("Stack is Empty")
+
+    def isEmpty(self):
+        return(len(self.stack)==0)
+
+    def size(self):
+        return(len(self.stack))
+
+    def peek(self):
+        return(self.stack[-1])
+
+def Longest_valid_Parenthesis(arr):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    n=len(arr)
+
+    s=Stack()
+
+    s.push(-1)
+
+    Max=0
+
+    for i in range(0,len(arr)):
+
+        if(arr[i]=='('):
+
+            s.push(i)
+
+        elif(arr[i]==')' and arr[s.peek()]=='(' and s.size()>1):
+
+            s.pop()
+
+            Max=max(i-s.peek(),Max)
+
+        else:
+
+            s.push(i)
+
+    return(Max)
+
+arr=")"
+print(Longest_valid_Parenthesis(arr))
+
+    
+
+     
+
+    
+
+
+
+
+    
