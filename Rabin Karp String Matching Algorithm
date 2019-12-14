@@ -1,0 +1,61 @@
+def Hash(Str):
+    #String--------> length n
+    #PATTERN LENGTH--------> m
+    #TIME COMPELXITY: O(m)
+    #SPACE COMPLEXITY: O(1)
+    Sum=0
+
+    for i in range(0,len(Str)):
+        Sum+=ord(Str[i])
+
+    return(Sum)
+
+    
+def Rabin_karp_string_matching_algorithm(String,Pattern,m,n):
+
+    #TIME COMPLEXITY: O(n+m)
+    #SPACE COMPLEXITY: O(1)
+
+    #BASE CASE:
+
+    if(String=="" and Pattern==""):
+        print("Pattern is present as a substring in a original String")
+        return(1)
+
+    if(m>n):
+        print("Pattern cannot be the substring of the orignal string")
+        return(-1)        
+    
+    Hash_value_of_pattern=Hash(Pattern)
+
+    #FIND THE HASH VALUE OF FIRST WINDOW OF A STRING OF LENGTH 
+
+    Hash_value_of_first_window=Hash(String[0:m])
+
+    Hash_value_of_previous_window=Hash_value_of_first_window
+
+    first_char_of_previous_window=String[0]
+
+    for i in range(1,len(String)-len(Pattern)+1):
+
+        last_char_of_current_window=String[i+m-1]
+        
+        Hash_value_of_current_window=Hash_value_of_previous_window-ord(first_char_of_previous_window)+ord(last_char_of_current_window)
+
+        if(Hash_value_of_current_window==Hash_value_of_pattern):
+
+            print("Pattern is present as a substring in a original String and it's starting index is {}".format(i))
+
+            return(1)
+
+    print("Pattern is not present as a substring in a original String")
+    return(-1)
+
+
+String="ababbab"
+Pattern="abba"
+m=len(Pattern)
+n=len(String)
+Rabin_karp_string_matching_algorithm(String,Pattern,m,n)
+
+        
