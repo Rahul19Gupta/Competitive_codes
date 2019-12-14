@@ -1,0 +1,25 @@
+total=0
+#BCZ OF RECURSION TIME COMPLEXITY O(2^N) 
+def num_encodings(s):
+    global total
+    #import pdb;pdb.set_trace()
+
+    # This covers empty string   
+    if(len(s) <= 1):
+        return 1
+     # IF the string starts with 0 simply return 0 bcz for 0 we don't have any mapping 
+    elif(s[0]=='0'): 
+        return 0
+
+    #Take the every 2 length string if <=26, increase count by 1
+    if int(s[:2]) <= 26:
+        total += num_encodings(s[2:])
+
+
+    #For every one length string we have mappings, except zero, so increase count by one 
+    total += num_encodings(s[1:])
+
+    return total
+
+s="12"
+print(num_encodings(s))
