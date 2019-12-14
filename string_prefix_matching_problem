@@ -1,0 +1,42 @@
+def longestCommonPrefix(A):
+        #import pdb;pdb.set_trace()
+        i=0 #external
+        j=0 #Internal chrachter mapping
+        Min_length=1000000
+        #FIND OUT THE SHORTEST LENGTH STRING
+        for i in range(0,len(A)):
+            
+            if(Min_length>len(A[i])):
+                Min_length=len(A[i])
+                Min_length_string=A[i]
+                
+        
+        prefix_matching=""
+        n=len(A)
+        String=Min_length_string
+        len1=len(Min_length_string)
+
+        while(j<len1):
+            count=0
+            i=0
+            while(i<len(A) and String[j]==A[i][j]):
+
+                count+=1
+
+                i+=1
+            if(count==n):
+
+                prefix_matching+=String[j]
+
+                j+=1
+
+            else:
+
+                return(prefix_matching)
+
+        return(prefix_matching)
+    
+        
+A = ["abab", "ab", "abcd"]
+x=longestCommonPrefix(A)
+print("Longest prefix is {}".format(x))
