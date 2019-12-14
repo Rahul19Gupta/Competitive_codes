@@ -1,0 +1,39 @@
+
+def Phone_Keypad(Input,i,n,j,output):
+    global Phone_Keypad_Mapping
+    global result
+    
+    #import pdb;pdb.set_trace()
+    #BASE CASE:
+    if(i==n):
+        result.append("".join(output))
+        return(result)
+
+    #RECURSIVE CASE:
+
+    if(Input[i]=='1'):
+        Phone_Keypad(Input,i+1,n,j,output)
+        return(result)
+
+    for k in range(0,len(Phone_Keypad_Mapping[int(Input[i])])):
+        output[j]=Phone_Keypad_Mapping[int(Input[i])][k]
+        Phone_Keypad(Input,i+1,n,j+1,output)
+        
+
+    return(result)
+
+    
+Phone_Keypad_Mapping=["","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+Input="123"
+result=[]
+output=[0,0]
+i=0
+j=0
+n=len(Input)
+print(Phone_Keypad(Input,i,n,j,output))
+
+        
+        
+        
+
+    
