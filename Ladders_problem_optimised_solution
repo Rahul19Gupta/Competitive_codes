@@ -1,0 +1,35 @@
+#OPTIMISED BOTTOM UP DYNAMIC PROGRAMMING APPROCH
+#TIME COMPLEXITY: O(N + K)
+#SPACE COMPLEXITY: O(N)
+
+def Ladders_Problem(n,k):
+    
+    
+    #INITIALIZE THE DP ARRAY FIRST
+    No_of_ways=[0 for i in range(0,n+1)]
+    
+    #BASE CASE:
+    No_of_ways[0]=1
+    No_of_ways[1]=1
+    #RECURSIVE CASE
+    for i in range(2,n+1):
+        
+            if(i>=k-1):
+                No_of_ways[i]=2*No_of_ways[i-1]-No_of_ways[i-k-1]
+            
+
+
+    #PRINT ENTIRE DP TABLE
+    print(No_of_ways)
+   
+
+
+n=4
+k=3
+Ladders_Problem(n,k)
+
+
+
+
+    
+    
