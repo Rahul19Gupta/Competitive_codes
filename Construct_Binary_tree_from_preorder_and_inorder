@@ -1,0 +1,76 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+
+def Find_the_index_of_an_elemnt_in_Inorder(Inorder,element):
+
+    for i in range(0,len(Inorder)):
+
+        if(element==Inorder[i]):
+
+            return(i)
+        
+def Print_the_preorder_traversal(root):
+
+    if(root):
+
+        print(root.data,end=" ")
+
+        Print_the_preorder_traversal(root.left)
+
+        Print_the_preorder_traversal(root.right)
+
+        
+def Construct_binary_tree_from_pre_order_and_inorder_traversal(Preorder,Inorder,in_start,in_end):
+
+    #import pdb;pdb.set_trace()
+    #TIME COMPLEXITY:------> O(N)
+
+    #SPACE COMPLEXITY:-------> O(N)
+
+    global pre_index
+
+    #NODE HAVING ONLY ONE CHILD
+    if(in_start>in_end):
+        return(None)
+
+    pre_index+=1
+    root=Node(Preorder[pre_index])
+
+    #BASE CASE:
+    if(in_start==in_end):
+        #LEAF NODE
+        return(root)
+   
+    #TAKE THE FIRST ELEMENT FROM THE PREORDER TRAVERSAL AND MAKE IT AS ROOT NODE
+
+    element=Preorder[pre_index+1]
+
+    in_index=Find_the_index_of_an_elemnt_in_Inorder(Inorder,element)
+    
+    root.left=Construct_binary_tree_from_pre_order_and_inorder_traversal(Preorder,Inorder,in_start,in_index-1)
+
+    root.right=Construct_binary_tree_from_pre_order_and_inorder_traversal(Preorder,Inorder,in_index+1,in_end)
+
+    return(root)
+    
+
+Preorder=[1,2,4,5,3,6]
+Inorder=[4,2,5,1,6,3]
+pre_index=-1
+in_start=0
+in_end=len(Preorder)-1
+x=Construct_binary_tree_from_pre_order_and_inorder_traversal(Preorder,Inorder,in_start,in_end)
+
+Print_the_preorder_traversal(x)
+
+    
+
+
+
+
+
+
+    
