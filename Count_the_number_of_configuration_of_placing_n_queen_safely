@@ -1,0 +1,31 @@
+def SolveNQueen(row,size_of_chess_Board):
+    #import pdb;pdb.set_trace()
+    global No_of_configurations
+    global col,left_Diagnol,Right_Diagnol
+    
+    #BASE CASE
+    if(row==size_of_chess_Board):
+        No_of_configurations+=1
+        return
+
+    
+    #RECURSIVE CASE:
+    for col in range(0,size_of_chess_Board):
+        if(not Coloumn[col] and not left_Diagnol[row-col+size_of_chess_Board-1] and not Right_Diagnol[row+col]):
+            #GO AND PLACE THE QUEEN
+            left_Diagnol[row-col+size_of_chess_Board-1]=Right_Diagnol[row+col]=Coloumn[col]=1
+            #CALL ON THE NEXT ROW
+            SolveNQueen(row+1,size_of_chess_Board)
+            #BACKTRACKING STEP
+            left_Diagnol[row-col+size_of_chess_Board-1]=Right_Diagnol[row+col]=Coloumn[col]=0
+            
+
+row=0
+No_of_configurations=0
+N=4
+#DECLARE THE BOOLEAN ARRAYS
+Coloumn=[0 for i in range(0,100)]
+left_Diagnol=[0 for i in range(0,100)]
+Right_Diagnol=[0 for i in range(0,100)]
+SolveNQueen(row,N)
+print(No_of_configurations)
