@@ -1,0 +1,43 @@
+
+def Product_of_an_array_without_using_any_division_operator(arr):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    #DECLARE VARIABLES IN AN ARRAY
+    n=len(arr)
+
+    #LEFT PRODUCT OF AN ARRAY
+    Left_Product=[]
+    prod=1
+    for i in range(0,len(arr)):
+        prod=prod*arr[i]
+        Left_Product.append(prod)
+
+    #RIGHT PRODUCT OF AN ARRAY
+    Right_Product=[]
+    prod=1
+    for i in range(n-1,-1,-1):
+        prod=prod*arr[i]
+        Right_Product.insert(0,prod)
+
+    #PROCESSING THE ARRAY LEFT PRODUCT AND RIGHT PRODUCT
+    Final_ans=[]
+    
+    for i in range(0,n):
+
+        if(i==0):
+            x=Right_Product[i+1]
+            Final_ans.insert(i,x)
+
+        elif(i==n-1):
+            x=Left_Product[i-1]
+            Final_ans.insert(i,x)
+            
+        else:
+            x=Left_Product[i-1]*Right_Product[i+1]
+            Final_ans.insert(i,x)
+
+    print(Final_ans)
+
+
+arr=[10,20,30,40]
+Product_of_an_array_without_using_any_division_operator(arr)
