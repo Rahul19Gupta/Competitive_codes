@@ -1,0 +1,49 @@
+#ONLY ONE ISLAND IS PRESENT IN THE GRAPH U NEED TO FIND OUT THE PERIMETER OF THAT ISLANDS
+
+
+def Count_the_perimeter(islands,i,j,count):
+        #import pdb;pdb.set_trace()
+        for i,j in [(i-1,j),(i+1,j),(i,j-1),(i,j+1)]:
+            if(i>=0 and i<len(islands) and j>=0 and j<len(islands[0]) and islands[i][j]==0):
+                count+=1
+
+        return(count)
+       
+def Finding_Perimeter_of_an_islands(islands):
+    #BREADTH FIRST SEARCH ALGORITHM
+    #TIME COMPELXITY: O(V^2)
+    #SPACE COMPLEXITY: O(V)
+    Perimeter_count=0
+
+    count=0
+
+    for i in range(0,len(islands)):
+
+        for j in range(0,len(islands[0])):
+
+            if(islands[i][j]==1):
+
+                Perimeter_count+= Count_the_perimeter(islands,i,j,count)
+
+    return(Perimeter_count)
+
+
+
+
+
+islands=[[0,1,0,0],
+         [1,1,1,0],
+         [0,1,0,0],
+         [0,1,0,0]]
+
+print(Finding_Perimeter_of_an_islands(islands))
+
+
+                
+
+    
+
+    
+
+    
+    
