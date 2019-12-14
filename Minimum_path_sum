@@ -1,0 +1,63 @@
+
+def Minimum_path_sum_in_a_triangle(triangle):
+    m=len(triangle)
+    n=len(triangle[m-1])
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    
+    Min=1000000
+    Minimum_path_sum=[[1000000 for j in range(0,len(triangle[i]))]for i in range(0,len(triangle))]
+
+    #BASE CASE:
+    for i in range(0,len(triangle)):
+
+        Minimum_path_sum[i][0]=triangle[i][0]
+
+
+    #RECURSIVE CASE:
+    #import pdb;pdb.set_trace()
+    for i in range(1,len(triangle)):
+
+        for j in range(0,len(triangle[i])):
+
+            if(j==0):
+
+                x=Minimum_path_sum[i-1][j]+triangle[i][j]
+
+            else:
+
+                x=Minimum_path_sum[i-1][j-1]+triangle[i][j]
+
+            if(j>=1 and len(triangle[j-1])<j):
+
+                y=Minimum_path_sum[i-1][j-1]+triangle[i][j]
+
+            elif(j>=1 and len(triangle[j-1])>j):
+
+                y=Minimum_path_sum[i-1][j]+triangle[i][j]
+
+                
+
+            else:
+
+                y=1000000
+
+            Minimum_path_sum[i][j]=min(x,y)
+
+
+    #PRINT THE ENTIRE TABLE
+    for i in range(0,len(triangle)):
+
+        for j in range(0,len(triangle[i])):
+
+            print(Minimum_path_sum[i][j],end=" ")
+
+        print()
+
+   
+
+
+triangle=[[2],
+          [3,4],
+          [6,5,7],
+          [4,1,8,3]]
+print(Minimum_path_sum_in_a_triangle(triangle))
