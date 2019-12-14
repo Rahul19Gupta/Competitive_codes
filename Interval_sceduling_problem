@@ -1,0 +1,47 @@
+class Interval:
+    def __init__(self,startTime,endTime,name):
+        self.startTime=startTime
+        self.endTime=endTime
+        self.name=name
+
+def Interval_Non_Overlapping(intervals,index):
+
+    for i in range(index-1,-1,-1):
+
+        if(intervals[index].startTime >= intervals[i].endTime):
+
+            return(1)
+        
+    return(0)
+    
+def Interval_Scheduling_Problem(intervals):
+    #TIME COMPLEXITY: O(N^2)
+    #SPACE COMPLEXITY: O(1)
+
+    n=len(intervals)
+    count=1
+    #SORT THE INTERVALS ON THE BASIS OF END TIME
+
+    intervals=sorted(intervals,key=lambda j:j.endTime)
+
+    Non_overlapping_intervals=[]
+
+    Non_overlapping_intervals.append(intervals[0].name)
+
+    #FIRST INTERVAL IS ALWAYS NON OVERLAPPING
+
+    for i in range(1,n):
+
+        if(Interval_Non_Overlapping(intervals,i)):
+
+            Non_overlapping_intervals.append(intervals[i].name)
+
+            count+=1
+
+    print(Non_overlapping_intervals)
+    return(count)
+
+intervals=[Interval(10,13,'A'),Interval(9,14,'B'),Interval(7,11,'C'),Interval(12,16,'D'),Interval(20,25,'E'),Interval(1,50,'F')]
+x=Interval_Scheduling_Problem(intervals)
+print("Maximum Number of intervals that we can collect without overlapping is {}".format(x))
+
