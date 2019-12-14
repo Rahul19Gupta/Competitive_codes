@@ -1,0 +1,38 @@
+#MINIMUM COIN CHANGE PROBLEM USING TOP DOWN DP
+#---------------------------------------------
+#TIME COMPLEXITY: O(coins+1)(Amount+1)
+#SPACE COMPLEXITY: O(Amount)
+#INITIALIZE THE DP ARRAY
+DP=[0 for i in range(100)]
+def Minimum_coin_change_problem_using_top_down(coins,Amount):
+
+    #BASE CASE
+    if(Amount==0):
+        return(0)
+
+    if(DP[Amount]):
+        return(DP[Amount])
+
+    #RECURSIVE CASE
+    x=100000
+
+    
+    for j in range(0,len(coins)):
+
+        if(Amount>=coins[j]):
+
+            x=min(x,Minimum_coin_change_problem_using_top_down(coins,Amount-coins[j]))
+
+    DP[Amount]=x+1
+
+    return(DP[Amount])
+
+coins=[1,7,10]
+Amount=18
+print(Minimum_coin_change_problem_using_top_down(coins,Amount))
+
+    
+
+    
+
+    
