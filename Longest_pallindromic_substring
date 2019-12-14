@@ -1,0 +1,111 @@
+
+
+def Find_the_given_string_is_pallindrome_or_not(Str):
+    n=len(Str)
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    DP=[[0 for j in range(0,len(Str))]for i in range(0,len(Str))]
+
+    #BASE CASE:
+    #EVERY STRING OF ONE LENGTH IS ALREADY A PALLINDROME
+    for i in range(0,len(Str)):
+
+        DP[i][i]=1
+
+    #RECURSIVE CASE---------> I NEED TO MOVE DIAGONALLY
+    for ls in range(2,n+1):
+
+        for i in range(0,n-ls+1):
+
+            j=ls+i-1
+
+            if(Str[i]==Str[j]):
+
+                if(i<=j):
+
+                    DP[i][j]=DP[i+1][j-1]
+
+                else:
+
+
+                    DP[i][j]=1
+
+            else:
+
+                DP[i][j]=0
+
+    #PRINT THE ENTIRE DP TABLE
+
+    for i in range(0,n):
+
+        for j in range(0,n):
+
+            print(DP[i][j],end=" ")
+        
+        print()
+
+    return(DP)
+
+Str="abacdfgdcaba"
+#Find_the_given_string_is_pallindrome_or_not(Str)
+
+
+def Find_the_longest_pallindromic_substring(Str):
+
+    #TIME COMPLEXITY: O(N^2)
+    #SPACE COMPELXITY: O(N^2)
+
+    DP=Find_the_given_string_is_pallindrome_or_not(Str)
+
+    print(DP)
+    #import pdb;pdb.set_trace()
+    n=len(Str)
+    Max_length_pallindrome=-10000
+
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    LPS=[[0 for j in range(0,n)]for i in range(0,n)]
+
+    #BASE CASE:
+    #EVERY SINGLE CHARACHTER IS A PALINDROME OF LENGTH 1
+    for i in range(0,n):
+
+        LPS[i][i]=1
+
+    #RECURSIVE CASE:
+    for ls in range(2,n+1):
+
+        for i in range(n-ls+1):
+
+            j=i+ls-1
+
+            if(i<=j):
+
+                if(Str[i]==Str[j] and DP[i][j]):
+                    LPS[i][j]=2+LPS[i+1][j-1]
+
+                else:
+
+                    LPS[i][j]=0
+
+            if(Max_length_pallindrome<LPS[i][j]):
+
+                Max_length_pallindrome=LPS[i][j]
+
+                start=i
+
+                end=j+1
+
+
+    #PRINT THE MAXIMUM LENGTH PALINDROMIC SUBSTRING
+    print("The Maximum Length pallindromic substring in a string {0} is {1}".format(Str,Str[start:end]))
+
+
+Str="abacdfgdcaba"
+Find_the_longest_pallindromic_substring(Str)    
+
+                
+
+            
+
+                    
+    
+    
