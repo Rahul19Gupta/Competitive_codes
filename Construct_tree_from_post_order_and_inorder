@@ -1,0 +1,80 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+
+def Find_the_index_of_an_elemnt_in_Inorder(Inorder,element):
+
+    for i in range(0,len(Inorder)):
+
+        if(element==Inorder[i]):
+
+            return(i)
+
+def Print_the_preorder_traversal(root):
+
+    if(root):
+
+        print(root.data,end=" ")
+
+        Print_the_preorder_traversal(root.left)
+
+        Print_the_preorder_traversal(root.right)
+
+    
+
+def Construct_tree_from_post_order_and_in_order_traversal(post_order,in_order,in_start,in_end):
+
+    #TIME COMPLEXITY: O(N)
+
+    #SPACE COMPLEXITY: O(N)
+
+    global post_index
+
+    #NODE HAVING ONLY ONE CHILD
+    if(in_start>in_end):
+        return(None)
+
+    post_index-=1
+    
+    #CREATE A ROOT NODE
+    root=Node(post_order[post_index])
+
+    #NODE HAVING NO CHILD-------> LEAF NODE
+    if(in_start==in_end):
+        return(root)
+
+    element=post_order[post_index]
+
+    root_index=Find_the_index_of_an_elemnt_in_Inorder(in_order,element)    
+
+    element=post_order[post_index-1]
+
+    in_index=Find_the_index_of_an_elemnt_in_Inorder(in_order,element)
+
+    if(root_index<in_index):
+
+        root.right=Construct_tree_from_post_order_and_in_order_traversal(post_order,in_order,root_index+1,in_end)
+
+        root.left=Construct_tree_from_post_order_and_in_order_traversal(post_order,in_order,in_start,root_index-1)
+
+    else:
+
+        root.left=Construct_tree_from_post_order_and_in_order_traversal(post_order,in_order,in_start,root_index-1)
+
+        root.right=Construct_tree_from_post_order_and_in_order_traversal(post_order,in_order,root_index+1,in_end)
+
+        
+    return(root)
+
+    
+
+post_order=[4,5,2,6,3,1]
+in_order=[4,2,5,1,6,3]
+post_index=6
+in_start=0
+in_end=len(post_order)-1
+x=Construct_tree_from_post_order_and_in_order_traversal(post_order,in_order,in_start,in_end)
+    
+Print_the_preorder_traversal(x)    
