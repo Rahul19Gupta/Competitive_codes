@@ -1,0 +1,32 @@
+
+def Delete_and_Earn(nums):
+
+    n=len(nums)
+    
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    Max_Profit=[0 for i in range(0,n)]
+
+    #BASE CASE:
+
+    Max_Profit[0]=nums[0]
+
+    for i in range(1,n):
+
+        include=nums[i]
+
+        for j in range(0,i):
+
+            if(nums[j]!=(nums[i]-1) and nums[j]!=(nums[i]+1)):
+
+                include+=nums[j]
+
+            exclude=Max_Profit[i-1]
+
+            Max_Profit[i]=max(include,exclude)
+
+    #PRINT THE ENTIRE DP TABLE
+    print(Max_Profit)
+
+
+nums=[1,1,1,2,4,5,5,5,6]
+Delete_and_Earn(nums)
