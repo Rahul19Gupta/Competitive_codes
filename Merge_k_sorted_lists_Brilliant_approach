@@ -1,0 +1,205 @@
+#APPROACH-------------> TWO WAY MERGING TECHNIQUE
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+
+def print_the_linked_list(temp):
+
+    while(temp):
+        print(temp.data,end="----->")
+        temp=temp.next
+    print()
+
+        
+def Merge_two_sorted_linked_list(head1,head2):
+    #TIME COMPLEXITY: O(kN)
+    #SPACE COMPLEXITY: O(1)
+    #BEFORE PROCESSING
+    print_the_linked_list(head1)
+    print("#####################################")
+    print_the_linked_list(head2)
+    print("##############################")
+
+    #KEEPING TAIL OF THE SORTED LINKED LIST AS TEMP
+    if(head1.data > head2.data):
+        temp1=head2
+        temp=head2
+
+    elif(head1.data < head2.data):
+        temp=head1
+        temp1=head1
+
+    #DECLARING SOME POINTERS
+    if(temp==head1):
+        p=head1
+        p=p.next
+        q=head2
+    else:
+        p=head2
+        p=p.next
+        q=head1
+
+    #DOING SOME PROCESSING
+    while(p and q):
+        if(p.data > q.data):
+            temp.next=q
+            temp=q
+            q=q.next
+
+        elif(q.data>p.data):
+
+            temp.next=p
+            temp=p
+            p=p.next
+
+    #IF SOME LIST IS STILL REMAING
+    if(p):
+        temp.next=p
+
+    if(q):
+        temp.next=q
+
+    #PRINT THE FINAL MERGED LIST
+    if(temp1==head1):
+        print_the_linked_list(head1)
+        return(head1)
+    else:
+        print_the_linked_list(head2)
+        return(head2)
+    
+
+#RECURSIVE APPROACH
+def Two_Merging_Technique(list1,list2):
+    import pdb;pdb.set_trace()
+    temp=None
+    #BASE CASE
+    if(not list1):
+        return(list2)
+    if(not list2):
+        return(list1)
+
+    #RECURSIVE CASE
+    #CASE1: if list1.data <= list2.data ----> list1=list1.next
+    if(list1.data <= list2.data):
+
+        temp=list1
+        temp.next=Two_Merging_Technique(list1.next,list2)
+
+    else:
+        temp=list2
+        temp.next=Two_Merging_Technique(list1,list2.next)
+        
+    return(temp)
+    
+
+
+def Merge_k_sorted_lists_iterative_technique(arr,last):
+    #TIME COMPLEXITY: O(Nklogk)
+    #SPACE COMPELXITY: O(1)
+    #import pdb;pdb.set_trace()
+    while(last):
+
+        start=0
+        end=last
+
+        while(start<end):
+
+            arr[start]=Merge_two_sorted_linked_list(arr[start],arr[end])
+
+            start+=1
+
+            end-=1
+
+        if(start>=end):
+
+            last=end
+
+    return(arr[0])
+
+def Merge_k_sorted_lists_recursive_technique(arr,last):
+    #TIME COMPLEXITY: O(Nklogk)
+    #SPACE COMPELXITY: O(1)
+    #import pdb;pdb.set_trace()
+    while(last):
+
+        start=0
+        end=last
+
+        while(start<end):
+
+            arr[start]=Merge_two_sorted_linked_list(arr[start],arr[end])
+
+            start+=1
+
+            end-=1
+
+        if(start>=end):
+
+            last=end
+
+    return(arr[0])
+
+
+
+#FIRST SORTED LINKED LIST
+node1=Node(1)
+node2=Node(3)
+node3=Node(5)
+
+node1.next=node2
+node2.next=node3
+
+#SECOND SORTED LINKED LIST
+node4=Node(2)
+node5=Node(4)
+node6=Node(10)
+
+node4.next=node5
+node5.next=node6
+
+#THIRD SORTED LINKED LIST
+node7=Node(11)
+node8=Node(15)
+node9=Node(20)
+
+node7.next=node8
+node8.next=node9
+
+#FOURTH SORTED LINKED LIST
+
+node10=Node(100)
+node11=Node(200)
+node12=Node(300)
+
+node10.next=node11
+node11.next=node12
+
+arr=[node1,node4,node7,node10]
+k=4
+end=k-1
+#head=Merge_k_sorted_lists(arr,end)
+
+#print("The Final Merged list is--->",end=" ")
+#print_the_linked_list(head)
+
+
+
+
+
+#---------------------------TWO WAY MERGING TECHNIQUE TESTING PHASE----------------------------------
+
+
+
+head=Two_Merging_Technique(node1,node4)
+print_the_linked_list(head)
+    
+
+            
+
+            
+
+    
+
+
