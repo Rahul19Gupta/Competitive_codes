@@ -1,0 +1,64 @@
+from collections import defaultdict
+
+class Graph:
+    def __init__(self):
+        self.graph=defaultdict(list)
+
+    def addEdge(self,u,v,bidirectional=True):
+        self.graph[u].append(v)
+        if(bidirectional):
+            self.graph[v].append(u)
+
+    def Print(self):
+        print(self.graph)
+
+            
+    def Depth_First_Search_Algorithm_helper(self,start,n,visited):
+        
+        #TIME COMPLEXITY: O(V+E)-------------> 
+        #SPACE COMPELXITY: O(V)--------------> VISITED ARRAY
+
+        visited[start]=1
+
+        print("The order in which DFS is working is {0}".format(start),end="---->")
+
+        for neighbour in self.graph[start]:
+
+            if(visited[neighbour]==0):
+
+                self.Depth_First_Search_Algorithm_helper(neighbour,n,visited)
+
+    def DFS(self,start,n):
+
+        visited=[0 for i in range(0,n)]
+
+        self.Depth_First_Search_Algorithm_helper(start,n,visited)
+                
+
+
+
+g=Graph()
+g.addEdge(0,1)
+g.addEdge(0,2)
+g.addEdge(1,2)
+g.addEdge(2,3)
+g.addEdge(1,4)
+g.addEdge(3,4)
+
+start=0
+n=5
+g.Print()
+g.DFS(start,n)
+
+
+
+    
+
+
+
+
+        
+
+        
+
+    
