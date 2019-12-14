@@ -1,0 +1,86 @@
+
+def Given_substring_is_a_pallindrome_or_not(String):
+    n=len(String)
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    DP=[[0 for j in range(0,n)]for i in range(0,n)]
+
+    #BASE CASE:
+    for i in range(0,n):
+
+        DP[i][i]=True
+
+    
+
+    #RECURSIVE CASE:
+    for ls in range(2,n+1):
+
+        for i in range(0,n-ls+1):
+
+            j=i+ls-1
+
+            if(ls==2):
+
+                if(String[i]==String[j]):
+
+                    DP[i][j]=True
+
+                else:
+
+                    DP[i][j]=False
+
+            else:
+
+                if(String[i]==String[j]):
+
+                    DP[i][j]=DP[i+1][j-1]
+
+                else:
+
+                    DP[i][j]=False
+
+    return(DP)
+
+
+
+
+def Count_all_pallindromic_substring(String):
+    n=len(String)
+
+    DP=Given_substring_is_a_pallindrome_or_not(String)
+    #import pdb;pdb.set_trace()
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    Count_Pallindromic_Substring=[[0 for j in range(0,n)]for i in range(0,n)]
+
+    #BASE CASE:
+    for i in range(0,n):
+
+        Count_Pallindromic_Substring[i][i]=1
+
+    #RECURSIVE CASE:
+    for ls in range(2,n+1):
+
+        for i in range(0,n-ls+1):
+
+            j=i+ls-1
+
+            if(DP[i][j]):
+
+                Count_Pallindromic_Substring[i][j]=1+Count_Pallindromic_Substring[i+1][j]+Count_Pallindromic_Substring[i][j-1]-Count_Pallindromic_Substring[i+1][j-1]
+
+            else:
+
+                Count_Pallindromic_Substring[i][j]=Count_Pallindromic_Substring[i+1][j]+Count_Pallindromic_Substring[i][j-1]-Count_Pallindromic_Substring[i+1][j-1]
+
+
+
+    return(Count_Pallindromic_Substring[0][n-1])
+
+            
+
+                
+String="aaa"
+print(Count_all_pallindromic_substring(String))        
+
+    
+
+    
