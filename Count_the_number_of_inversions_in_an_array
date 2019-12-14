@@ -1,0 +1,38 @@
+import math
+
+#COUNTING THE NUMBER OF INVERSIONS IN AN ARRAY
+count=0
+#MERGE SORT ALGORITHM
+def Count_the_number_of_inversions_in_an_array(arr,start,end):
+    import pdb;pdb.set_trace()
+    global count
+    #BASE CASE:
+    if(start>=end):
+        return
+
+    #RECURSIVE CASE
+
+    mid=(start+end)//2
+
+    Count_the_number_of_inversions_in_an_array(arr,start,mid-1)
+
+    if(arr[start]>arr[end]):
+
+        count+=1
+
+
+    Count_the_number_of_inversions_in_an_array(arr,mid+1,end)
+
+    
+
+    
+arr=[1,3,8,2,4]
+n=len(arr)-1
+Count_the_number_of_inversions_in_an_array(arr,0,n)
+        
+
+        
+
+        
+
+    
