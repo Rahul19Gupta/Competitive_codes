@@ -1,0 +1,56 @@
+class Stack:
+    def __init__(self):
+        self.stack=[]
+
+    def push(self,data):
+        self.stack.append(data)
+
+    def pop(self):
+        if(len(self.stack)):
+            return(self.stack.pop())
+
+        print("Stack is Empty")
+        return(None)
+
+    def isEmpty(self):
+        return(len(self.stack)==0)
+
+    def PrintStack(self):
+        print(self.stack)
+        
+def Implement_queue_using_two_stack():
+
+    #IMPLEMENT TWO STACK
+    s1=Stack()
+    s2=Stack()
+
+    flag=1
+
+    num=input("Enter element into the stack: ")
+
+    s2.push(num)
+
+    while(flag):
+
+        num=input("Enter element into the stack: ")
+
+        while(not s2.isEmpty()):
+
+            s1.push(s2.pop())
+
+        #INSERT NEW ELEMENT INTO STACK 2
+        s2.push(num)
+
+        #NOW SHIFT ALL ELEMENTS FROM STACK1 TO STACK2
+        while(not s1.isEmpty()):
+
+            s2.push(s1.pop())
+
+
+        s2.PrintStack()
+
+            
+Implement_queue_using_two_stack()        
+
+
+    
