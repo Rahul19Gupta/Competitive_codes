@@ -1,0 +1,71 @@
+
+def Find_target_sum_ways(arr,i,target):
+    #import pdb;pdb.set_trace()
+    global count
+
+    #BASE CASE:
+
+    if(i==len(arr)):
+        return
+    
+    if(sum(arr)==target):
+
+        count+=1
+
+    if(sum(arr)<target):
+        return
+
+
+    #RECURSIVE CASE:
+
+    arr[i]=arr[i]*-1
+    Find_target_sum_ways(arr,i+1,target)
+    #BACK TRACKING STEP
+    arr[i]=arr[i]*-1
+
+    Find_target_sum_ways(arr,i+1,target)
+
+    return(count//2)
+
+
+class Solution:
+    
+    def __init__(self):
+        
+        self.count=0
+        
+    def Find_target_sum_ways(self,arr,i,target):
+
+        #BASE CASE:
+    
+        if(i==len(arr)):
+            return
+
+        if(sum(arr)==target):
+
+            self.count+=1
+
+        #RECURSIVE CASE:
+
+        arr[i]=arr[i]*-1
+        self.Find_target_sum_ways(arr,i+1,target)
+        #BACK TRACKING STEP
+        arr[i]=arr[i]*-1
+
+        self.Find_target_sum_ways(arr,i+1,target)
+
+        return(self.count)
+
+arr=[1,1,1,1,1]
+target=3
+i=0
+count=0
+print(Find_target_sum_ways(arr,i,target))
+
+
+
+    
+
+    
+
+    
