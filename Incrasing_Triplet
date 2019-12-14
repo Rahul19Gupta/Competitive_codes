@@ -1,0 +1,35 @@
+def increasingTriplet(nums):
+        
+        Difference=[]
+        n=len(nums)
+        count=0
+        index_at_which_diff_is_positive=[]
+        if(n<=2):
+            return(False)
+        for i in range(1,n):
+            
+            Difference.append(nums[i]-nums[i-1])
+            if(nums[i]-nums[i-1] > 0):
+                
+                index_at_which_diff_is_positive.append(i-1)
+                
+            else:
+                count+=1
+        
+        if(count==n):
+            
+            return(False)
+        print(Difference)
+        import pdb;pdb.set_trace()
+        for index in index_at_which_diff_is_positive:
+            end=index-1
+            for i in range(0,index-1):
+
+                if(nums[i]<=nums[end]):
+
+                    return(True)
+
+        return(False)
+
+nums=[1,0,0,1]
+increasingTriplet(nums)
