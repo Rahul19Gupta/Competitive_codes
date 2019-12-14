@@ -1,0 +1,123 @@
+class Queue:
+
+    def __init__(self):
+        self.data=[]
+
+    def enqueue(self,data):
+        self.data.insert(0,data)
+
+    def dequeue(self):
+        if(len(self.data)!=0):
+            return(self.data.pop())
+
+    def isEmpty(self):
+        return(len(self.data)==0)
+
+    def print(self):
+        print(self.data)
+
+#LETS DECLARE THREE QUEUES
+#TO STORE A DIGIT WHICH GIVES ME A REMAINDER OF ZERO
+q0=Queue()
+#TO STORE A DIGIT WHICH GIVES ME A REMAINDER OF ONE
+q1=Queue()
+#TO STORE A DIGIT WHICH GIVES ME A REMAINDER OF 2
+q2=Queue()
+def Find_largest_Multiple_of_3(arr):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPELXITY: O(N)
+    #import pdb;pdb.set_trace()
+    #SORT THE ARRAY IN THE NON-DECREASING ORDER
+    arr.sort()
+
+    #I NEED TO FIND OUT THE SUM OF DIGITS AND ACCORDING TO THE REMAINDER I GET I NEED TO APPEND THE DIGIT TO THE CORRESSPONDING QUEUES
+    sum=0
+    for i in range(0,len(arr)):
+
+        sum+=arr[i]
+
+        if(arr[i]%3==0):
+            q0.enqueue(arr[i])
+
+        elif(arr[i]%3==1):
+            q1.enqueue(arr[i])
+
+        elif(arr[i]%3==2):
+            q2.enqueue(arr[i])
+
+    if(sum%3==1):
+
+        #GO THE QUEUE q0 AND DELETE ON ELEMENT WHICH GIVES REMAINDER 1
+        if(not q1.isEmpty()):
+            q1.dequeue()
+
+        else:
+
+            #IF q0 is EMPTY THEN GO THE QUEUE q2 AND DLEETE 2 ELEMENTS WHICH GIVES REMAINDER OF 2
+
+            if(not q2.isEmpty()):
+
+                q2.dequeue()
+                if(not q2.isEmpty()):
+                    q2.dequeue()
+
+                else:
+                    return(0)
+
+            else:
+                return(0)
+        return(1)
+            
+
+    elif(sum%3==2):
+
+        #GO TO THE QUEUE q2 AND DELETE 1 ELEMENT HAVING REMAINDER 2
+        if(not q2.isEmpty()):
+            q2.dequeue()
+
+        else:
+
+            #GO THE QUEUE Q1 AND DELETE 2 ELEMENTS HAVING REMAINDER 1
+            if(not q1.isEmpty()):
+                q1.dequeue()
+
+                if(not q1.isEmpty()):
+                    q1.dequeue()
+
+                else:
+                    return(0)
+            else:
+                return(0)
+        return(1)
+    
+arr=[3,3,3,7,6,9,2,1]
+x=Find_largest_Multiple_of_3(arr)    
+if(x):
+
+    #AT THE END APPEND THE REMAINING ELEMENTS OF QUEUE q0,q1,and q2
+    temp=[]
+    
+    #IF QUEUE q0 HAS STILL SOME ELEMENTS REMAINING
+    while(not q0.isEmpty()):
+        temp.append(q0.dequeue())
+
+    #IF QUEUE q1 HAS STILL SOME ELEMENTS REMAINING
+    while(not q1.isEmpty()):
+        temp.append(q1.dequeue())
+
+    #IF QUEUE q2 HAS STILL SOME ELEMENTS REMAINING
+    while(not q2.isEmpty()):
+        temp.append(q2.dequeue())
+
+        
+    temp=sorted(temp,reverse=True)
+
+    print(temp)
+
+else:
+
+    print("NOT POSSIBLE TO CONVERT THE GIVEN NUMBER-------------> TO A NUMBER DIVISIBLE BY 3")
+
+    
+    
+        
