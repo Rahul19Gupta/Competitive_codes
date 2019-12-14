@@ -1,0 +1,79 @@
+
+def Merge_two_sorted_arrays_using_two_way_merging_technique(list1,list2,i,j,result):
+    
+   
+  
+    #BASE CASE
+    if(not len(list1)):
+        return(list2)
+
+    if(not len(list2)):
+        return(list1)
+
+    if(i== len(list1) and j!=len(list2)):
+        result.extend(list2[j:])
+        return(result)
+
+    if(j==len(list2) and i!=len(list1)):
+        result.extend(list1[i:])
+        return(result)
+
+    #RECURSIVE CASE:
+
+    if(list1[i] <= list2[j]):
+
+        result.append(list1[i])
+        Merge_two_sorted_arrays_using_two_way_merging_technique(list1,list2,i+1,j,result)
+
+    else:
+
+        result.append(list2[j])
+        Merge_two_sorted_arrays_using_two_way_merging_technique(list1,list2,i,j+1,result)
+
+    return(result)
+        
+
+def Merge_k_sorted_arrays_iterative_technique(arr,last):
+    #TIME COMPLEXITY: O(Nklogk)
+    #SPACE COMPELXITY: O(1)
+    #import pdb;pdb.set_trace()
+    
+    while(last):
+        start=0
+        end=last
+
+        while(start<end):
+
+            arr[start]=Merge_two_sorted_arrays_using_two_way_merging_technique(arr[start],arr[end],0,0,result=[])
+
+            start+=1
+
+            end-=1
+
+        if(start>=end):
+
+            last=end
+
+    return(arr[0])   
+
+
+#TESTING OF TWO SORTED ARRAYS--------------------------------------------------------------------------->
+
+result=[]
+#list1=[1,12,30]
+#list2=[5,7,8]
+#Merge_two_sorted_arrays_using_two_way_merging_technique(list1,list2,0,0)
+#print(result)
+
+
+#TESTING OF K SORTED ARRAYS----------------------------------------------------------------------------->
+arr=[[1,3,5,7],
+     [8,9,10,12],
+     [24,78,90,123],
+     [34,56,124,456]]
+
+k=len(arr)
+last=k-1
+final_merged_array=Merge_k_sorted_arrays_iterative_technique(arr,last)
+print(final_merged_array)
+
