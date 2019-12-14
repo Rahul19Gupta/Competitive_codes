@@ -1,0 +1,57 @@
+from collections import defaultdict
+def is_Anagram(s1,s2):
+        import pdb;pdb.set_trace()
+        s1=list(s1)
+        
+        s2=list(s2)
+        s1=s1.sort()
+        s2=s2.sort()
+        
+        s1=str(s1)
+        s2=str(s2)
+        
+        print(s1)
+        print(s2)
+        
+        
+    
+def findAnagrams(s, p):
+        
+    len1=len(s)
+    Hash_substrings=defaultdict()
+    result=[]
+    len2=len(p)
+    Substrings=[]
+    pattern_charachters=defaultdict()
+        
+    for i in range(0,len2):
+            
+        pattern_charachters[p[i]]=1
+        
+        
+    #Step1: Find all the substrings of length same as p
+    for i in range(0,len1-len2+1):
+            
+        Substrings.append(s[i:i+len2])
+
+        Hash_substrings[Substrings[i]]=i
+                    
+          
+
+    print(Hash_substrings)
+    #Step2: Take each Substring and check if it's an anagram of p or not
+        
+    for i in range(0,len(Substrings)):
+            
+        index=Hash_substrings[Substrings[i]]
+            
+        if(is_Anagram(Substrings[i],p)):
+                
+            result.append(index)
+                
+    print(result)
+
+
+s="cbaebabacd"
+p="abc"
+findAnagrams(s, p)
