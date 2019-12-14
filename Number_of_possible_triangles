@@ -1,0 +1,36 @@
+
+
+def Number_of_possible_triangles(arr):
+    #TIME COMPLEXITY:--------->O(N^2)
+    #SPACE COMPLEXITY:---------> O(1)
+    #DECLARE VARIABLES
+    n=len(arr)
+    k=2
+    Sum=0
+
+    #STEP2: SORT THE ARRAY IN NON-DECREASING ORDER
+    arr.sort()#-------------------------> O(NlogN)
+
+    #STEP3: DO THE PROCESSING-----------> O(N^2)
+    #import pdb;pdb.set_trace()
+    for i in range(0,n-2):
+
+        for j in range(i+1,n-1):
+
+            while(j<k and k<n):
+
+                if(arr[i]+arr[j]>arr[k]):
+
+                    k+=1
+
+                else:
+
+                    break
+
+            Sum+=(k-j-1)
+
+    return(Sum)
+
+arr=[3,2,1]
+x=Number_of_possible_triangles(arr)
+print("Total number of triangles that can be formed using above numbers {}".format(x))
