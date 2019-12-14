@@ -1,0 +1,10 @@
+
+def Get_the_ith_bit_of_a_number(number,i):
+
+    if(number & (1<<i)):
+        return(1)
+    else:
+        return(0)
+
+number=13
+print(Get_the_ith_bit_of_a_number(number,1))
