@@ -1,0 +1,48 @@
+from collections import defaultdict
+class Solution:
+ 
+    def Find_target_sum(self,arr,target):
+
+        #MEMOIZATTION TECHNIQUE-----------> RECUSRION + DATA BASE
+        self.memo=defaultdict()
+
+        return(self.Find_target_sum_helper(arr,target))
+
+
+    def Find_target_sum_helper(self,arr,target):
+
+        
+        if((len(arr),target) in self.memo):
+
+            return(self.memo[(len(arr),target)])
+      
+        #BASE CASE:
+        if(arr==[]):
+
+            if(target==0):
+                return(1)
+
+            else:
+
+                return(0)
+
+        #RECURSIVE CASE:
+        ans=self.Find_target_sum_helper(arr[1:],target-arr[0]) + self.Find_target_sum_helper(arr[1:],target+arr[0])
+
+        self.memo[(len(arr),target)]=ans
+
+        return(ans)
+
+s=Solution()
+arr=[1,1,1,1,1]
+target=3
+print(s.Find_target_sum(arr,target))
+
+        
+        
+
+
+        
+
+        
+    
