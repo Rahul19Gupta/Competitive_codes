@@ -1,0 +1,22 @@
+def is_palindrome(s):
+    return s == s[::-1]
+
+def make_palindrome(s):
+    #import pdb;pdb.set_trace()
+    print(s)
+    if is_palindrome(s):
+        return s
+    if s[0] == s[-1]:
+        return s[0] + make_palindrome(s[1:-1]) + s[-1]
+    else:
+        one = s[0] + make_palindrome(s[1:]) + s[0]
+        two = s[-1] + make_palindrome(s[:-1]) + s[-1]
+        if len(one) < len(two):
+            return one
+        elif len(one) > len(two):
+            return two
+        else:
+            return min(one, two)
+
+s="eMadaMz"
+print(make_palindrome(s))
