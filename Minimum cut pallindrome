@@ -1,0 +1,73 @@
+def minCut(s):
+        
+        n=len(s)
+        #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+        Pallindrome=[[False for j in range(0,n)]for i in range(0,n)]
+        
+        #BASE CASE:
+        for i in range(0,n):
+            Pallindrome[i][i]=True
+            
+        #RECURSIVE CASE:
+        for ls in range(2,n+1):
+            
+            for i in range(0,n-ls+1):
+                
+                j=i+ls-1
+                
+                if(s[i]==s[j]):
+                    
+                    Pallindrome[i][j]=Pallindrome[i+1][j-1]
+                    
+                else:
+                    
+                    Pallindrome[i][j]=False
+                    
+        #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+        Min_cut=[[0 for j in range(0,n)]for i in range(0,n)]
+        
+        
+        #FOR LENGTH 2 SUBSTRING
+        ls=2
+        
+        for i in range(0,n-ls+1):
+            
+            j=i+ls-1
+            
+            Min_cut[i][j]= 1
+            
+        for ls in range(3,n+1):
+            
+            for i in range(0,n-ls+1):
+                
+                j=i+ls-1
+                
+                if(Pallindrome[i][j]):
+                    
+                    Min_cut[i][j]=0
+                    
+                else:
+                                
+                    for k in range(0,j):
+                        
+                        x=10000
+
+                        Min_cut[i][j]=Min_cut[i][k] + Min_cut[k][j]
+                            
+                        x=min(x,Min_cut[i][j])
+                        
+                Min_cut[i][j]=x
+
+        #PRINT THE ENTIRE DP TABLE FOR MIN CUT
+        for i in range(0,n):
+
+            for j in range(0,n):
+
+                print(Min_cut[i][j],end=" ")
+
+            print()
+
+
+s="aab"
+minCut(self, s)
+            
