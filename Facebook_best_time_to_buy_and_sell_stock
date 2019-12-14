@@ -1,0 +1,33 @@
+
+def Best_time_to_buy_and_sell_stock(arr):
+
+    n=len(arr)-1
+    Maximum_on_right_side=[]
+    Maximum_profit=0
+    #FIRST FIND OUT THE MAX ON THE RIGHT SIDE
+    Maximum_on_right_side.append(arr[n])
+    Maximum=arr[n]
+    for i in range(n-1,-1,-1):
+
+        if(Maximum<arr[i]):
+            Maximum=arr[i]
+        Maximum_on_right_side.insert(0,Maximum)
+
+    #PRINT THE MAXIMUM ON THE RIGHT SIDE ARRAY
+    print(Maximum_on_right_side)
+
+    for i in range(0,len(arr)):
+
+        if(Maximum_on_right_side[i]-arr[i]>Maximum_profit):
+            Maximum_profit=Maximum_on_right_side[i]-arr[i]
+
+    print("Maximum Profit gained is {}".format(Maximum_profit))
+
+arr=[7,6,4,3,1]
+Best_time_to_buy_and_sell_stock(arr)
+
+    
+            
+        
+
+    
