@@ -1,0 +1,32 @@
+def longestCommonPrefix(strings):
+        
+    n=len(strings)
+    result=[]
+    Min_length=len(strings[0])
+
+    for i in range(1,n):
+        curr_length=len(strings[i])
+        if(Min_length>curr_length):
+            Min_length=curr_length
+
+    x=Min_length
+    result=""
+    while(1):
+        count=0
+        prev_substring=strings[0][:x]
+        for j in range(0,n):
+            current_substring=strings[j][:x]
+            if(prev_substring==current_substring):
+                count+=1
+                prev_substring=current_substring
+            else:
+                x-=1
+                break
+        if(count==n):
+            result=result+current_substring
+            break   
+        
+    print(result)
+    
+strings=["dog","racecar","car"]
+longestCommonPrefix(strings)
