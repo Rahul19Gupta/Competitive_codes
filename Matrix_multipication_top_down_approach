@@ -1,0 +1,47 @@
+
+def Minimum_number_of_matrix_multiplications(p,n,i,j):
+    #TOP DOWN DYNMAIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(N^3)
+    #SPACE COMPLEXITY:O(N^2)
+
+    #BASE CASE:
+    if(i==j):
+        DP[i][j]=0
+        return(0)
+    
+    else:
+
+        if(DP[i][j]!=10000):
+            return(DP[i][j])
+
+        #RECURSIVE CASE
+
+        for k in range(i,j):
+
+            x=Minimum_number_of_matrix_multiplications(p,n,i,k) + Minimum_number_of_matrix_multiplications(p,n,k+1,j) + p[i]*p[k+1]*p[j+1]
+
+            if(x<DP[i][j]):
+
+                DP[i][j]=x
+
+    return(x)
+
+    
+
+p=[2,2,4]
+n=len(p)-1
+#INITIALIZE THE DP TABLE
+DP=[[10000 for j in range(0,n)]for i in range(0,n)]
+i=0
+j=n-1
+Minimum_number_of_matrix_multiplications(p,n,i,j)
+
+#PRINT THE ENTIRE DP TABLE
+for i in range(0,n):
+
+    for j in range(0,n):
+
+        print(DP[i][j],end=" ")
+
+    print()
+
