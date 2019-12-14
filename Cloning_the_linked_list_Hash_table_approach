@@ -1,0 +1,74 @@
+from collections import defaultdict
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+        self.arbitary=None
+
+
+def Print_the_cloned_list(temp):
+
+    while(temp):
+        print((temp.data,temp.arbitary.data),end="---------->")
+        temp=temp.next
+        
+
+def Cloning_the_linked_list(head):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    #CREATE THE HASH TABLE
+    Hash_table=defaultdict(list)
+
+    #SCAN THE ENTIRE HASH TABLE AND UPADTE MAPPING OF NODES IN ORIGNAL--------->NODES IN CLONED LIST
+    temp=head
+    node=Node(temp.data)
+    head_cloned=node
+    Hash_table[temp]=node
+    temp=temp.next
+    while(temp):
+
+        node.next=Node(temp.data)
+        Hash_table[temp]=node.next
+        temp=temp.next
+        node=node.next
+
+    #SCAN THE ENTIRE ORIGNAL LIST AND IN THE CLONED LIST UPDATE THE ARBITARY POINTERS
+
+    temp=head
+    node=head_cloned
+    while(temp):
+
+        node.arbitary=Hash_table[temp.arbitary]
+        temp=temp.next
+        node=node.next
+
+    #PRINT THE CLONED LIST LIST
+    Print_the_cloned_list(head_cloned)
+
+
+node1=Node(10)
+node2=Node(20)
+node3=Node(30)
+node4=Node(40)
+
+
+
+node1.next=node2
+node1.arbitary=node3
+node2.next=node3
+node2.arbitary=node1
+node3.next=node4
+node3.arbitary=node4
+node4.arbitary=node2
+
+Cloning_the_linked_list(node1)
+
+    
+
+        
+        
+    
+
+    
+        
+
