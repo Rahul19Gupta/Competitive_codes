@@ -1,0 +1,53 @@
+class Queue:
+    def __init__(self):
+        self.queue=[]
+
+    def enqueue(self,data):
+        self.data.insert(0,data)
+
+    def dequeue(self):
+        if(len(self.queue)!=0):
+            return(self.queue.pop())
+        return(0)
+
+    def isEmpty(self):
+        return(len(self.queue)!=0)
+            
+def give_the_address_of_leaf_node(root):
+
+    if(not root):
+        return
+
+    temp=root
+
+    while(temp.left):
+
+        temp=temp.left
+
+    return(temp)
+
+    
+def Print_all_nodes_at_k_distance_from_leaf_node(number_of_nodes):
+
+    node=give_the_address_of_leaf_node(root)
+
+    q=Queue()
+
+    node_printed=[0 for i in range(0,number_of_nodes)]
+
+    visited=[0 for i in range(0,number_of_nodes+1)]
+
+    visited[node.data]=1
+
+    q.enqueue(node)
+
+    
+
+   
+    
+    
+
+    
+
+    
+    
