@@ -1,0 +1,61 @@
+
+def Kadanes_algorithm_for_maximum_sum_subarray(arr):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(1)
+    #DECLARE THE VARIABLES
+    current_sum=0
+    maximum_sum_so_far=-1
+    index=-1
+    start_index=-1
+
+    current_sum=arr[0]
+    for i in range(1,len(arr)):
+
+        current_sum +=arr[i]
+
+        if(maximum_sum_so_far < current_sum):
+            maximum_sum_so_far=current_sum
+            index=i
+
+    #import pdb;pdb.set_trace()
+    print(maximum_sum_so_far)
+    print(index)
+    end_index=index
+    sum=0
+    for i in range(end_index,-1,-1):
+        sum+=arr[i]
+
+        if(sum==maximum_sum_so_far):
+            start_index=i
+
+    return(arr[start_index:end_index+1])
+
+
+#APPROACH 2:
+#MAXIMUM SUM SUB-ARRAY APPROACH
+#TIME COMPLEXITY:
+#SPACE COMPLEXITY:
+def Maximum_Differnece_between_two_elements_in_an_array(a):
+    n=len(a)
+    #STEP1: CALCULATE THE DIFFERENCE ARRAY-------> O(N)
+    Diff=[]
+    for i in range(0,n-1):
+
+        Diff.append(a[i]-a[i+1])
+
+    #STEP2 : FIND OUT THE MAXIMUM SUM SUBARRAY IN THIS DIFF ARRAY
+
+    subarray=Kadanes_algorithm_for_maximum_sum_subarray(Diff)
+
+    print(subarray)
+
+    #STEP3: THIS SUBARRAY HAVING MAXIMUM SUM-----> IF WE ADD ALL THE ELEMENTS IT GIVES MAXIUMUM DIFF
+    Max_Diff=sum(subarray)
+
+    return(Max_Diff)
+
+
+a=[10,-5,-3,4,2,12,-8,-12,19]
+print(Maximum_Differnece_between_two_elements_in_an_array(a))
+    
+        
