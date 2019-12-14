@@ -1,0 +1,63 @@
+
+def Minimum_Cost_tree_from_leaf_node(arr):
+
+    n=len(arr)
+    answer=[]
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    DP=[[0 for j in range(0,n)]for i in range(0,n)]
+
+    #BASE CASE:
+    for i in range(0,len(arr)):
+
+        DP[i][i]=arr[i]
+
+    ls=2
+
+    for i in range(0,n-ls+1):
+
+        j=i+ls-1
+
+        DP[i][j]=(arr[i]*arr[j],max(arr[i],arr[j]))
+
+
+    #RECURSIVE CASE:
+    #import pdb;pdb.set_trace()
+    for ls in range(3,n+1):
+
+        for i in range(n-ls+1):
+
+            j=i+ls-1
+
+            x=DP[i][j-1][0]+DP[i][j-1][1]*arr[j]
+
+            y=DP[i+1][j][0]+DP[i+1][j][1]*arr[j-2]
+
+            maximum=max(DP[i][j-1][1],DP[i+1][j][1])
+
+            DP[i][j]=min((x,maximum),(y,maximum))
+
+    #PRINT THE ENTIRE DP TABLE
+    for i in range(0,len(arr)):
+
+        for j in range(0,len(arr)):
+
+            print(DP[i][j],end=" ")
+
+        print()
+
+
+    ls=n
+
+    for i in range(n-ls+1):
+
+        j=i+ls-1
+
+        answer.append(DP[i][j][0])
+
+    return(min(answer))
+
+
+
+
+arr=[6,2,4]
+print(Minimum_Cost_tree_from_leaf_node(arr))
