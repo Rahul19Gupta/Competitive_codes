@@ -1,0 +1,55 @@
+from collections import defaultdict
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+    
+def Starting_point_of_a_loop_in_a_linked_list(head):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPELXITY: O(N)
+    
+    slow=head
+    fast=head
+
+    while(slow and fast):
+
+        slow=slow.next
+        fast=fast.next
+        if(fast):
+            fast=fast.next
+        if(slow==fast):
+            print("There is a cycle in a linked list")
+            break
+
+    #import pdb;pdb.set_trace()
+    slow=head
+    while(slow and fast):
+
+        slow=slow.next
+        fast=fast.next
+        if(slow==fast):
+            print("The starting node in a linked list is {}".format(slow.data))
+            break
+    
+        
+
+        
+node1=Node(10)
+node2=Node(20)
+node3=Node(30)
+node4=Node(40)
+node5=Node(50)
+
+
+node1.next=node2
+node2.next=node3
+node3.next=node4
+node4.next=node5
+node5.next=node2
+          
+                
+
+Starting_point_of_a_loop_in_a_linked_list(node1)        
+
+    
+    
