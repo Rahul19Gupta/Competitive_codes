@@ -1,0 +1,51 @@
+
+
+def Minimum_number_of_Matrix_Multiplication(p):
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(N^3)
+    #SPACE COMPLEXITY:O(N^2)
+    x=1000000
+    n=len(p)-1
+    
+    #INITILAIZE THE DP TABLE
+    DP=[[0 for j in range(0,n)]for i in range(0,n)]
+
+    #BASE CASE:
+    #IF WE HAVE ONLY ONE MATRIX THAN NUMBER OF SCALAR MULTIPLICATIONS IS ZERO
+
+    for i in range(0,n):
+        DP[i][i]=0
+
+
+    #RECURSIVE CASE
+    #I NEED TO MOVE DIAGONALLY
+    for ls in range(2,n+1):
+
+        for i in range(0,n-ls+1):
+
+            j=i+ls-1
+
+            for k in range(i,j):
+
+                x=min(x,DP[i][k]+DP[k+1][j]+p[i]*p[k+1]*p[j+1])
+
+            DP[i][j]=x
+
+    #PRINT THE ENTIRE DP TABLE
+    for i in range(0,n):
+ 
+        for j in range(0,n):
+
+            print(DP[i][j],end=" ")
+
+        print()
+
+    return(DP[0][n-1])
+
+
+p=[2,2,4]
+n=len(p)-1
+x=Minimum_number_of_Matrix_Multiplication(p)
+print("Minimum number of scalar multiplications to multiply {0} matrix is {1}".format(n,x))
+
+    
