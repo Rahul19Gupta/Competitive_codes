@@ -1,0 +1,147 @@
+from collections import defaultdict
+class Stack:
+
+    def __init__(self):
+        self.stack=[]
+
+    def push(self,data):
+        self.stack.append(data)
+
+    def pop(self):
+        if(len(self.stack)!=0):
+            return(self.stack.pop())
+
+    def isEmpty(self):
+        return(len(self.stack)==0)
+
+    def Print(self):
+        print(self.stack)
+
+class Graph:
+    def __init__(self,vertices):
+        self.graph=defaultdict(list)
+        self.reversed_graph=defaultdict(list)
+        self.vertices=vertices
+
+    def addEdge(self,u,v,bidirectional=True):
+        self.graph[u].append(v)
+        if(bidirectional):
+            self.graph[v].append(u)
+
+    def addEdge_on_reversed_Graph(self,u,v,bidirectional=True):
+        self.reversed_graph[u].append(v)
+        if(bidirectional):
+            self.reversed_graph[v].append(u)
+
+    def Print_orignal_graph(self):
+        print(self.graph)
+        print("******************************************")
+
+    def Print_Reversed_graph(self):
+        print(self.reversed_graph)
+
+
+    def DFS_Helper_Reversed_Graph(self,visited,u):
+
+        visited[u]=1
+
+        print(u,end=" ")
+
+        for neighbour in self.reversed_graph[u]:
+
+            if(visited[neighbour]==0):
+
+                self.DFS_Helper_Reversed_Graph(visited,neighbour)
+
+
+    def DFS_Helper(self,visited,u,s):
+
+        #import pdb;pdb.set_trace()
+        visited[u]=1
+
+        for neighbour in self.graph[u]:
+
+            if(visited[neighbour]==0):
+
+                self.DFS_Helper(visited,neighbour,s)
+
+        #WHEN ALL THE NEIGHBOUR SO OF THE NODE IS VISITED
+        print(u)
+        s.push(u)
+        
+
+    def Transpose_of_graph(self):
+
+        for v in range(0,self.vertices):
+
+            for u in self.graph[v]:
+
+                self.addEdge_on_reversed_Graph(u,v,False)            
+    
+    def Print_Strongly_Connected_Components(self,g1):
+        #TIME COMPELXITY: O(V+E)
+        #SPACE COMPELXITY: O(V)
+
+        #import pdb;pdb.set_trace()
+        
+        #INITIALIZED THE STACK
+        s=Stack()
+
+        #INITAILIZED THE VISITED ARRAY
+        visited=[0 for i in range(0,self.vertices)]
+
+        #CALL THE DFS ON EACH VERTEX OF GRAPH
+        for i in range(0,self.vertices):
+
+            if(visited[i]==0):
+
+                self.DFS_Helper(visited,i,s)
+
+        s.Print()
+
+        #CREATE A REVERSED GRAPH
+        import pdb;pdb.set_trace()
+
+        g1.Print_orignal_graph()
+        g1.Transpose_of_graph()
+
+        g1.Print_Reversed_graph()
+
+        
+
+        #VISITED ARRAY INITIALZED
+        visited=[0 for i in range(0,self.vertices)]
+
+        #PROCESS THE ENTIRE STACK
+
+        while(not s.isEmpty()):
+
+            u=s.pop()
+
+            if(visited[u]==0):
+
+                self.DFS_Helper_Reversed_Graph(visited,u)
+
+
+                    
+
+g = Graph(5) 
+g.addEdge(1, 0,False) 
+g.addEdge(0, 2,False) 
+g.addEdge(2, 1,False) 
+g.addEdge(0, 3,False) 
+g.addEdge(3, 4,False)
+g.Print_orignal_graph()
+g.Print_Strongly_Connected_Components(g)
+        
+
+
+
+
+
+        
+
+        
+        
+
+        
