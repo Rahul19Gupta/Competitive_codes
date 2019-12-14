@@ -1,0 +1,35 @@
+#BOTTOM UP DP PROBLEM
+#TIME COMPLEXITY: O(coins+1)(Amount+1)
+#SPACE COMPLEXITY: O(Amount)
+
+def Min_coin_change_problem(coins,Amount):
+
+    #INITIALIZE THE DP ARRAY
+    DP=[100000 for i in range(0,Amount+1)]
+
+    #BASE CASE:
+
+    DP[0]=0
+
+
+    for i in range(1,Amount+1):
+        for j in range(0,len(coins)):
+
+            if(coins[j]<=i):
+
+                DP[i]=min(DP[i],DP[i-coins[j]])
+
+        DP[i]=DP[i]+1
+
+    #PRINT THE ENTIRE DP TABLE
+    for i in range(0,Amount+1):
+        print(DP[i],end=" ")
+
+coins=[1,3,5]
+Amount=8
+Min_coin_change_problem(coins,Amount)
+
+
+
+    
+    
