@@ -1,0 +1,58 @@
+
+def Maximal_Rectangle(grid):
+
+    #BASE CASE:
+
+    #DON NOT CHANGE THE FIRST ROW AND FIRST COLOUMN OF THE BINARY MATRIX
+    Max_Breadth=0
+    Max_length=-100
+    #LENGTH CALCULATED
+    for i in range(1,len(grid)):
+
+        for j in range(1,len(grid[0])):
+
+            if(grid[i][j]==1):
+
+                grid[i][j]=min(grid[i-1][j-1],grid[i-1][j],grid[i][j-1]) + 1
+
+                if(Max_length<grid[i][j]):
+
+                    Max_length=grid[i][j]
+                    
+    print(Max_length)
+    #PRINT THE ENTIRE TABLE AFTER PROCESSING
+    for i in range(0,len(grid)):
+
+        for j in range(0,len(grid[0])):
+
+            print(grid[i][j],end=" ")
+
+        print()
+
+    #LETS CALCULATE THE MAXIMUM LENGTH
+    #import pdb;pdb.set_trace()
+    for i in range(0,len(grid)):
+
+        for j in range(0,len(grid[0])):
+
+            #print((i,j))
+            if(grid[i][j]==Max_length and grid[i-1][j-1]!=0 and grid[i-1][j]!=0 and grid[i][j-1]!=0):
+
+                Max_Breadth+=1
+
+
+    print("The Maximal area of rectangle is {}".format(Max_length*(Max_Breadth+1)))
+                
+    
+
+
+grid=[[1,0,1,0,0],
+      [1,0,1,1,1],
+      [1,1,1,1,1],
+      [1,0,0,1,0]]
+
+Maximal_Rectangle(grid)        
+
+                
+
+        
