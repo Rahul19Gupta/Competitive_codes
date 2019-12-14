@@ -1,0 +1,97 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+        self.arbitary=None
+        
+def Print_the_linked_list(temp):
+
+    while(temp):
+        print((temp.data,temp.arbitary.data),end="--------->")
+        
+        temp=temp.next
+        
+def Alternating_split_of_a_given_linked_list(head):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(1)
+    #import pdb;pdb.set_trace()
+    head1=head
+    head2=head.next
+    temp1=head
+    temp2=head.next
+
+    while(temp1 and temp2):
+        
+        temp1.next=temp2.next
+        temp1=temp2.next
+        if(temp1 and temp2):
+            temp2.next=temp1.next
+            temp2=temp1.next
+
+    if(temp1):
+        temp1.next=None
+    if(temp2):
+        temp2.next=None
+
+    Print_the_linked_list(head1)
+    print()
+    print("**************************************************************************")
+    Print_the_linked_list(head2)
+    
+
+def Cloning_the_linked_list(head):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(1)
+    #STEP1: DECLARE POINTERS
+    p=head
+    q=head
+
+    #STEP2: CREATE THE NEW NODE AND ATTACH IT IN BETWEEN TWO NODES OF THE ORIGNAL LIST
+    while(p and q):
+
+        q=Node(p.data)
+
+        q.next=p.next
+
+        p.next=q
+
+        if(p.next):
+            p=p.next.next
+
+
+    #STEP3: UPDATE THE ARBITARY POINTERS OF THE CLONED LIST
+    p=head
+    while(p and q):
+
+        q=p.next
+
+        q.arbitary=p.arbitary.next
+
+        if(p.next):
+            p=p.next.next
+
+    #STEP4:CALL THE ALTERNATING SPLIT FUNCTION ON IT
+    Alternating_split_of_a_given_linked_list(head)
+
+       
+node1=Node(10)
+node2=Node(20)
+node3=Node(30)
+node4=Node(40)
+
+
+
+node1.next=node2
+node1.arbitary=node3
+node2.next=node3
+node2.arbitary=node1
+node3.next=node4
+node3.arbitary=node4
+node4.arbitary=node2
+
+
+
+Cloning_the_linked_list(node1)
+
+
+    
