@@ -1,0 +1,27 @@
+#TIME COMPLEXITY: O(n*2^n)
+def Generate_all_subsets(input_string):
+    n=len(input_string)
+    end=(1<<n)-1
+    #import pdb;pdb.set_trace()
+    for i in range(0,end+1):
+        print()
+        number=i
+        j=0
+        while(number>0):
+            if(number & 1):
+                print(input_string[j],end="")
+
+            number =number>>1
+            j+=1
+
+input_string="abc"
+Generate_all_subsets(input_string)                
+                
+            
+            
+
+    
+
+    
+
+    
