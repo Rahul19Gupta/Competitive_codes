@@ -1,0 +1,69 @@
+def calculateMinimumHP(dungeon):
+        
+        
+        #TIME COMPLEXITY:-----> O(N^2)
+        #SPACE COMPLEXITY:-----> O(N^2)
+        M=len(dungeon)
+        N=len(dungeon[0])
+        
+        Dungeon=[[0 for j in range(0,N)]for i in range(0,M)]
+        
+        #BASE CASE:
+        if(dungeon[M-1][N-1]<0):
+            
+            Dungeon[M-1][N-1]=abs(dungeon[M-1][N-1])+1
+
+
+        else:
+
+            Dungeon[M-1][N-1]=1
+            
+        for i in range(M-2,-1,-1):
+
+            if(dungeon[i][N-1]>Dungeon[i+1][N-1]):
+            
+                Dungeon[i][N-1]=1
+                
+            else:
+                
+                Dungeon[i][N-1]=Dungeon[i+1][N-1]-dungeon[i][N-1]
+                
+        for i in range(N-2,-1,-1):
+            
+            if(dungeon[M-1][i]>Dungeon[M-1][i+1]):
+                
+                Dungeon[M-1][i]=1
+                
+            else:
+                
+                Dungeon[M-1][i]=Dungeon[M-1][i+1]-dungeon[M-1][i]
+
+
+        #RECURSIVE CASE:
+        for i in range(M-2,-1,-1):
+            
+            for j in range(N-2,-1,-1):
+                
+                x=min(Dungeon[i+1][j],Dungeon[i][j+1])
+                
+                if(x>=dungeon[i][j]):
+                
+                    Dungeon[i][j]=x-dungeon[i][j]
+                    
+                else:
+                    
+                    Dungeon[i][j]=1
+                
+
+        #PRIN THE DUNGEON
+        for i in range(0,M):
+
+            for j in range(0,N):
+
+                print(Dungeon[i][j],end=" ")
+
+            print()
+
+dungeon=[[-2],[-3]]
+
+calculateMinimumHP(dungeon)
