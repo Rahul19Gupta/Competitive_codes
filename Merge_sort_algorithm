@@ -1,0 +1,79 @@
+def Merging(arr,start,end):
+
+    #import pdb;pdb.set_trace()
+    global output
+    mid=(start+end)//2
+
+    i=start
+    j=mid+1
+    k=start
+
+    while(i<=mid and j<=end):
+
+        if(arr[i]<arr[j]):
+
+            output[k]=arr[i]
+
+            k+=1
+
+            i+=1
+
+        else:
+
+            output[k]=arr[j]
+
+            k+=1
+
+            j+=1
+
+       
+
+    #IF ONE OF THE PART IS STILL NOT YET PROCESSED
+    while(i<=mid):
+
+        output[k]=arr[i]
+
+        i+=1
+
+        k+=1
+
+    while(j<=end):
+
+        output[k]=arr[j]
+
+        j+=1
+
+        k+=1
+
+
+    for i in range(start,end+1):
+
+        arr[i]=output[i]
+
+        
+    print(output)
+
+def Merge_sort_algorithm(arr,start,end):
+    #import pdb;pdb.set_trace()
+    #BASE CASE:
+    if(start>=end):
+        return
+
+    #RECURSIVE CASE:
+
+    mid=(start+end)//2
+
+    #DIVIDE PHASE
+    Merge_sort_algorithm(arr,start,mid)
+
+    Merge_sort_algorithm(arr,mid+1,end)
+
+    #CONCUR PHASE
+    Merging(arr,start,end)
+
+arr=[20,12,3,5,2,1]
+start=0
+end=len(arr)-1
+output=[0 for i in range(0,len(arr))]
+Merge_sort_algorithm(arr,start,end)
+print(output)
