@@ -1,0 +1,25 @@
+#TIME COMPLEXITY: O(N)
+#SPACE COMPLEXITY: O(1)
+def Smallest_number_that_cannot_be_formed_with_sum_of_numbers_of_an_array(arr):
+    n=len(arr)
+    #SORT THE ARRAY IN NON-DESCENDING ORDER
+    arr.sort()
+    #STEP1: LET P BE THE SMALLTEST NUMBER THAT CANNOT BE FORMED
+    P=1
+
+    #STEP2: CHECK IF arr[i]<=P then update P=P+arr[i] OTHERWISE P IS THE SMALLEST SUM WHICH IS NOT POSSIBLE TILL NOW
+    for i in range(0,n):
+
+        if(arr[i]<=P):
+
+            P=P+arr[i]
+
+        else:
+
+            print("Smallest number which is not possible till now is {0}".format(P))
+
+            break
+
+
+arr=[4,13,2,3,1]
+Smallest_number_that_cannot_be_formed_with_sum_of_numbers_of_an_array(arr)
