@@ -1,0 +1,106 @@
+class Stack:
+
+    def __init__(self):
+        self.stack=[]
+
+    def push(self,data):
+        self.stack.append(data)
+
+    def pop(self):
+        if(len(self.stack)>0):
+            return(self.stack.pop())
+
+        print("Stack is Empty")
+        return(None)
+
+    def isEmpty(self):
+        return(len(self.stack)==0)
+
+    def top(self):
+        return(self.stack[-1])
+
+    def print(self):
+        print(self.stack)
+
+def Largest_Area_under_Histogram(arr):
+
+    #import pdb;pdb.set_trace()
+    #TIME COMPLEXITY: O(N)----------> EVERY ELEMENT IS PUSHED INTO STACK ONCE AND COME OUT OF THE STACK ONCE
+    #SPACE COMPLEXITY: O(N)--------------> BCZ OF STACK-----------------> O(N)
+    Max_area=-100
+    #DECLARE THE STACK
+    s=Stack()
+    i=0
+    while(i<len(arr)):
+
+        #IF STACK IS EMPTY PUSH THE CURRENT ELEMENT INTO STACK
+        if(s.isEmpty()):
+
+            s.push(i)
+            i+=1
+        #s.print()
+        #IF THE CURRENT ELEMENT IS SMALLER THAN THE TOP OF THE STACK
+        while(i<len(arr) and not s.isEmpty() and arr[i]<arr[s.top()]):
+
+            #THEN POP THE STACK
+            top=s.pop()
+
+            if(s.isEmpty()):
+
+                area=arr[top]*i
+
+            else:
+                
+                newtop=s.top()
+
+                area=arr[top]*(i-newtop-1)
+
+            if(Max_area<area):
+
+                Max_area=area
+
+            #s.print()
+
+        s.push(i)
+        #s.print()
+        i+=1
+
+        #IF THE CURRENT ELEMENT IS LARGER THEN THE PREVIOUS ELEMENT IN THE STACK THEN DIRECTLY PUSH IT INTO THE STACK
+        if(i<len(arr) and arr[i]>arr[s.top()]):
+
+            s.push(i)
+            #s.print()
+            i+=1
+
+    #IF STILL THE STACK CONTAINS ELEMENTS THEN POP THE STACK
+    while(not s.isEmpty()):
+        #THEN POP THE STACK
+        top=s.pop()
+
+        if(s.isEmpty()):
+
+            area=arr[top]*i
+
+        else:
+                
+            newtop=s.top()
+
+            area=arr[top]*(i-newtop-1)
+
+        if(Max_area<area):
+
+            Max_area=area
+
+        #s.print()
+
+    return(Max_area)
+
+        
+arr=[1, 0, 0, 1, 1, 1]
+x=Largest_Area_under_Histogram(arr)
+print("The Largest area of Rectangle is {}".format(x))
+
+            
+
+        
+    
