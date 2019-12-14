@@ -1,0 +1,24 @@
+def Permutations_of_a_given_string(arr,start,end):
+    #TIME COMPLEXITY: O(N* N!)
+    #SPACE COMPELXITY: O(1)
+    #BASE CASE
+    if(start==end):
+
+        print("".join(arr),end=" ,")
+
+    #RECURSIVE CASE
+    for index in range(start,end+1):
+
+        #SWAP THE CHARACHTERS
+        arr[index],arr[start]=arr[start],arr[index]
+
+        #CALL FOR REMAINING CHATRACHTERS
+        Permutations_of_a_given_string(arr,start+1,end)
+
+        #BACKTRACKING STEP
+        arr[index],arr[start]=arr[start],arr[index]
+
+        
+
+arr=['A','B','C']
+Permutations_of_a_given_string(arr,0,2)
