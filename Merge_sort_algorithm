@@ -55,6 +55,8 @@ def Merging(arr,start,end):
 
 def Merge_sort_algorithm(arr,start,end):
     #import pdb;pdb.set_trace()
+    #TIME COMPLEXITY: O(NLOGN)
+    #SPACE COMPLEXITY: O(N)
     #BASE CASE:
     if(start>=end):
         return
