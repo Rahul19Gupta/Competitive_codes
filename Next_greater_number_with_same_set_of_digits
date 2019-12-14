@@ -1,0 +1,42 @@
+
+#TIME COMPLEXITY: O(N)
+#SPACE COMPLEXITY: O(N) 
+def Next_greater_number_with_same_set_of_digits(arr):
+    n=len(arr)
+    #STEP1: FIND OUT A NUMBER WHOSE arr[i-1]<arr[i]
+    #import pdb;pdb.set_trace()
+    for i in range(n-2,-1,-1):
+        if(arr[i]<arr[i+1]):
+            break
+
+    else:
+        print("SUCH A NUMBER IS NOT POSSIBLE")
+        return
+
+    
+    index=i
+
+    #STEP2: FIND OUT THE SMALLEST BUT GRATER THAN THE DIGIT AT ARR[INDEX] TO THE RIGHT OT IT
+    for j in range(n-1,index,-1):
+
+        if(arr[j]>arr[index]):
+            break
+
+    
+    #STEP2:SWAP THE DIGIT PRESENT AT i and j------------->O(1)
+    arr[i],arr[j]=arr[j],arr[i]
+
+    #REVERSE THE ARRAY FROM INDEX+1 TO THE LAST-----------> O(N)
+    arr2=arr[-1:index:-1]
+    arr1=arr[0:index+1]
+    arr=[]
+    arr.extend(arr1)
+    arr.extend(arr2)
+
+    #PRINT THE ARRAY
+    print(arr)
+
+arr=[1,2,3,4,5,6,7,8,4,9,8,7,6,5,4,3,2,1]
+Next_greater_number_with_same_set_of_digits(arr)
+    
+    
