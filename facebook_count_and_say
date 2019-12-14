@@ -1,0 +1,53 @@
+def countAndSay(n):
+    count=[0 for i in range(0,5)]
+    
+    result=""
+    num="11"
+    #import pdb;pdb.set_trace() 
+    i=1
+    previous_bit=num[0]
+    count1=2
+    while(count1<n):
+        i=0
+        previous_bit=num[0]
+        result=""
+        while(i<len(num)):
+                
+            while(i<len(num) and previous_bit==num[i]):
+
+                count[int(previous_bit)]+=1
+                    
+                previous_bit=num[i]
+                    
+                i+=1
+            if(i<len(num)):
+                if(count[int(previous_bit)]==0):
+                    count[int(previous_bit)]=1
+                x=count[int(previous_bit)]
+                result+= str(x) + previous_bit
+                count[int(previous_bit)]=0
+                previous_bit=num[i]
+                    
+                        
+                i+=1
+                
+        if(count[int(previous_bit)]==0):    
+            result+= "1" + previous_bit
+        else:
+                
+            result+= str(count[int(previous_bit)]) + previous_bit
+        count[int(previous_bit)]=0
+            
+        num=result
+        count1+=1
+
+    return(result)
+
+n=19
+
+print(countAndSay(n))
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
