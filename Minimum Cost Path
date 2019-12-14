@@ -1,0 +1,49 @@
+
+def Minimum_cost_to_reach_destination(cost_matrix,m,n):
+
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(N^2)
+    #SPACE COMPLEXITY: O(N^2)
+    
+    #INITIALIZE THE DP ARRAY
+    Min_cost_matrix=[[0 for j in range(0,len(cost_matrix[0]))]for i in range(0,len(cost_matrix))]
+
+    #BASE CASE:
+    sum=0
+    for i in range(0,len(cost_matrix)):
+        sum=sum+cost_matrix[i][0]
+        Min_cost_matrix[i][0]=sum
+
+    sum=0
+    for j in range(0,len(cost_matrix[0])):
+        sum+=cost_matrix[0][j]
+        Min_cost_matrix[0][j]=sum
+
+    #RECURSIVE EQUATIONS
+
+    for i in range(1,len(cost_matrix)):
+
+        for j in range(1,len(cost_matrix[0])):
+
+            Min_cost_matrix[i][j]=cost_matrix[i][j]+min(Min_cost_matrix[i-1][j],Min_cost_matrix[i][j-1],Min_cost_matrix[i-1][j-1])
+
+    #PRINT THE DP TABLE
+    for i in range(0,len(cost_matrix)):
+
+        for j in range(0,len(cost_matrix[0])):
+
+            print(Min_cost_matrix[i][j],end=" ")
+
+        print()
+
+    return(Min_cost_matrix[m-1][n-1])
+
+
+cost_matrix=[[10,3,4],
+             [5,6,17],
+             [13,4,11]]
+m=len(cost_matrix)
+n=len(cost_matrix[0])
+print(Minimum_cost_to_reach_destination(cost_matrix,m,n))
+
+    
