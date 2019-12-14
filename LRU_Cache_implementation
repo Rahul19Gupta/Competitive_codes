@@ -1,0 +1,156 @@
+from collections import defaultdict
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+
+
+
+
+class LRU_Cache_Algorithm:
+
+    #TIME COMPLEXITY: O(1)
+
+    #SPACE COMPLEXITY: O(1)
+
+    def __init__(self):
+
+        #BUFFER IMPLEMENTATION
+        
+        self.head=Node(0)
+
+        self.tail=Node(0)
+
+        self.head.right=self.tail #(left side connection)
+
+        self.tail.left=self.head #(Right side connection)
+
+        self.Hash_table={}
+
+        self.cache_size=3
+
+        self.elements_inserted_in_cache=0
+
+    def insert_block(self,data):
+
+        #CREATING A NEW BLOCK
+        self.temp=Node(data)
+
+        #CONNECTIONS-----------> THROUGH HEAD
+        p=self.head.right
+
+        self.temp.right=p
+
+        p.left=self.temp
+
+        self.head.right=self.temp
+
+        self.temp.left=self.head
+
+        #JUST GO TO THE HASH TABLE AND UPDDATE IT
+
+        self.Hash_table[self.temp.data]=[1, self.temp] #IT MEANS THAT DATA IS PRESENT IN CACHE AND ALONG WITH IT STORE IT'S ADDRESS
+
+        self.elements_inserted_in_cache+=1
+
+        return(self.temp)
+
+    def Delete_block(self,temp):
+
+        #DELETIONS ALWAYS THROUGH TAIL
+
+        temp.left.right=self.tail
+
+        self.tail.left=temp.left
+
+        self.elements_inserted_in_cache-=1
+
+    def Print_Cache(self):
+
+        print("CACHE DATA")
+        temp=self.head.right
+
+        print("HEAD",end="<------>")
+
+        while(temp !=self.tail):
+
+            print(temp.data,end="<---->")
+
+            temp=temp.right
+
+        print("TAIL")
+            
+
+
+    def LRU_Algorithm(self):
+        import pdb;pdb.set_trace()
+        flag=1
+
+        while(flag):
+
+            block=input("Pls Enter a Block which u want to search in cache :")
+
+            try:
+                #IF THE BLOCK IS NOT PRESENT IN THE CACHE THEN INSERT THE BLOCK AND UPDATE THE HASH 
+                self.Hash_table[block]==0
+
+                #IT MEANS THAT THE BLOCK IS ALREADY PRESENT IN THE CACHE
+                             
+
+            except KeyError:
+
+                #FIRST DELETE THE LEAST RECENTLY USED BLOCK
+
+                least_recently_used_block_address=self.tail.left
+
+                if(least_recently_used_block_address != self.head and self.elements_inserted_in_cache>=self.cache_size):
+
+                    self.Delete_block(least_recently_used_block_address)
+
+                    #AFTER DELETING THE BLOCK JUST UPDATE THE HASH
+                    self.Hash_table[least_recently_used_block_address.data]=[0,None]
+
+                #AFTER DELETING THE BLOCK JUST INSERT THE NEW BLOCK
+
+                temp=self.insert_block(block)
+
+                self.Hash_table[block]=[1,temp]
+
+
+            #PRINT THE CACHE
+            self.Print_Cache()
+
+            flag=input("if you want to enter the more data pls put flag as 1 otherwise 0: ")
+
+
+
+
+    
+
+                
+x=LRU_Cache_Algorithm()
+
+x.LRU_Algorithm()
+
+                
+
+                
+
+            
+                    
+
+                    
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
