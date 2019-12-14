@@ -1,0 +1,20 @@
+#TIME COMPLEXITY: O(No of set bits)
+#SPACE COMPLEXITY:O(1)
+#APPROACH1
+def Count_number_of_set_bits(number):
+
+    count=0
+    while(number>0):
+
+        count+=number & 1
+
+        number=number >>1
+
+    print("Number of set bits {}".format(count))
+
+number=15
+Count_number_of_set_bits(number)
+        
+
+    
+    
