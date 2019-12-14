@@ -1,0 +1,39 @@
+
+
+def Maximum_sum_in_a_Rectangular_grid(Rectangular_grid,m,n):
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(N)
+    #SPACE COMPLEXITY:O(N)
+    #INITIALIZE THE DP TABLE
+    Maximum_sum=[0 for j in range(n)]
+
+    #BASE CASE
+    Maximum_sum[0]=max(Rectangular_grid[0][0],Rectangular_grid[1][0])
+
+    Maximum_sum[1]=max(max(Rectangular_grid[0][1],Rectangular_grid[1][1]),Maximum_sum[0])
+
+
+    #RECURSIVE CASE
+
+    for i in range(2,n):
+
+        x=max(Rectangular_grid[0][i],Rectangular_grid[1][i]) + Maximum_sum[i-2]
+
+        y=Maximum_sum[i-1]
+
+        Maximum_sum[i]=max(x,y)
+
+    #PRINT THE ENTIRE DP TABLE 
+
+    for j in range(0,n):
+
+        print(Maximum_sum[j],end=" ")
+
+        
+
+Rectangular_grid=[[1,2,3,4,6],
+                  [0,5,2,1,7]]
+m=len(Rectangular_grid)
+n=len(Rectangular_grid[0])
+Maximum_sum_in_a_Rectangular_grid(Rectangular_grid,m,n)
+        
