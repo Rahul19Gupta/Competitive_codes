@@ -1,0 +1,59 @@
+from collections import defaultdict
+def getMaxRepetitions(s1,n1, s2, n2):
+        
+    #PREPARE ACTUAL STRINGS
+    s1=list(s1*n1)
+        
+    s2=list(s2*n2)
+
+    len1=len(s1)
+        
+    len2=len(s2)
+        
+    Hash_string1=defaultdict()
+        
+    Hash_string2=defaultdict()
+        
+    #SCAN THE ENTIRE STRING S2 FIRST
+    for i in range(0,len2):
+            
+        Hash_string2[s2[i]]=1
+
+    for i in range(0,len1):
+
+        Hash_string1[s1[i]]=0
+
+    for i in range(0,len1):
+
+        Hash_string1[s1[i]]+=1
+
+    #import pdb;pdb.set_trace()       
+    #SCAN THE ENTIRE STRING S1
+    for i in range(0,len(s1)):
+
+        try:
+            
+            if(Hash_string2[s1[i]]):
+                    
+                pass
+
+        except KeyError:
+
+            while(Hash_string1[s1[i]]):
+                s1.remove(s1[i])
+                Hash_string1[s1[i]]-=1
+
+        except IndexError:
+
+            break
+                
+
+    print(s1)
+    print(s2)
+
+
+s1="abc"
+n1=3
+s2="ab"
+n2=2
+getMaxRepetitions(s1,n1, s2, n2)    
