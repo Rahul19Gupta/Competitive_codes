@@ -1,0 +1,115 @@
+from collections import defaultdict
+
+class Queue:
+    def __init__(self):
+        self.queue=[]
+
+    def enqueue(self,data):
+        self.queue.insert(0,data)
+
+    def dequeue(self):
+        if(len(self.queue)):
+            return(self.queue.pop())
+
+        return(-1)
+
+    def isEmpty(self):
+        return(len(self.queue)==0)
+
+
+
+class Graph:
+    def __init__(self):
+        self.graph=defaultdict(list)
+
+    def addEdge(self,u,v,bidirectional=True):
+
+        self.graph[u].append(v)
+
+        if(bidirectional):
+
+            self.graph[v].append(u)
+
+    def print(self):
+
+        print(self.graph)
+
+    
+    def Find_the_next_right_node_to_a_given_key(self,root,key,number_of_nodes):
+
+        #TIME COMPLEXITY: O(N)
+        #SPACE COMPELXITY: O(N)
+
+        #DECLARE TWO QUEUE
+        #QUEUE1---------------> FOR STORING LEVEL TO THE CORRESPONDING NODE
+        #QUEUE2---------------> FOR STORING THE NODES
+
+        #import pdb;pdb.set_trace()
+        level_queue=Queue()
+
+        node_queue=Queue()
+
+        level_of_given_key=-1
+
+        level=0
+
+        visited=[0 for i in range(0,number_of_nodes+1)]
+
+        node_queue.enqueue(root)
+
+        level_queue.enqueue(level)    
+
+        visited[root]=1
+
+        while(not node_queue.isEmpty()):
+
+            node=node_queue.dequeue()
+
+            level_get=level_queue.dequeue()
+
+            if(level_of_given_key !=-1 and level_get==level_of_given_key):
+
+                return(node)
+
+            if(node==key):
+
+                level_of_given_key=level_get
+            
+            for neighbours in self.graph[node]:
+
+                if(visited[neighbours]==0):
+
+                    visited[neighbours]=1
+
+                    node_queue.enqueue(neighbours)
+
+                    level_queue.enqueue(level_get+1)
+
+        return(None)
+
+                
+
+                
+g=Graph()
+
+g.addEdge(1,2)
+g.addEdge(1,3)
+g.addEdge(2,4)
+g.addEdge(2,5)
+g.addEdge(3,6)
+g.addEdge(3,7)
+
+root=1
+key=2
+number_of_nodes=7
+x=g.Find_the_next_right_node_to_a_given_key(root,key,number_of_nodes)
+if(x):
+    print("The next right node to a given key is {}".format(x))
+    
+    
+    
+
+    
+
+    
+    
