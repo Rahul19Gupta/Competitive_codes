@@ -1,0 +1,59 @@
+def MinCostTickets(days,costs):
+    n=len(days)-1
+    x=100000
+    y=100000
+    z=100000
+    #BOTTOM UP DYNMAIC PROGRAMMING APPROACH
+    DP=[0 for i in range(0,days[n]+30)]
+    
+    visited=[False for i in range(0,days[n]+30)]
+    
+    #BASE CASE:
+    
+    for i in range(0,n+1):
+        
+        visited[days[i]]=True
+        
+        
+    #RECURSIVE CASE:
+    #import pdb;pdb.set_trace()
+    for i in range(1,days[n]+30):
+        
+        if(visited[i]):
+            
+            if(i>=1):
+                    
+                x=DP[i-1]+costs[0]
+                    
+            if(i>=7):
+                    
+                y=DP[i-7]+costs[1]
+               
+            if(i>=30):
+                    
+                z=DP[i-30]+costs[2]
+
+            DP[i]=min(x,y,z)
+
+        else:
+
+            if(i>=1):
+                    
+                x=DP[i-1]+costs[0]
+                    
+            if(i>=7):
+                    
+                y=DP[i-7]+costs[1]
+               
+            if(i>=30):
+                    
+                z=DP[i-30]+costs[2]
+
+            DP[i]=min(x,y,z,DP[i-1])        
+    
+    #PRINT THE ENTIRE DP TABLE
+    print(DP[days[n]:])
+    
+days=[1,4,6,7,8,20]
+costs=[2,7,15]
+MinCostTickets(days,costs)
