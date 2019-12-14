@@ -1,0 +1,77 @@
+def Longest_substring(substring,a,b):
+    current_length=-100
+    Longest=-10
+    count_a=0
+
+    count_b=0
+
+    i=0
+    j=0
+
+    #BASE CASE
+    if(len(substring)< a+b):
+        print("Such a substring is not possible")
+        return(0)
+
+    
+    while(i<=j and j<len(substring)):
+
+        if(substring[j]=='a'):
+
+            count_a+=1
+
+        if(substring[j]=='b'):
+
+            count_b+=1
+
+        while(count_a==a and count_b==b and (substring[j+1]!='a'or'b')):
+
+            j+=1
+
+            if(substring[j]=='a'):
+
+                count_a+=1
+
+            if(substring[j]=='b'):
+
+                count_b+=1
+
+        if(count_a>=a and count_b>=b):
+            current_length=j-i
+
+        if(count_a==a and count_b==b and (substring[j+1]=='a'or'b')):
+
+            current_length=j-i-1
+
+            if(substring[i]=='a'):
+
+                count_a-=1
+
+            if(substring[i]=='b'):
+
+                count_b-=1
+
+            i+=1
+
+        if(current_length>Longest):
+
+            Longest=current_length
+
+        j+=1
+
+
+    return(Longest)
+
+substring="abccbbcaabccb"
+substring="abccbbcaabccbaccbaccbbccaccccccccccc"
+
+
+        
+x=Longest_substring(substring,3,4)
+print("Longest length subs {0}".format(x))
+
+            
+
+        
+
+    
