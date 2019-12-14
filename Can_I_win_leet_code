@@ -1,0 +1,68 @@
+def canIWin(maxChoosableInteger, desiredTotal):
+        #import pdb;pdb.set_trace()
+        
+        if(desiredTotal==0):
+            
+            return(True)
+        
+        num=[i for i in range(1,maxChoosableInteger+1)]  
+        
+        while(1):
+            
+            for element in num:
+                ans=False
+                #PLAYER1 PICKS 1
+                num1=num.copy()
+                
+                player1_score=element
+                
+                num.remove(element)
+                
+                num1.remove(element)
+                
+                player2_score=0
+                turn=1
+
+                if(player1_score +player2_score >=desiredTotal):
+
+                    ans=True
+                while(player1_score+player2_score<desiredTotal):
+                    
+                    for item in num1:
+
+                        print(player1_score,player2_score)
+                        
+                        if(turn%2 !=0):
+                            #IT MEANS IT'S A PLAYER 2 TURN
+                            player2_score+=item
+                        
+                            if(player1_score+player2_score>=desiredTotal):
+
+                                ans =False
+
+                                break
+
+                                break
+
+                            num1.remove(item)
+                            
+                        else:
+                            
+                            player1_score+=item
+                            
+                            if(player1_score+player2_score>=desiredTotal):
+
+                                ans=True
+                            
+                            num1.remove(item)
+
+                        turn+=1
+
+                        if(ans==True):
+
+                            return(True)
+
+
+            return(ans)
+
+print(canIWin(10,11))
