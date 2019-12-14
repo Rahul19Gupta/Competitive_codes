@@ -1,0 +1,23 @@
+
+def Capacity_of_workers(desired,arr):
+    result=[]
+    n=len(arr)
+    for i in range(0,n-2):
+
+        j=i+1
+
+        for k in range(j+1,n):
+
+            prod=arr[i]*arr[j]*arr[k]
+
+            if(prod==desired):
+
+                result.append([arr[i],arr[j],arr[k]])
+
+    print(result)
+          
+
+   
+
+
+Capacity_of_workers(8,[1,2,2,2,4])
