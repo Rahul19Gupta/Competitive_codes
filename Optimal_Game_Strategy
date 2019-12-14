@@ -1,0 +1,52 @@
+#OPTIMAL GAME STARTEGY
+#---------------------
+
+def Optimal_Game_Strategy(a,i,j):
+
+    #TOP DOWN DYNAMIC PROGRAMMING
+    #TIME COMPLEXITY:O(N^2)
+    #SPACE COMPLEXITY:O(N^2)
+
+    #BASE CASE:
+    #CASE:
+    #IF NO ELEMENTS LEFT IN A ARRAY
+    if(i>j):
+        return(0)
+
+    if(DP[i][j]):
+        return(DP[i][j])
+
+    #RECURSIVE CASE:
+
+    ans1=a[i]+min(Optimal_Game_Strategy(a,i+1,j-1),Optimal_Game_Strategy(a,i+2,j))
+
+    ans2=a[j]+min(Optimal_Game_Strategy(a,i,j-2),Optimal_Game_Strategy(a,i+1,j-1))
+
+    ans=max(ans1,ans2)
+
+    DP[i][j]=ans
+
+    return(ans)
+
+
+a=[7,3,1,6,2,8,10,11]
+n=len(a)
+#INITIALIZE THE DP TABLE
+DP=[[0 for j in range(0,n)]for i in range(0,n)]
+x=Optimal_Game_Strategy(a,0,n-1)
+total=0
+for i in range(0,n):
+    total+=a[i]
+#PRINT THE ENTIRE DP TABLE
+for i in range(0,n):
+    for j in range(0,n):
+        print(DP[i][j],end=" ")
+    print()
+        
+print("Max Margin by which player 1 wins {0}".format(total-x))
+
+
+
+
+
+    
