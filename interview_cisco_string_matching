@@ -1,0 +1,32 @@
+def String_Matching(s1,s2):
+    len1=len(s1)	
+    len2=len(s2)
+    #import pdb;pdb.set_trace()
+    #TIME COMPLEXITY: O(M*N)
+    #SPACE COMPLEXITY: O(1)
+    #BASE CASE:
+    if(len2>len1):
+        print("s2 can never be a substring of s1")
+        return(-1)
+
+	
+    for i in range(0,len(s1)-len(s2)+1):
+        j=0
+        count=0
+        while(s1[i]==s2[j]):		
+            i+=1
+            j+=1
+            count+=1
+            if(count==len2):
+                print("string is present")
+                break
+
+		
+    print("pattern is not present in a given string")
+    return(-1)
+
+s1="abaabba"
+s2="aaba"
+String_Matching(s1,s2)
+
+
