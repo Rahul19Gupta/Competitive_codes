@@ -1,0 +1,64 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.lis=0
+        self.left=None
+        self.right=None
+
+def Size_of_largest_independent_set(root):
+
+    #TOP DOWN DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:
+    #SPACE COMPLEXITY:
+
+    #BASE CASE:
+    if(not root):
+        return(0)
+
+    #LEAF NODE---> SIZE OF THE LARGEST INDEPENDENT SET IS 1
+    if(not root.left and not root.right):
+        return(1)
+
+    if(root.lis):
+        return(root.lis)
+
+    #RECURSIVE CASE:
+    including_root=0
+    excluding_root=0
+    #INCLUDING ROOT
+    if(root.left):
+
+        including_root+=1+Size_of_largest_independent_set(root.left.left)+Size_of_largest_independent_set(root.left.right)
+
+
+    if(root.right):
+
+        including_root+=Size_of_largest_independent_set(root.right.left)+Size_of_largest_independent_set(root.right.right)
+        
+    #EXCLUDING ROOT
+
+        excluding_root+=Size_of_largest_independent_set(root.left)+Size_of_largest_independent_set(root.right)
+
+    root.lis=max(including_root,excluding_root)
+
+    return(root.lis)
+
+Node1=Node(1)
+Node2=Node(2)
+Node3=Node(3)
+Node4=Node(4)
+Node5=Node(5)
+Node6=Node(6)
+Node7=Node(7)
+Node8=Node(8)
+Node9=Node(9)
+
+Node1.left=Node2
+Node1.right=Node3
+Node2.left=Node4
+Node2.right=Node5
+Node3.left=Node6
+Node3.right=Node7
+Node7.right=Node9
+Node7.left=Node8
+print(Size_of_largest_independent_set(Node1))
