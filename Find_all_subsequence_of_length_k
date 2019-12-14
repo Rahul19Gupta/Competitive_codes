@@ -1,0 +1,38 @@
+
+class Solution:
+
+    def Subsequence(self,Candidate,k):
+
+        
+        self.result=[]
+        self.Find_Subsequence_of_length_k(Candidate,[],k)
+        print(self.result)
+
+
+    def Find_Subsequence_of_length_k(self,Candidate,temp,k):
+
+        #BASE CASE:
+        if(len(temp)==k):
+            self.result.append("".join(temp.copy()))
+        
+        for item in Candidate:
+
+            
+            temp.append(item)
+            index=temp.index(item)
+            self.Find_Subsequence_of_length_k(Candidate[index+1:],temp,k)
+            if(temp):
+                temp.pop()
+
+        
+
+
+s=Solution()
+Candidate="rabbbit"
+Candidate=list(Candidate)
+k=6
+s.Subsequence(Candidate,k)        
+
+            
+
+            
