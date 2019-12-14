@@ -1,0 +1,44 @@
+def minDistance(word1, word2):
+    m=len(word1)
+    n=len(word2)
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    EDIT_DISTANCE=[[0 for j in range(n+1)]for i in range(0,m+1)]
+        
+    #BASE CASE:
+    for i in range(1,m+1):
+            
+        EDIT_DISTANCE[i][0]=i
+            
+    for j in range(1,n+1):
+            
+        EDIT_DISTANCE[0][j]=j
+            
+    #RECURSIVE CASE:
+        
+    for i in range(1,m+1):
+            
+        for j in range(1,n+1):
+                
+            if(word1[i-1]==word2[j-1]):
+                    
+                EDIT_DISTANCE[i][j]=EDIT_DISTANCE[i-1][j-1]
+                    
+            else:
+                    
+                EDIT_DISTANCE[i][j]=min(1+EDIT_DISTANCE[i-1][j-1],1+EDIT_DISTANCE[i-1][j],1+EDIT_DISTANCE[i][j-1])
+
+    #PRINT THE ENTIRE EDIT DISTANCE TABLE
+    for i in range(0,m+1):
+
+        for j in range(0,n+1):
+
+            print(EDIT_DISTANCE[i][j],end=" ")
+
+        print()
+                
+                    
+    return(EDIT_DISTANCE[m][n])
+
+word1="plasma"
+word2="altruism"
+print(minDistance(word1, word2))
