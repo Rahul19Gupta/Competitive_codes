@@ -1,0 +1,44 @@
+from collections import defaultdict
+
+def Check_whether_the_string_is_a_panagram_or_not(Str):
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(1)
+    Hash_table=defaultdict()
+    count=0
+    #import pdb;pdb.set_trace()
+    for i in range(0,len(Str)):
+
+        if(Str[i]!=" "):
+            try:
+                x=Hash_table[Str[i]]
+                
+                if(Hash_table[Str[i]]==0):
+                    count+=1
+                    
+                Hash_table[Str[i]]+=1
+
+            except KeyError:
+
+                Hash_table[Str[i]]=1
+                count+=1
+
+        #IF ALL 26 ALPHABETS ARE PRESENT IN A STRING
+    print(count)
+    if(count>=26):
+
+        print("GIVEN STRING IS A PANAGRAM")
+        return(1)
+
+    print("GIVEN STRING IS NOT THE PANAGRAM")
+    return(0)
+
+
+
+Str="The quick brown fox jumps over the dog"
+Check_whether_the_string_is_a_panagram_or_not(Str)    
+
+            
+
+        
+
+    
