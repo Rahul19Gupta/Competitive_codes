@@ -1,0 +1,22 @@
+def findContentChildren(g, s):
+        
+    g.sort()
+        
+    s.sort()
+    output=0
+    j=0
+    for i in range(0,len(g)):
+            
+        while(j<len(s) and g[i]<=s[j]):
+            "Assign the cookie to that child"
+            output+=1
+            j+=1
+            break
+                
+    print(output)
+
+
+
+g=[1,2]
+s=[1,2,3]
+findContentChildren(g, s)
