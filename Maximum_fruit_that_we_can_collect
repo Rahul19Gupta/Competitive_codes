@@ -1,0 +1,26 @@
+
+def totalFruit(tree):
+        visited=[0 for i in range(0,40001)]
+        i=0
+        Maximum_fruit_we_can_collect=-1
+        while(i<len(tree)):
+            count=0
+            for j in range(i,len(tree)):
+                
+                if(visited[tree[j]]==0):
+                    count+=1
+                    visited[tree[j]]=1
+                
+                if(Maximum_fruit_we_can_collect< (j-i+1) and count<=2):
+                    Maximum_fruit_we_can_collect=(j-i+1)
+                    
+                if(count>2):
+                    visited=[0 for i in range(0,40001)]
+                    break
+            i+=1
+
+        print("Maximum Fruit that we can collect is {}".format(Maximum_fruit_we_can_collect))
+
+tree=[3,3,3,1,2,1,1,2,3,3,4]
+totalFruit(tree)
+
