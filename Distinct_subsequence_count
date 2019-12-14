@@ -1,0 +1,45 @@
+def isSubsequence(s1, s2):
+    #import pdb;pdb.set_trace()
+    len1=len(s1)
+    len2=len(s2)
+    count=0
+    #BASE CASE:
+    if(not len1 and not len2):
+        return(True)
+        
+    elif(len2>len1):
+        return(False)
+              
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    Distinct_Subsequence=[[0 for j in range(0,len2+1)]for i in range(0,len1+1)]
+
+    #BASE CASE:
+    for i in range(0,len1+1):
+
+        Distinct_Subsequence[i][0]=1
+        
+    #RECURSIVE CASE
+    for i in range(1,len1+1):
+            
+        for j in range(1,len2+1):
+                
+            if(s1[i-1]==s2[j-1]):
+                    
+                Distinct_Subsequence[i][j]=Distinct_Subsequence[i-1][j-1]+Distinct_Subsequence[i-1][j]
+                    
+            else:
+                    
+                Distinct_Subsequence[i][j]=Distinct_Subsequence[i-1][j]
+
+    #PRINT THE ENTIRE TABLE
+    for i in range(0,len1+1):
+
+        for j in range(0,len2+1):
+
+            print(Distinct_Subsequence[i][j],end=" ")
+
+        print()
+
+s1="rabbbit"
+s2="rabbit"
+isSubsequence(s1,s2)
