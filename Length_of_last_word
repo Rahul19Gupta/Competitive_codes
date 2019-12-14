@@ -1,0 +1,20 @@
+def lengthOfLastWord(A):
+        count=0
+        x=A.split(" ")
+        #import pdb;pdb.set_trace()
+        for i in range(len(x)-1,-1,-1):
+            
+            if(x[i]!=""):
+                break
+            
+        else:
+            
+            return(0)
+            
+        for i in range(0,len(x[i])):
+            count+=1
+                
+        return(count)
+
+A="Helo"
+print(lengthOfLastWord(A))
