@@ -1,0 +1,26 @@
+
+def Minimum_jumps_to_reach_end_of_an_array(arr):
+    n=len(arr)
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    Min_Jumps=[10000 for i in range(0,n)]
+
+    #BASE CASE:
+    Min_Jumps[0]=0
+    #PROCESSING THE ARRAY
+
+   
+    for i in range(1,len(arr)):
+
+        for k in range(0,i):
+
+            if(k+arr[k]>=i):
+
+                Min_Jumps[i]=min(Min_Jumps[i],1+Min_Jumps[k])
+
+
+    #PRINT THE ENTIRE DP ARRAY
+    print(Min_Jumps)
+
+                
+arr=[2,1,3,2,3,4,5,1,2,8]    
+Minimum_jumps_to_reach_end_of_an_array(arr)
