@@ -1,0 +1,83 @@
+from collections import defaultdict 
+#BREADTH FIRST SEARCH ALGORITHM
+#NODE UNVISITED----------> FLAG=-1
+#NODE VISITED BUT UNEXPLORED------------> FLAG=0
+#NODE VISITED BUT EXPLORED----------------> FLAG=1
+
+class Queue:
+    def __init__(self):
+        self.data=[]
+
+    def enqueue(self,data):
+        self.data.insert(0,data)
+
+    def dequeue(self):
+        if(len(self.data)!=0):
+            return(self.data.pop())
+
+    def isEmpty(self):
+        return(len(self.data)==0)
+
+class Graph:
+    def __init__(self):
+        self.graph=defaultdict(list)
+
+    def addEdge(self,u,v,bidirectional=True):
+        self.graph[u].append(v)
+        if(bidirectional):
+            self.graph[v].append(u)
+    
+        
+    def Find_the_cycle_in_a_graph(self,start,vertices):
+        #TIME COMPLEXITY: O(V+E)
+        #SPACE COMPLEXITY: O(V)
+        #TO KEEP TRACK OF THE VISITED NODES
+        visited=[0 for i in range(0,vertices)]
+
+        #QUEUE DECLARATION
+        q=Queue()
+
+        q.enqueue(start)
+
+        visited[start]=0
+
+        while(not q.isEmpty()):
+
+            node=q.dequeue()
+
+            visited[node]=1
+
+            for neighbour in self.graph[node]:
+
+                if(visited[neighbour]==-1):
+
+                    q.enqueue(neighbour)
+
+                    visited[neighbour]=0
+
+                elif(visited[neighbour]==0):
+
+                    print("There is a cycle in a graph")
+                    return
+
+    
+
+                
+
+                
+g=Graph()
+g.addEdge(0,1)
+g.addEdge(0,2)
+g.addEdge(1,2)
+
+start=0
+vertices=3
+g.Find_the_cycle_in_a_graph(start,vertices)
+
+
+    
+
+    
+
+    
+    
