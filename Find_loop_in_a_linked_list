@@ -1,0 +1,43 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+#TIME COMPLEXITY: O(N)
+#SPACE COMPLEXITY: O(1)
+def Find_the_loop_in_a_linked_list(head):
+
+    slow=head
+    fast=head
+
+    while(slow and fast):
+
+        slow=slow.next
+        fast=fast.next
+        if(fast):
+            fast=fast.next
+        if(slow==fast):
+            print("There is a cycle in a linked list")
+            return
+
+    print("There is no cycle in a linked list")
+
+
+node1=Node(10)
+node2=Node(20)
+node3=Node(30)
+node4=Node(40)
+node5=Node(50)
+
+
+node1.next=node2
+node2.next=node3
+node3.next=node4
+node4.next=node5
+node5.next=node2
+
+Find_the_loop_in_a_linked_list(node1)
+
+
+
+        
