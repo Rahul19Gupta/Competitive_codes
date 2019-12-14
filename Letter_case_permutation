@@ -1,0 +1,32 @@
+def lettercasePermutation_helper(s,i,n,output):
+        #print(output)
+        global result
+        #print(i)
+        #print(s)
+        #import pdb;pdb.set_trace()
+        #BASE CASE:
+        if(i==n):
+            result.append("".join(output))
+            return(result)
+
+        if(not(97<=ord(s[i])<=122) and  not(65<=ord(s[i])<=90)):
+            output[i]=s[i]
+            lettercasePermutation_helper(s,i+1,n,output)
+            return(result)
+        
+        #RECURSIVE CASE:
+            
+        output[i]=s[i].lower()
+        lettercasePermutation_helper(s,i+1,n,output)
+        output[i]=s[i].upper()
+        lettercasePermutation_helper(s,i+1,n,output)
+
+        return(result)
+
+
+s="3z4"
+result=[]
+i=0
+n=len(s)
+output=[0,0,0]
+print(lettercasePermutation_helper(s,i,n,output))
