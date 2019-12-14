@@ -1,0 +1,43 @@
+from collections import defaultdict
+#TIME COMPELXITY: O(N)
+#SPACE COMPLEXITY: O(N)
+
+
+def Find_the_subarray_which_sum_to_value_zero(arr,x):
+    Cumulative_sum=[]
+    #INITIALIZE THE HASH TABLE
+    Hash_Table=defaultdict(list)
+
+    #DECLARE HASH TABLE WITH -1 VALUES
+    for i in range(0,30):
+        Hash_Table[i]=[(-1,-1)]
+
+    #UPDATE THE HASH TABLE
+    Sum=0
+    for i in range(0,len(arr)):
+
+        Sum+=arr[i]
+
+        Hash_Table[Sum].append((Sum,i))
+
+        Cumulative_sum.append(Sum)
+
+    #print(Hash_Table)
+
+    #import pdb;pdb.set_trace()
+
+    #PROCESSING OF DATA
+    for i in range(0,len(Cumulative_sum)):
+
+        if(len(Hash_Table[Cumulative_sum[i]])>2):
+
+            start_index=Hash_Table[Cumulative_sum[i]][1][1]
+            end_index=Hash_Table[Cumulative_sum[i]][2][1]
+
+
+            return(arr[start_index+1:end_index+1])
+    
+        
+
+arr=[8,5,-2,3,4,-4,7]
+print(Find_the_subarray_which_sum_to_value_zero(arr,0))
