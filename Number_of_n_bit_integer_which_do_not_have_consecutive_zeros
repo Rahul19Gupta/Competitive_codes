@@ -1,0 +1,32 @@
+
+def Number_of_n_bit_integer_which_do_not_have_consecutive_zeros(n):
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    
+    #INITIALIZE THE DP ARRAY
+    fib=[0 for i in range(0,n+1)]
+    
+    #BASE CASE
+    if(n==1):
+        return(1)
+
+    elif(n==2):
+        return(2)
+    
+    #RECURSIVE CASE
+    else:
+        fib[0]=0
+        fib[1]=2
+        fib[2]=3
+        for i in range(3,n+1):
+
+            fib[i]=fib[i-1]+fib[i-2]
+
+    return(fib[n])
+
+n=100
+print(Number_of_n_bit_integer_which_do_not_have_consecutive_zeros(n))
+
+
+
