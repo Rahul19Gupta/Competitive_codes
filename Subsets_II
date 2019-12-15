@@ -1,0 +1,26 @@
+class Solution:
+    def combinationSum(self, arr):
+            
+            result=[]
+            result.append([])
+            arr.sort()
+            self.combinationSum_helper(arr,[],result)
+            print(result)
+            
+            
+            
+    def combinationSum_helper(self,Candidate,temp,result):
+            
+        for item in Candidate:
+            
+            temp.append(item)
+            index=Candidate.index(item)
+            if(temp not in result):
+                result.append(temp.copy())
+            self.combinationSum_helper(Candidate[index+1:],temp,result)
+            temp.pop()
+                    
+
+s=Solution()
+arr=[5,4]
+s.combinationSum(arr)
