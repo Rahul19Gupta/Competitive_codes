@@ -1,0 +1,30 @@
+def minCostTickets_helper(index, day, days, costs):
+    import pdb;pdb.set_trace()
+    if(index==len(days)+1):
+        return
+
+    while (days[index] <= day):
+        index += 1
+
+
+    # RECURSIVE CASE:
+
+    # CASE1:
+    # IF U BUY A PASS FOR ONE DAY
+
+    x = costs[0] + minCostTickets_helper(index, day + 1, days, costs)
+
+    # CASE2:
+    # IF U BUY A PASS FOR 7 DAYS
+    y = costs[1] + minCostTickets_helper(index, day + 7, days, costs)
+
+    # CASE3:
+    # IF U BUY A PASS FOR 30 DAYS
+    z = costs[2] = minCostTickets_helper(index,day + 30, days, costs)
+
+    ans = min(x, y, z)
+
+    return (ans)
+
+
+minCostTickets_helper(0, 1, days=[1,4,6,7,8,20], costs=[2,7,15])
