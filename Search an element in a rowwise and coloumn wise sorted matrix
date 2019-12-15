@@ -1,0 +1,32 @@
+def searchMatrix_helper(matrix,target,i,j):
+        #import pdb;pdb.set_trace()
+        if(i<0 or i>=len(matrix) or j<0 or j>=len(matrix[0])):
+            return(False)
+        
+        if(matrix[i][j]==target):
+            
+            return(True)
+        
+        elif(matrix[i][j]<target):
+            
+            return(searchMatrix_helper(matrix,target,i+1,j))
+            
+        elif(matrix[i][j]>target):
+            
+            return(searchMatrix_helper(matrix,target,i,j-1))
+            
+        
+
+matrix=[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+m=len(matrix)
+n=len(matrix[0])
+i=0
+j=n-1
+target=50
+print(searchMatrix_helper(matrix,target,i,j))
