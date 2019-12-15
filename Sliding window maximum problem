@@ -1,0 +1,133 @@
+head=None
+tail=None
+class DoubleLinkedList:
+    
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+
+def addFirst(data):
+    #import pdb;pdb.set_trace()
+    global head,tail
+    temp=DoubleLinkedList(data)
+    if(not head):
+        head=tail=temp
+
+    else:
+
+        temp.right=head
+        head.left=temp
+        head=temp
+
+def addLast(data):
+    global head,tail
+    temp=DoubleLinkedList(data)
+    if(not head):
+        head=tail=temp
+
+    else:
+        tail.right=temp
+        temp.left=tail
+        tail=temp
+
+def listisEmpty():
+    global head,tail
+    if(not head):
+        return(0)
+
+    else:
+        return(1)
+
+def peekFirst():
+    global head,tail
+    if(head):
+        return(head.data)
+
+    else:
+        return(0)
+
+def peekLast():
+    global head,tail
+    if(tail):
+        return(tail.data)
+
+    else:
+        return(0)
+
+def removeFirst():
+    global head,tail
+    p=head.right
+    if(p):
+        head.right=None
+    head=p
+
+def removeLast():
+    global head,tail
+    if(tail):
+        p=tail.left
+    
+        p.right=None
+    tail=p
+
+def printList():
+    #import pdb;pdb.set_trace()
+    global head,tail
+    temp=head
+    while(temp):
+        print(temp.data,end=" ")
+        temp=temp.right
+    
+
+        
+
+#TIME COMPLEXITY: O(N)
+#SPACE COMPLEXITY: O(K)
+def Sliding_window_maximum_problem(arr,k):
+
+    n=len(arr)
+
+    #FIRST APPEND THE FIRST ELEMENT INTO THE LINKED LIST
+    addFirst(0)
+
+    #REMAINING K-1 ELEMENTS OF THE WINDOW I NEED TO PROCESS
+    for i in range(1,k):
+
+        #REMOVE ALL USELESS ELEMNETS FORM THE LIST
+        while(listisEmpty() and arr[i]>arr[peekLast()]):
+            printList()
+            removeLast()
+
+        #AFTER ALL USELESS ELEMENTS REMOVED U ADD THE CURRENT ELEMENT
+        addLast(i)
+
+    #PROCESSING ELEMENTS AFTER K TILL N
+    for i in range(k,n):
+
+        print(arr[peekFirst()])
+
+        #IF THE PREVIOUS ELEMENT OF THE WINDOW IS STILL PRESENT DELETE IT
+        if(i-k == peekFirst()):
+            printList()
+            removeFirst()
+
+        #REMOVE USELESS ELEMENTS FROM THE WINDOW
+        while(listisEmpty() and arr[i]>arr[peekLast()]):
+            removeLast()
+
+        #AFTER ALL USELESS ELEMENTS REMOVED U ADD THE CURRENT ELEMENT
+        addLast(i)
+
+    print(arr[peekFirst()])
+
+        
+arr=[10,4,2,11]
+Sliding_window_maximum_problem(arr,3)
+
+        
+            
+
+        
+
+
+
