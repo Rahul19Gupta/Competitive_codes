@@ -1,0 +1,41 @@
+from collections import defaultdict
+
+def twoSum(nums, target):
+        ans=[]
+        Hash=defaultdict()
+        
+        for i in range(0,len(nums)):
+            
+            Hash[nums[i]]=(1,i)
+            
+        #import pdb;pdb.set_trace()
+        for i in range(0,len(nums)):
+            
+            a=nums[i]
+            
+            start=i
+            
+            try:
+                
+                b=target-a
+                
+                if(Hash[b][0]):
+                    
+                    end=Hash[b][1]
+
+                    ans.append(start)
+
+                    ans.append(end)
+
+                    return(ans)
+                    
+            
+            except:
+                
+                pass
+            
+        
+
+nums=[2, 7, 11, 15]
+target=9
+print(twoSum(nums, target))
