@@ -1,0 +1,59 @@
+from collections import defaultdict
+
+def threeSum(arr):
+    n=len(arr)
+    result=[]
+    arr.sort()
+    Hash=defaultdict() 
+    i=0
+        
+        
+    #import pdb;pdb.set_trace()
+    for i in range(0,n-2):
+        
+        j=i+1        
+        k=n-1
+        while(j<k):
+            Sum=0
+            print(arr[i],arr[j],arr[k])
+            Sum+=arr[i]+arr[j]+arr[k]
+                
+            if(Sum>0):
+                    
+                k-=1
+                    
+            elif(Sum<0):
+                    
+                j+=1
+                    
+            else:
+                res=[]  
+                res.append(arr[i])
+                res.append(arr[j])
+                res.append(arr[k])
+                x=(arr[i],arr[j],arr[k])
+
+                try:
+
+                    if(not Hash[x]):
+
+                        result.append(res)
+
+                except:
+
+                    Hash[x]=1
+
+                    result.append(res)
+
+                j+=1
+
+                k-=1
+
+                    
+                    
+                
+                    
+    return(result)
+
+arr=[3,0,-2,-1,1,2]
+print(threeSum(arr))
