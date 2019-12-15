@@ -1,0 +1,42 @@
+def nthUglyNumber(n):
+        
+        #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+        U=[]
+        
+        U.append(1)
+        
+        i=0
+        j=0
+        k=0
+        count=1
+        while(count<=n):
+            
+            x=U[i]*2
+            y=U[j]*3
+            z=U[k]*5
+            
+            ans=min(x,y,z)
+            
+            if(ans==x):
+                
+                i+=1
+                
+            elif(ans==y):
+                
+                j+=1
+                
+            else:
+                
+                k+=1
+
+            if(ans not in U):
+                
+                U.append(ans)
+            
+                count+=1
+            
+        print(U)
+        
+n=10
+nthUglyNumber(n)
+        
