@@ -1,0 +1,47 @@
+
+
+def Valantine_Magic_to_minimised_difference(m,n,chocolates,candies):
+
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:
+    #SPACE COMPLEXITY:
+
+    #INTIALIZE THE DP ARRAY
+    Valantine_Magic=[[10000 for j in range(n+1)]for i in range(m+1)]
+
+    #BASE CASE:
+    for i in range(0,m):
+        Valantine_Magic[i][0]=abs(chocolates[i]-candies[0])
+
+    for j in range(0,n):
+        Valantine_Magic[0][j]=abs(candies[j]-chocolates[0])
+
+    #import pdb;pdb.set_trace()
+
+    #RECURSIVE CASE:
+    for i in range(1,m):
+
+        for j in range(1,n):
+
+            Valantine_Magic[i][j]=min(abs(candies[j-1]-chocolates[i-1])+Valantine_Magic[i-1][j-1],Valantine_Magic[i][j-1])
+
+
+    #PRINT THE ENTIRE DP TABLE
+    for i in range(0,m):
+
+        for j in range(0,n):
+
+            print(Valantine_Magic[i][j],end=" ")
+
+        print()
+
+
+chocolates=[7,8]
+candies=[1,2,3,4,5]
+m=len(chocolates)
+n=len(candies)
+Valantine_Magic_to_minimised_difference(m,n,chocolates,candies)
+        
+        
+
+            
