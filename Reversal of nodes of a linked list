@@ -1,0 +1,53 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+def print_linked_list(temp):
+    while(temp):
+        print(temp.data,end="---->")
+        temp=temp.next
+    print()
+    
+def Reversal_of_linked_list(head):
+    #TIME COMPELXITY: O(N)
+    #SPACE COMPLEXITY: O(1)
+
+    previous=None
+    current=head
+    
+
+    while(current):
+
+        Next=current.next
+        current.next=previous
+        previous=current
+        current=Next
+
+    return(previous)
+
+def 
+        
+
+node1=Node(10)
+node2=Node(20)
+node3=Node(30)
+node4=Node(40)
+node5=Node(50)
+node6=Node(60)
+
+node1.next=node2
+node2.next=node3
+node3.next=node4
+node4.next=node5
+node5.next=node6
+
+
+
+
+head=Reversal_of_linked_list(node1)
+print_linked_list(head)
+
+        
+        
+    
