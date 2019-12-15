@@ -1,0 +1,35 @@
+
+#TIME COMPLEXITY: O(N)
+#SPACE COMPLEXITY: O(1)
+def Find_the_unique_number_III(arr):
+    n=len(arr)
+    #DECLARE VARABLES
+    output=[0 for i in range(0,100)]
+
+    #LETS UPDATE THE CONTRIBUTION OF bits OF CORRRESPONDING NUMBER
+    for j in range(0,n):
+
+        i=0
+        number=arr[j]
+        #import pdb;pdb.set_trace()
+        while(number>0):         
+            output[i]+=number & 1#---------> BITWISE AND OPERATION
+            number= number>>1  #---------> DISCARDING THAT PARTICULAR BIT
+            i+=1
+
+    #TAKE THE MOD 3 WITH ALL NUMBERS IN OUTPUT ARRAY TO CANCEL THE EFFECT
+    for i in range(0,len(output)):
+        output[i]%=3
+
+    #CONVERT BACK INTO DECIMAL
+    p=1
+    ans=0
+    for i in range(0,len(output)):
+        ans+=output[i]*p
+        p=p<<1
+
+    return(ans)
+
+
+arr=[7,7,3,4,2,4,3,3,4,7]
+print(Find_the_unique_number_III(arr))
