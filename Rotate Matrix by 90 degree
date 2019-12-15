@@ -1,0 +1,35 @@
+#TIME COMPLEXITY: O(N^2)
+#SPACE COMPELXITY: O(1)
+
+def Rotate_the_square_matrix_by_90_degree(input_matrix):
+    
+    #STEP1: REVERSE ELEMENTS OF EACH ROW OF AN INPUT MATRIX---->O(N)*O(N)
+
+    for i in range(0,len(input_matrix)):
+
+        input_matrix[i].reverse()
+
+    #STEP2: NOW U TAKE TRANPOSE OF THE INPUT MATRIX:------> O(N^2)
+
+    for i in range(0,len(input_matrix)):
+
+        for j in range(0,len(input_matrix)):
+
+            if(j>=i):
+
+                input_matrix[i][j],input_matrix[j][i]=input_matrix[j][i],input_matrix[i][j]
+
+    #PRINT THE INPUT MATRIX
+    for i in range(0,len(input_matrix)):
+
+        for j in range(0,len(input_matrix)):
+
+            print(input_matrix[i][j],end=" ")
+
+        print()
+
+input_matrix=[[1,2,3,4],
+              [5,6,7,8],
+              [9,10,11,12],
+              [13,14,15,16]]
+Rotate_the_square_matrix_by_90_degree(input_matrix)
