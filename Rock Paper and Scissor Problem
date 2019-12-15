@@ -1,0 +1,125 @@
+
+
+def Probability_of_Rock_wins(R,P,S):
+    global DP
+    #TOP DOWN DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(R*P*S)
+    #SPACE COMPLEXITY:O(R*P*S)
+
+    #BASE CASE:
+    #CASE1:
+    #IF ROCK ==0 OR S==0:
+    #PROBABILITY OF SURVIVAL OF ROCK IS ZERO
+    if(S==0 or R==0):
+        return(0)
+
+    if(P==0):
+        return(1)
+    print((R,P,S))
+    if(DP[R][P][S]):
+        return(DP[R][P][S])
+
+    #RECURSIVE CASE:
+
+    total= R*P + P*S + R*S
+    result=0
+    #PAPER KILLS ROCK
+    result+=Probability_of_Rock_wins(R-1,P,S)*(R*P)/total
+    #ROCK KILLS SCISSOR
+    result+=Probability_of_Rock_wins(R,P,S-1)*(R*S)/total
+    #SCISSOR KILLS PAPER
+    result+=Probability_of_Rock_wins(R,P-1,S)*(S*P)/total
+
+    DP[R][P][S]=result
+
+    return(result)
+
+def Probability_of_Paper_wins(R,P,S):
+    global DP
+    #TOP DOWN DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:
+    #SPACE COMPLEXITY:
+
+    #BASE CASE:
+    #CASE1:
+    #IF PAPER ==0 OR ROCK==0:
+    #PROBABILITY OF SURVIVAL OF PAPER IS ZERO
+    if(P==0 or R==0):
+        return(0)
+
+    if(S==0):
+        return(1)
+
+    if(DP[R][P][S]):
+        return(DP[R][P][S])
+
+    #RECURSIVE CASE:
+
+    total= R*P + P*S + R*S
+    result=0
+    #PAPER KILLS ROCK
+    result+=Probability_of_Paper_wins(R-1,P,S)*(R*P)/total
+    #ROCK KILLS SCISSOR
+    result+=Probability_of_Paper_wins(R,P,S-1)*(R*S)/total
+    #SCISSOR KILLS PAPER
+    result+=Probability_of_Paper_wins(R,P-1,S)*(S*P)/total
+
+    DP[R][P][S]=result
+
+    return(result)
+
+def Probability_of_Scissor_wins(R,P,S):
+    global DP
+    #TOP DOWN DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:
+    #SPACE COMPLEXITY:
+
+    #BASE CASE:
+    #CASE1:
+    #IF SCISSOR ==0 OR PAPER==0:
+    #PROBABILITY OF SURVIVAL OF SCISSOR IS ZERO
+    if(S==0 or P==0):
+        return(0)
+
+    if(R==0):
+        return(1)
+
+    if(DP[R][P][S]):
+        return(DP[R][P][S])
+
+    #RECURSIVE CASE:
+
+    total= R*P + P*S + R*S
+    result=0
+    #PAPER KILLS ROCK
+    result+=Probability_of_Scissor_wins(R-1,P,S)*(R*P)/total
+    #ROCK KILLS SCISSOR
+    result+=Probability_of_Scissor_wins(R,P,S-1)*(R*S)/total
+    #SCISSOR KILLS PAPER
+    result+=Probability_of_Scissor_wins(R,P-1,S)*(S*P)/total
+
+    DP[R][P][S]=result
+
+    return(result)
+    
+
+R=2
+S=1
+P=2
+#INITIALIZE THE DP ARRAY
+DP=[[[0 for k in range(0,S+1)]for j in range(0,P+1)]for i in range(0,R+1)]
+#Probability_of_Rock_wins(R,P,S)
+Probability_of_Scissor_wins(R,P,S)
+#Probability_of_Paper_wins(R,P,S)
+
+
+#PRINT THE ENTIRE DP TABLE
+for i in range(0,R+1):
+
+    for j in range(0,P+1):
+
+        for k in range(0,S+1):
+
+            print(DP[i][j][k],end=" ")
+
+        print()
