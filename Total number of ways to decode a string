@@ -1,0 +1,57 @@
+
+
+def Total_number_of_ways_to_decode_a_string(Input,n):
+
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    #BOTTOM UP DYNAMIC PROGTRAMMING APPROACH
+    
+    #INITILAIZE THE DP TABLE
+    DP=[0 for i in range(0,n+1)]
+
+    #BASE CASE
+
+    #CASE1: STRING OF LENGTH 0
+    DP[0]=1
+    #CASE2: STRING OF LENGTH 1
+    num=int(Input[1])
+    if(1<=num<=9):
+        DP[1]=1
+    else:
+        DP[1]=0
+
+    #RECURSIVE CASE
+
+    for i in range(2,n+1):
+
+        if(Input != ''):
+            oneDigit=int(Input[i-1])
+            TwoDigit=int(Input[i-2:i])
+
+        if(1<=oneDigit<=9):
+
+            DP[i]+=DP[i-1]
+
+        if(10<=TwoDigit<=26):
+
+            DP[i]+=DP[i-2]
+
+    #PRINT THE ENTIRE DP TABLE
+    print(DP)
+           
+Input="22345342122346654332213445567322124"
+n=len(Input)
+Total_number_of_ways_to_decode_a_string(Input,n)        
+    
+
+    
+    
+    
+
+   
+
+    
+    
+
+    
+
