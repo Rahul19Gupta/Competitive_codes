@@ -1,0 +1,33 @@
+class Solution:
+    def combinationSum(self, arr, target):
+            
+            result=[]
+            arr.sort()
+            self.combinationSum_helper(arr,[],target,result)
+            
+            
+            
+    def combinationSum_helper(self,Candidate,temp,target,result):
+            
+        for item in Candidate:
+
+            if(item>target):
+                return
+            
+            temp.append(item)
+            index=Candidate.index(item)
+            if(item==target):
+                if(temp not in result):
+                    result.append(temp.copy())
+            self.combinationSum_helper(Candidate[index:],temp,target-item,result)
+            temp.pop()
+                    
+            
+
+        
+
+s=Solution()
+arr=[ 8, 10, 6, 11, 1, 16, 8 ]
+target=28
+print(s.combinationSum(arr,target))
+            
