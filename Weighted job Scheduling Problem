@@ -1,0 +1,59 @@
+class Job:
+    def __init__(self,startTime,endTime,profit):
+        self.startTime=startTime
+        self.endTime=endTime
+        self.profit=profit
+
+def Non_overlapping_jobs(jobs,index):
+    #import pdb;pdb.set_trace()
+    for i in range(index-1,-1,-1):
+
+        if(jobs[i].endTime<=jobs[index].startTime):
+
+            return(i)
+    return(-1)
+
+
+def Weighted_job_Scheduling_Problem(jobs,n):
+
+    #import pdb;pdb.set_trace()
+    #BOTTOM UO DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY: O(N^2)
+    #SPACE COMPLEXITY: O(N)
+    #SORT ALL THE JOBS IN THE INCREASING ORDER OF THEIR END TIME
+    jobs=sorted(jobs,key=lambda j:j.endTime)
+
+    #INITILALIZE THE DP ARRAY
+    Max_Profit=[0 for i in range(0,n)]
+
+    #BASE CASE
+    Max_Profit[0]=jobs[0].profit
+
+    #RECURSIVE CASE:
+    for i in range(1,n):
+
+        x=Non_overlapping_jobs(jobs,i)
+
+        if(x!=-1):
+
+            y=Max_Profit[x]
+
+        else:
+
+            y=0
+
+        Max_Profit[i]=max(jobs[i].profit + y,Max_Profit[i-1])
+
+    #PRINT THE ENTIRE DP TABLE
+    print(Max_Profit)
+
+
+
+job = [Job(1, 2, 50), Job(3, 5, 20),Job(6, 19, 100), Job(2, 100, 200)] 
+n=len(job)
+Weighted_job_Scheduling_Problem(job,n)
+
+    
+
+    
+    
