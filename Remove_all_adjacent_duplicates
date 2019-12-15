@@ -1,0 +1,46 @@
+def removeDuplicates(S):
+        
+    S=list(S)
+    n=len(S)
+    i=0
+    j=1
+    # TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(1)
+    while(i<n and j<n):
+        print((i,j))
+        try:
+            if(S[j]==S[i]):
+                    
+                S.pop(j)
+                    
+                S.pop(i)
+                    
+                if(i<2):
+                        
+                    i=0
+                    
+                else:
+                        
+                    i-=2
+                        
+                if(i<2 and j<=2):
+
+                    j=1
+
+                else:
+                        
+                    j-=2
+                        
+            else:
+                    
+                i+=1
+                    
+                j+=1
+
+        except:
+                
+            return(S)
+
+
+S="aababaab"
+print(removeDuplicates(S))
