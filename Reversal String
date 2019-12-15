@@ -1,0 +1,20 @@
+def solve(A):
+        
+        Reversal_string=[]
+        i=0
+        while(i<len(A)):
+
+            
+            if(A[i]!=""):
+                start=i
+            while(i<len(A) and A[i]!=" "):
+                i+=1
+            end=i
+            Reversal_string.insert(0,A[start:end+1])
+            i+=1
+        x=Reversal_string[0]
+        print(x,end=" ")
+        print("".join(Reversal_string[1:]))
+
+A="fwbpudnbrozzifml osdt ulc jsx kxorifrhubk ouhsuhf sswz qfho dqmy sn myq igjgip iwfcqq"
+solve(A)
