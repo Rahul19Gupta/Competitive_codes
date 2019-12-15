@@ -1,0 +1,42 @@
+
+def Find_the_unique_number_2(arr,N):
+    n=len(arr)
+    ans=0
+    for i in range(0,n):
+        ans=ans ^ arr[i]
+
+    #FIND THE PARTICULAR SET BIT
+    set_bit= ans & ~(ans -1)
+
+    G1=[]
+    G2=[]
+    
+    #SPLIT THE NUMBER ON THE BASIS OF SET BIT
+    for i in range(0,n):
+
+        if(set_bit & arr[i] !=0):
+            G1.append(arr[i])
+
+        else:
+            G2.append(arr[i])
+
+    #FIND THE ONE NUMBER
+    one_number=0
+    second_number=0
+    for i in range(0,len(G1)):
+
+        one_number = one_number ^ G1[i]
+
+    #FIND THE SECOND NUMBER
+    for i in range(0,len(G2)):
+
+        second_number= second_number ^ G2[i]
+
+    print(one_number)
+
+    print(second_number)
+
+        
+
+arr=[1,2,2,3,3,4,4,5]
+Find_the_unique_number_2(arr,5)
