@@ -1,0 +1,53 @@
+from collections import defaultdict
+class Queue:
+    def __init__(self):
+        self.data=[]
+
+    def enqueue(self,data):
+        self.data.insert(0,data)
+
+    def dequeue(self):
+        if(len(self.data) !=0):
+            return(self.data.pop())
+
+    def isEmpty(self):
+        return(len(self.data) == 0)
+
+def Taavas_and_saddas_problem(orignal_number):
+    #TO KEEP TRACK OF INDEXES
+    Hash_table=defaultdict(list)
+
+    #TO STORE ALL LUCKY NUMBERS IN SEQUENECE
+    q=Queue()
+
+    q.enqueue(4)
+    #AS 4 IS THE 1ST LUCKY NUMBER STORING THE INDEX OF 4 IN THE HASH TABLE
+    Hash_table[4]=1
+
+    #AS 7 IS THE 2ND LUCKY NUMBER STORING THE INDEX OF 7 IN THE HASH TABLE
+    q.enqueue(7)
+    Hash_table[7]=2
+    index=2
+    while(not q.isEmpty()):
+
+        num=q.dequeue()
+
+        if(num<=orignal_number):
+            index+=1
+            q.enqueue(num*10 +4)
+            Hash_table[num*10 +4]=index
+            index+=1
+            q.enqueue(num*10 +7)
+            Hash_table[num*10 +7]=index
+
+        else:
+
+            break
+            
+
+    print("Index of the orignal number is {}".format(Hash_table[orignal_number]))
+
+    
+    
+
+Taavas_and_saddas_problem(4747)
