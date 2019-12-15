@@ -1,0 +1,85 @@
+import math
+from collections import defaultdict
+
+def Min_Heapify(arr,i):
+    #import pdb;pdb.set_trace()
+    n=len(arr)
+    Heap_length=n
+
+    left=2 * i +1
+    right= 2 * i + 2
+
+    Minimum=i
+    if(left<Heap_length and arr[i][1]>arr[left][1]):
+
+        Minimum=left
+
+    if(right<Heap_length and arr[right][1]<arr[Minimum][1]):
+
+        Minimum=right
+
+    if(Minimum!=i):
+
+        #swap arr[i][1],arr[Minimum]
+        arr[i],arr[Minimum]=arr[Minimum],arr[i]
+        i=Minimum
+        Min_Heapify(arr,i)
+
+def Build_MinHeap(arr):
+    
+    n=len(arr)
+    i=math.floor(n//2)-1
+
+    while(i>=0):
+
+        Min_Heapify(arr,i)
+        i-=1
+        
+
+def topKFrequent(nums, k):
+
+    result=[]
+    Hash=defaultdict()
+    n=len(nums)
+        
+    for i in range(0,n):
+            
+        Hash[nums[i]]=0
+            
+    for i in range(0,n):
+            
+        Hash[nums[i]]+=1
+                 
+    Most_frequent=[]
+        
+    arr=set(nums)
+    arr=list(arr)  
+    len1=len(arr)
+    #import pdb;pdb.set_trace()
+    if(len1>k):
+        for i in range(0,k):
+                
+            Most_frequent.append((arr[i],Hash[arr[i]]))
+                
+        Build_MinHeap(Most_frequent)
+        
+        for i in range(k,len1):
+
+            if(Most_frequent[0][1]<Hash[arr[i]]):
+
+                Most_frequent[0]=(arr[i],Hash[arr[i]])
+
+                Min_Heapify(Most_frequent,0)
+
+        for i in range(0,k):
+            result.append(Most_frequent[i][0])
+
+    else:
+
+        result=nums
+
+    return(result)
+
+nums=[1,1,1,2,2,2,3,4,4,4,4,4,5,5,5,5,5,5,5,5]
+k=3
+print(topKFrequent(nums, k))
