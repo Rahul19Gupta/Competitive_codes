@@ -1,0 +1,60 @@
+
+
+def Word_Breaking_Problem(word):
+    n=len(word)
+    #BOTTOM UP DYNAMIC PROGRAMMING APPROACH
+    #TIME COMPLEXITY:O(N^3)
+    #SPACE COMPLEXITY:O(N^2)
+    #DICTIONARY REPRESENTING ALL VALID WORDS
+    valid_words={'i','a','am','go','good'}
+    #DECLARE THE DP TABLE
+    valid=[[False for j in range(0,len(word))]for i in range(0,len(word))]
+
+
+    #BASE CASE
+    for i in range(0,len(word)):
+        if(word[i] in valid_words):
+            valid[i][i]=True
+        else:
+            valid[i][i]=False
+
+    #RECURSIVE CASE
+    #MOVE DIAGONALLY
+    #import pdb;pdb.set_trace()
+    for ls in range(2,n+1):
+
+        for i in range(0,n-ls+2):
+
+            j=i+ls-1
+
+            if(i<j):
+
+                if(word[i:j+1] in valid_words):
+                        valid[i][j]=True
+                        
+                else:
+                    for k in range(0,j):
+
+                            valid[i][j]= valid[i][j] or (valid[0][k] and valid[k+1][j])
+
+
+    #PRINT THE ENTIRE DP TABLE
+    for i in range(0,n):
+
+        for j in range(0,n):
+
+            print(valid[i][j],end=" ")
+
+        print()
+
+    
+word="iam"
+Word_Breaking_Problem(word)
+                    
+
+            
+    
+    
+    
+
+    
