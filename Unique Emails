@@ -1,0 +1,37 @@
+def numUniqueEmails(emails):
+        result=[]
+        seen=set()
+        
+        for i in range(len(emails)):
+            
+            actual=[]
+            
+            for j in range(0,len(emails[i])):
+                
+                if(emails[i][j]=='+'):
+                    
+                    k=j
+                    while(emails[i][k]!='@'):
+                        
+                        k+=1
+                        
+                    actual.extend(emails[i][k:])
+                    result.append("".join(actual))
+                    break
+                    break
+                
+                if(emails[i][j]!='.' and emails[i][j]!='+' and emails[i][j]!='@'):
+                    
+                    actual.append(emails[i][j])
+
+                if(emails[i][j]=='@'):
+                    actual.extend(emails[i][j:])
+                    result.append("".join(actual))
+                    break
+                    break
+
+        
+            print(actual)
+            
+emails=["testemail@leetcode.com","testemail1@leetcode.com","testemail+david@lee.tcode.com"]
+print(numUniqueEmails(emails))
