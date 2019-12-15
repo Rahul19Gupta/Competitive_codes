@@ -1,0 +1,26 @@
+def findOcurrences(text, first, second):
+        
+        Result=[]
+        arr=text.split(" ")
+        print(arr)
+        n=len(arr)
+        "BASE CASE"
+        if(n==1 or n==2):
+            
+            return(Result)
+
+        #import pdb;pdb.set_trace()
+        "ACTUAL ARRAY PROCESSING"
+        for i in range(2,n):
+            
+            if((arr[i-1]==second) and (arr[i-2]==first)):
+                
+                Result.append(arr[i])
+
+        return(Result)
+
+
+text = "alice is a good girl she is a good student"
+first = "a"
+second = "good"
+print(findOcurrences(text, first, second))
