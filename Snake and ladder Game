@@ -1,0 +1,144 @@
+from collections import defaultdict
+#SNAKES AND LADDERS GAME-----> GRAPH
+
+
+
+class Queue:
+    def __init__(self):
+        self.data=[]
+
+    def enqueue(self,data):
+        self.data.insert(0,data)
+
+    def dequeue(self):
+        if(len(self.data)!=0):
+            return(self.data.pop())
+
+    def isEmpty(self):
+        return(len(self.data)==0)
+
+
+class Graph:
+    def __init__(self):
+        self.graph=defaultdict(list)
+
+
+    def addEdge(self,u,v,bidirectional=True):
+        self.graph[u].append(v)
+        if(bidirectional):
+            self.graph[v].append(u)
+
+    def Print(self):
+        print(self.graph)
+            
+    def Shortest_Path_from_source_to_destination(self,source,destination,n):
+
+        #DECLARTIONS
+        q=Queue()
+
+        #VISITED ARRAY
+        visited=[0 for i in range(0,n)]
+
+        #DECLARE THE PARENT SET
+        Parent={}
+        for i in range(0,n):
+
+            Parent[i]=-1
+
+        Parent[source]=0
+
+        #DECLARE THE SHORTEST DISTANCE
+        Shortest_distance=[0 for i in range(0,n)]
+            
+        #PATH FROM DESTINATION TO SOURCE
+        Path_from_source_to_destination=[]
+
+        q.enqueue(source)
+
+        visited[source]=1
+       
+        while(not q.isEmpty()):
+
+            node=q.dequeue()
+
+            #PUSH ALL THE NEIGHBOURS OT THIS NODE INTO THE QUEUE IF NOT VISITED
+            for neighbour in self.graph[node]:
+
+                if(visited[neighbour]==0):
+
+                    visited[neighbour]=1
+
+                    q.enqueue(neighbour)
+
+                    Parent[neighbour]=node
+
+                    Shortest_distance[neighbour]=Shortest_distance[node]+1
+
+        
+        print(Parent)
+
+        #NOW I NEED TO PRINT THE ENTIRE PATH FROM SOURCE TO DESTINATION
+
+        temp=destination
+
+        while(temp):
+
+            Path_from_source_to_destination.insert(0,temp)
+
+            temp=Parent[temp]
+
+        Path_from_source_to_destination.insert(0,source)
+
+        #PRINT HE ENTIRE PATH FROM SOURCE TO DESTINATION
+        print("The shortest path from source {0} to destination {1} :".format(source,destination),end=" ")
+        for i in range(0,len(Path_from_source_to_destination)):
+            print(Path_from_source_to_destination[i],end="-------->")
+        print()
+
+        
+
+
+        #PRINT THE SHORTEST DISTANCE FROM SOURCE TO DESTINATION
+        print("The shortest distance from source {0} to destination {1} is {2}".format(source,destination,Shortest_distance[destination]))
+
+
+
+g=Graph()
+
+board=[0 for i in range(0,50)]
+
+board[2]=13
+board[5]=2
+board[9]=18
+board[18]=11
+board[17]=-13
+board[20]=-14
+board[24]=-8
+board[25]=-10
+board[32]=-2
+board[34]=-22
+
+#LET'S ADD EDGES INTO THE GRAPH
+for u in range(0,37):
+
+    for dice in range(1,7):
+
+        v=u+dice+board[u+dice]
+
+        g.addEdge(u,v,False)
+        
+
+  
+g.Print()
+
+n=50
+source=0
+destination=36
+g.Shortest_Path_from_source_to_destination(source,destination,n)
+        
+
+    
+        
+    
+    
+    
