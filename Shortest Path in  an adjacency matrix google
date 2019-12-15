@@ -1,0 +1,88 @@
+class Queue:
+    def __init__(self):
+        self.data=[]
+
+    def enqueue(self,data):
+        self.data.insert(0,data)
+
+    def dequeue(self):
+        if(len(self.data)!=0):
+            return(self.data.pop())
+
+    def isEmpty(self):
+        return(len(self.data)==0)
+
+
+def get_all_valid_neighbours(row,col,board):
+
+    neighbour=[]
+
+    for i,j in [(row-1,col),(row+1,col),(row,col-1),(row,col+1)]:
+
+        #BOUNDARY CONDITIONS
+        if(i>=0 and i<len(Board) and j>=0 and j<len(Board[0]) and Board[i][j]==False):
+
+            neighbour.append((i,j))
+
+    return(neighbour)
+
+#BREADTH FIRST SEARCH ALGORITHM
+def Shortest_path_to_reach_from_source_to_destination(Board,start,end):
+    #TIME COMPLEXITY: O(V + E)-----------> I AM GOING TO VISIT EVERY EDGE 
+    #SPACE COMPLEXITY: O(V)--------------> BCZ OF QUEUE AND VISITED SET
+
+    #DECLARTION OF QUEUE
+
+    q=Queue()
+
+    #TO KEEP TRACK OF NODES WHICH ARE VISITED 
+    visited=set()
+
+    #ENQUEUE THE START NODE INTO THE QUEUE
+    q.enqueue((start,0))
+
+    #MARK THAT NODE AS VISITED
+    visited.add(start)
+
+    while(not q.isEmpty()):
+
+        #LET'S POP THE NODE FROM THE NODE FROM THE QUEUE
+        node=q.dequeue()
+
+        coords=node[0]
+
+        count=node[1]
+
+        #TEMINATING CONDITION
+        if(coords==end):
+
+            print("Minimum number of steps to reach destination {0} from source {1} is {2}".format(end,start,count))
+            return(1)
+
+        neighbours= get_all_valid_neighbours(node[0][0],node[0][1],Board)
+
+        for neighbour in neighbours:
+
+            if(neighbour not in visited):
+
+                q.enqueue((neighbour,count+1))
+
+                visited.add(neighbour)
+
+    return(None)
+
+Board = [[False, False, False, False],
+        [True, True,True, True],
+        [False, False, False, False],
+        [False, False, False, False]]
+
+                
+        
+    
+start=(3,0)
+end=(0,0)
+print(Shortest_path_to_reach_from_source_to_destination(Board,start,end))    
+
+    
+
+    
