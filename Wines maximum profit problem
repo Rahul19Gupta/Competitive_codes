@@ -1,0 +1,40 @@
+
+def Max_profit_by_selling_wines(price):
+    n=len(price)
+    #INITIALIZE THE DP ARRAY
+    Max_Profit=[[0 for j in range(len(price))]for i in range(0,len(price))]
+    #BOTTOM UP APPROACH
+    #TIME COMPLEXITY:O()
+    #SPACE COMPLEXITY:O()
+    #BASE CASE:
+    #ENTIRE DIAGNOL WITH ONLY ONE BOTTLE LEFT
+    year=len(price)
+    for i in range(0,len(price)):
+        Max_Profit[i][i]=price[i]*year
+
+
+    #RECURSIVE CASE
+
+    for ls in range(2,n+1):
+        year-=1
+        for i in range(0,n-ls+1):
+
+            j=ls+i-1
+
+            if(i<j):
+
+                Max_Profit[i][j]=max(Max_Profit[i+1][j] +price[i]*year,Max_Profit[i][j-1]+price[j]*year)
+            
+
+    #PRINT TH EENTIRE DP TABLE
+    for i in range(0,len(price)):
+
+        for j in range(0,len(price)):
+
+            print(Max_Profit[i][j],end=" ")
+
+        print()
+
+    
+price=[2,3,5]
+Max_profit_by_selling_wines(price)
