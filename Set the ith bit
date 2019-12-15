@@ -1,0 +1,5 @@
+def set_the_ith_bit(number,i):
+
+    number=number or (1<<i)
+
+    print(number)
