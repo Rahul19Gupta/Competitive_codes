@@ -1,0 +1,30 @@
+from collections import defaultdict
+def shortestToChar(S, C):
+        result=[]
+        
+        Hash=defaultdict(list)
+        
+        for i in range(0,len(S)):
+            
+            Hash[S[i]].append(i)
+            
+        for i in range(0,len(S)):
+            
+            Diff=[]
+            destination=Hash[C]
+            n=len(destination)
+            
+            
+            for k in range(0,n):
+
+                Diff.append(abs(destination[k]-i))
+
+            result.append(min(Diff))
+     
+            
+        return(result)
+
+
+S="loveleetcode"
+C="e"
+print(shortestToChar(S, C))
