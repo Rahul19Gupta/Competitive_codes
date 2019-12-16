@@ -1,5 +1,6 @@
 # Competitive_codes
 # Competitive coding problems
-# I AM RAHUL, I HAVE DONE MY MTECH FROM BITS PILANI COMMUNICATION, I LOVED CODING SO AFTER THAT I STARTED TO WRITE COMPETITIVE CODES, I HAVE WRITTEN LOT OF CODES ON THE LEET CODE, HACKER RANK, INTERVIEW BIT. I HAVE WRITTEN COMMENTS ALSO, SO UNDERSATNDING CODE WILL ALSO WILL NOT BE A PROBLEM
-#IF U HAVE ANY DOUBTS REGARDING THE CODES PLEASE POST ME, I WILL BE HAPPY TO HELP YOU.
+# I am Rahul, I have done my MTECH from Bits Pilani(Pilani Campus) from Communication, meanwhile i got so much interest on writing Competitive codes, I have written a lots of codes with comments, so understanding a code also will not be a problem. My codes are very easy to read.
+# I happy to help you guys, i u have any doubt regarding any code written by me or nay other competitive code other then this also.
 # GOOD LUCK, HAPPY CODING
+
