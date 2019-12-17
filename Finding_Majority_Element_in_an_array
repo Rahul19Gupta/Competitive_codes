@@ -1,0 +1,25 @@
+from collections import defaultdict
+import sys
+class Solution:
+    def majorityElement(self, arr: List[int]) -> int:
+        
+        Max_Element=-sys.maxsize
+        Max_Element_count=-sys.maxsize
+        Hash=defaultdict()
+        
+        n=len(arr)
+        
+        for i in range(0,n):
+            
+            Hash[arr[i]]=0
+            
+        for i in range(0,n):
+            
+            Hash[arr[i]]+=1
+            
+            if(Max_Element_count<Hash[arr[i]]):
+                
+                Max_Element_count=Hash[arr[i]]
+                Max_Element=arr[i]
+                
+        return(Max_Element)
