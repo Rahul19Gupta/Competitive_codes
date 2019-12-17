@@ -1,0 +1,40 @@
+class Solution:
+    def combinationSum4(self, arr, target):
+
+        arr.sort()
+        
+        self.count=0
+        
+        self.result=[]
+        
+        temp=[]
+        
+        self.Combinationsum_helper_I(arr,temp,target)
+
+        return(self.count)
+        
+    
+    def Combinationsum_helper_I(self,Candidate,temp,target):
+        
+        "RECURSIVE CASE"
+    
+        for item in Candidate:
+
+            "BASE CASE"
+            if(item>target):
+                return
+            
+            temp.append(item)
+
+            if(item==target):
+                    
+                self.count+=1
+                        
+                self.result.append(temp.copy())
+    
+            self.Combinationsum_helper_I(Candidate,temp,target-item)
+            
+            temp.pop()
+            
+            
+        return
