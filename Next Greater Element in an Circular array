@@ -1,0 +1,73 @@
+import sys
+class Solution:
+    def nextGreaterElements(self, arr: List[int]) -> List[int]:
+        
+        if(arr==[]):
+            
+            return([])
+        
+           #TIME COMPLEXITY: O(N)---------> BECAUSE EVERY ELEMENT IS PUSHED AND POPPED OUT OF THE STACK ONCE
+        #SPACE COMPLEXITY: O(N)--------> BECAUSE OF THE STACK
+        #FIST DECLARE THE STACK
+        stack=[]
+        n=len(arr)
+        #DECLARE THE OUTPUT ARRAY
+        Output=[sys.maxsize for i in range(0,len(arr))]
+
+        #PUSH THE FIRST LELEMNT ON TO THE STACK
+        stack.append(0)
+
+        #LETS PROCESS THE ENTIRE ARRAY
+
+        for i in range(1,n):
+
+            element=arr[i]
+
+            while(len(stack) and element>arr[stack[-1]]):
+
+                Output[stack[-1]]=element
+
+                stack.pop()
+
+
+            stack.append(i)
+
+        #AT THE END WAHTEVER ELELMENTS REMAIN IN THE STACK
+        #import pdb;pdb.set_trace()
+        while(len(stack)):
+
+            index=stack[-1]
+
+            for i in range(index+1,n):
+
+                element=arr[i]
+
+                if(element>arr[stack[-1]]):
+
+                    Output[stack[-1]]=element
+
+                    break
+
+            for i in range(0,index):
+
+                element=arr[i]
+
+                if(element>arr[stack[-1]]):
+
+                    Output[stack[-1]]=element
+
+                    break
+
+            if(Output[stack[-1]]==sys.maxsize):
+
+                index=stack.pop()
+
+                Output[index]=-1
+
+            else:
+
+                stack.pop()
+
+        print(Output)
+        
+        return(Output)
