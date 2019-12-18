@@ -1,0 +1,61 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        
+        if(intervals==[]):
+            
+            return(intervals)
+        
+            #STEP1: SORT ALL THE ELEMENTS IN THE INCREASING ORDER OF THIR END TIME
+        intervals=sorted(intervals,key=lambda t:t[0])
+
+        #DECLARE THE STACK
+        stack=[]
+
+        print(intervals)
+        stack.append(intervals[0])
+
+        for i in range(1,len(intervals)):
+
+            start_time=intervals[i][0]
+
+            end_time=stack[-1][1]
+
+            if(start_time<=end_time):
+
+                if(intervals[i][0]<stack[-1][0]):
+
+                    if(intervals[i][1]>stack[-1][1]):
+
+                        new_interval=[intervals[i][0],intervals[i][1]]
+
+                    else:
+
+                        new_interval=[intervals[i][0],stack[-1][1]]
+
+
+
+                else:
+
+                    if(intervals[i][1]>stack[-1][1]):
+
+                        new_interval=[stack[-1][0],intervals[i][1]]
+
+                    else:
+
+                        new_interval=[stack[-1][0],stack[-1][1]]
+
+                stack.pop()
+
+                stack.append(new_interval)
+
+            else:
+
+                stack.append(intervals[i])
+
+        return(stack)
+
+        
+
+
+            
+        
