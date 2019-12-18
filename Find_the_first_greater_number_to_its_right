@@ -1,0 +1,44 @@
+"FIND THE FIRST GREATER NUMBER TO IT'S RIGHT"
+
+def Find_the_first_greater_number_to_its_right(arr):
+
+    #TIME COMPLEXITY: O(N)---------> BECAUSE EVERY ELEMENT IS PUSHED AND POPPED OUT OF THE STACK ONCE
+    #SPACE COMPLEXITY: O(N)--------> BECAUSE OF THE STACK
+    #FIST DECLARE THE STACK
+    stack=[]
+
+    #DECLARE THE OUTPUT ARRAY
+    Output=[0 for i in range(0,len(arr))]
+
+    #PUSH THE FIRST LELEMNT ON TO THE STACK
+    stack.append(0)
+
+    #LETS PROCESS THE ENTIRE ARRAY
+
+    for i in range(1,len(arr)):
+
+        element=arr[i]
+
+        while(len(stack) and element>arr[stack[-1]]):
+
+            Output[stack[-1]]=element
+
+            stack.pop()
+
+        stack.append(i)
+
+    #AT THE END WAHTEVER ELELMENTS REMAIN IN THE STACK
+    while(len(stack)):
+
+        index=stack.pop()
+
+        Output[index]=-1
+
+
+    print(Output)
+
+arr=[10,20,1,5,25,500,60]
+Find_the_first_greater_number_to_its_right(arr)
+            
+
+        
