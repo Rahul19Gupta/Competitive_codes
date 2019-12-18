@@ -1,0 +1,20 @@
+def Reverse_a_stack():
+
+    global stack
+    
+    if(len(stack)==0):
+        return
+    
+    
+
+    node=stack.pop()
+
+    Reverse_a_stack()
+
+    stack.insert(0,node)
+
+
+    
+stack=[4,2,3,1]
+Reverse_a_stack()
+print(stack)
