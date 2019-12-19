@@ -1,0 +1,74 @@
+
+def Check_whether_parenthesis_is_balanced_or_not(arr):
+
+    n=len(arr)
+    
+    #BASE CASE
+    if(n==1):
+
+        return(False)
+        
+        
+    #import pdb;pdb.set_trace()
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    #DECLARE THE STACK
+    stack=[]
+
+    #PROCEDURE:
+
+    #WHEN EVER U GET OPEN PARENTHESIS PUSH ON TO THE STACK WHENEVER U GET CLOSE PARENTHESIS POP OUT AND MATCH
+
+    for i in range(0,len(arr)):
+
+        if(arr[i] in ['{','[','(']):
+
+            stack.append(arr[i])
+
+        else:
+
+            try:
+                x=stack.pop()
+
+                if(x=='{' and arr[i]=='}'):
+
+                    pass
+
+                elif(x=='[' and arr[i]==']'):
+
+                    pass
+
+                elif(x=='(' and arr[i]==')'):
+
+                    pass
+
+                else:
+
+                    return(False)
+
+            except:
+
+                return(False)
+
+    if(len(stack)):
+
+        return(False)
+
+    return(True)
+
+    
+
+
+        
+
+            
+
+arr="((())))"
+arr=list(arr)
+x=Check_whether_parenthesis_is_balanced_or_not(arr)
+if(x):
+    print("The Given Parenthesis is a set of balanced parenthesis")
+
+else:
+
+    print("Not Balanced Parenthesis set")
