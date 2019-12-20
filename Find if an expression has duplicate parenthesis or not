@@ -1,0 +1,55 @@
+
+def Find_if_an_expression_has_duplicate_parenthesis_or_not(arr):
+
+    n=len(arr)
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    #import pdb;pdb.set_trace()
+    #DECLARE THE STACK
+    stack=[]
+    i=0
+    while(i<n):
+        x=0
+        if(arr[i]=='('):
+
+            stack.append(arr[i])
+
+        elif(arr[i] not in ['(',')']):
+
+            stack.append('E')
+
+            while(arr[i] not in ['(',')']):
+                x=1
+                i+=1
+        
+        elif(arr[i]==')'):
+
+            try:
+                if(stack[-1]=='E'):
+                    x1=stack.pop()
+
+                else:
+
+                    x1=stack[-1]
+
+                x2=stack.pop()
+
+                if(x1!='E' and x2=='('):
+
+                    print("The expression contains duplicate parenthesis")
+                    return(1)
+
+            except:
+
+                print("The expression contains duplicate parenthesis")
+                return(1)
+
+        if(not x):
+            i+=1
+
+                
+
+arr="(((1+2)+(3*4)))"
+
+arr=list(arr)
+print(Find_if_an_expression_has_duplicate_parenthesis_or_not(arr))
