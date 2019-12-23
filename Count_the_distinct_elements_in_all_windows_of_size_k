@@ -1,0 +1,58 @@
+from collections import defaultdict
+
+def Count_the_distinct_elements_in_all_windows_of_size_k(arr,k):
+
+    Hash=defaultdict()
+
+    n=len(arr)
+
+    Repeated=[]
+
+    #Let's first process the first window
+
+    for i in range(0,n):
+
+        Hash[arr[i]]=0
+
+    count=1
+    for i in range(0,k):
+
+        Hash[arr[i]]+=1
+
+        if(Hash[arr[i]]>1):
+
+            count+=1
+
+    Repeated.append(k-count)
+
+    # LETS PROCESS THE REMIANING ELEMENTS
+    for i in range(k,n):
+
+        count=1
+        Hash[arr[i-k]]-=1
+
+        previous_value=Hash[arr[i]]
+
+        Hash[arr[i]]+=1
+
+        if(Hash[arr[i]]>previous_value and previous_value!=0):
+
+            count+=1
+
+        else:
+
+            count=0
+
+        Repeated.append(k-count)
+
+        
+
+    #FINALLY PRINT THE ENTIRE ARRAY
+    print(Repeated)
+
+        
+
+arr=[10,10,20,30,30,40,10]
+k=3
+Count_the_distinct_elements_in_all_windows_of_size_k(arr,k)
+    
