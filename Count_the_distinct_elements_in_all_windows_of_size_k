@@ -25,27 +25,32 @@ def Count_the_distinct_elements_in_all_windows_of_size_k(arr,k):
 
     Repeated.append(k-count)
 
+    #import pdb;pdb.set_trace()
     # LETS PROCESS THE REMIANING ELEMENTS
     for i in range(k,n):
 
         count=1
+
+        first_element_count=Hash[arr[i-k]]
         Hash[arr[i-k]]-=1
 
         previous_value=Hash[arr[i]]
 
         Hash[arr[i]]+=1
 
-        if(Hash[arr[i]]>previous_value and previous_value!=0):
+        if(Hash[arr[i]]>previous_value and previous_value):
 
             count+=1
+
+        elif(first_element_count==Hash[arr[i]]):
+
+            count=-Repeated[-1]+k
 
         else:
 
             count=0
 
         Repeated.append(k-count)
-
-        
 
     #FINALLY PRINT THE ENTIRE ARRAY
     print(Repeated)
