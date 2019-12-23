@@ -1,0 +1,34 @@
+from collections import defaultdict
+
+def Check_whether_the_given_array_contains_duplicates_in_k_distance_or_not(arr,k):
+
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    Hash=defaultdict(list)
+
+    for i in range(0,len(arr)):
+
+        Hash[arr[i]].append(i)
+
+        if(len(Hash[arr[i]])>1):
+
+            diff=Hash[arr[i]][-1]-Hash[arr[i]][-2]
+
+            if(diff<=k):
+                print("Given array contains duplicates in the array")
+                return(1)
+
+    return(0)
+
+
+
+
+            
+arr=[0,2,1,3,5,9,7,3]
+k=2
+Check_whether_the_given_array_contains_duplicates_in_k_distance_or_not(arr,k)
+    
+
+
+    
+    
