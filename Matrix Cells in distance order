@@ -1,0 +1,35 @@
+from collections import defaultdict
+
+class Solution:
+    def allCellsDistOrder(self, R: int, C: int, r0: int, c0: int) -> List[List[int]]:
+        
+        Hash=defaultdict(list)
+        Final_output=[]
+        
+        Distances=[]
+        
+        "LETS PROCESS"
+        for i in range(0,R):
+            
+            for j in range(0,C):
+                
+                distance=abs(r0-i)+abs(c0-j)
+                
+                Hash[distance].append([i,j])
+                
+        "Take all the keys from the dictionary"
+        
+        for key in Hash.keys():
+            
+            Distances.append(key)
+            
+        "SORT ALL THE KEYS"
+        Distances.sort()
+        
+        "GO TO THE HASH PICK THE VALUE CORRESSPONDING TO THE KEY ANS STORE IT IN THE FINAL OUTPUT"
+        
+        for key in Distances:
+            
+            Final_output.extend(Hash[key])
+            
+        return(Final_output)
