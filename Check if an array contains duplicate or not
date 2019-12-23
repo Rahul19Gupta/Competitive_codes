@@ -1,0 +1,25 @@
+from collections import defaultdict
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+                
+        Hash=defaultdict()
+        
+        for i in range(0,len(nums)):
+            
+            Hash[nums[i]]=0
+            
+        for i in range(0,len(nums)):
+            
+            Hash[nums[i]]+=1
+            
+            if(Hash[nums[i]]>1):
+                
+                print("Array contains Duplicate")
+                
+                return(True)
+            
+        return(False)
+            
+            
+        
