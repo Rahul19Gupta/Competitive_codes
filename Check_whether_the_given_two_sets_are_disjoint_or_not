@@ -1,0 +1,29 @@
+from collections import defaultdict
+
+
+def Check_whether_the_given_two_sets_are_disjoint_or_not(arr1,arr2):
+
+    Hash=defaultdict()
+
+    #TIME COMPLEXITY: O(M+N)
+    #SPACE COMPLEXITY: O(M+N)
+
+    #SCAN THE FIRST ARRAY AND UPDATE THE HASH
+    for i in range(0,len(arr1)):
+
+        Hash[arr1[i]]=1
+
+    #SCAN THE SECOND ARRAY
+    for j in range(0,len(arr2)):
+
+        if(Hash[arr2[i]]):
+
+            print("They are not disjoint sets")
+
+            return(0)
+
+
+    print("They are disjoint sets")
+    return(1)
+
+    
