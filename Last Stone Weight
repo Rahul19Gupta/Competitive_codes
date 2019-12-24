@@ -1,0 +1,51 @@
+import heapq
+
+class Solution:
+     
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        
+        "LETS CONVERT ALL NUMBERS INTO NEGATIVE"
+        for i in range(0,len(stones)):
+            
+            stones[i]=-stones[i]
+            
+        "Build Max Heap"
+        heapq.heapify(stones)
+        count=len(stones)
+        while(len(stones)>1):
+            "Take to Max weight stones"
+            print(stones)
+
+            s1=heapq.heappop(stones)
+
+            s2=heapq.heappop(stones)
+
+            if(abs(s1)!=abs(s2)):
+
+                new_stone=abs(abs(s2)-abs(s1))
+                
+                new_stone=-new_stone
+
+                heapq.heappush(stones,new_stone)
+        
+
+        if(len(stones)):
+            
+            return(abs(stones[0]))
+        
+        else:
+            
+            return(0)
+        
+
+            
+            
+        
+            
+        
+        
+        
+        
+        
+        
+        
