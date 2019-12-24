@@ -1,0 +1,50 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+from collections import defaultdict
+
+
+class Solution:
+    def averageOfLevels(self, root: TreeNode) -> List[float]:
+        
+        Hash=defaultdict(list)
+        
+        self.average_of_levels_helper(root,0,Hash)
+        
+        n=len(Hash)
+        print(Hash)
+        result=[]
+        
+        
+        for level in Hash.keys():
+            
+            number_of_elements_on_that_level=len(Hash[level])
+            
+            average=sum(Hash[level])/number_of_elements_on_that_level
+            
+            result.append(average)
+            
+        return(result)
+    
+    def average_of_levels_helper(self,root,level,Hash):
+        
+        "MODIFIED VERSION OF PREORDER TRAVERSAL"
+        if(not root):
+            return
+        
+        "WRITE YOUR LOGIC"
+        Hash[level].append(root.val)
+        
+        self.average_of_levels_helper(root.left,level+1,Hash)
+        
+        self.average_of_levels_helper(root.right,level+1,Hash)
+        
+        
+        
+        
+        
+        
