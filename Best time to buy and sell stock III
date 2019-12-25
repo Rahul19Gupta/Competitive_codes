@@ -1,0 +1,42 @@
+import sys
+
+class Solution:
+    #TIME COMPLEXITY: O(N)
+    #SPACE COMPLEXITY: O(N)
+    def maxProfit(self, prices):
+        if len(prices) == 0:
+            return 0
+        
+        best_till_i = []
+        minimum = sys.maxsize
+        max_diff = 0
+        for price in prices:
+            minimum = min(minimum, price)
+            max_diff = max(max_diff, price-minimum)
+            best_till_i.append(max_diff)
+
+        print(best_till_i)
+
+        #import pdb;pdb.set_trace()
+        best_from_i = []
+        maximum = sys.maxsize*-1
+        max_diff = 0
+        for price in reversed(prices):
+            maximum = max(maximum, price)
+            max_diff = max(max_diff, maximum-price)
+            best_from_i.append(max_diff)
+
+        best_from_i = best_from_i[::-1]
+            
+
+        print(best_from_i)
+
+        max_possible = 0
+        for i in range(len(prices)-1):
+            max_possible = max(max_possible, best_till_i[i] + best_from_i[i+1])
+
+        print(max_possible)
+        return(max(best_till_i[-1],max_possible))
+
+        
+        
