@@ -1,0 +1,47 @@
+from collections import defaultdict
+
+class Solution:
+    def uncommonFromSentences(self, A, B):
+        
+        result=[]
+        
+        Hash=defaultdict()
+    
+        A=A.split(" ")
+    
+        B=B.split(" ")
+        
+        print(A)
+        
+        print(B)
+        
+        for i in range(0,len(A)):
+            
+            Hash[A[i]]=1
+
+        for item in B.copy():
+            
+            try:
+                if(Hash[item]):
+
+                    A.remove(item)
+
+                    B.remove(item)
+
+            except:
+                
+                pass
+
+        result.extend(A)
+        result.extend(B)
+        
+        print(result)
+        
+        return(result)
+
+s=Solution()
+A = "this apple is sweet"
+B = "this apple is sour"
+s.uncommonFromSentences(A,B)
+
+        
