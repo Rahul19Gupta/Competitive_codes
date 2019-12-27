@@ -1,0 +1,39 @@
+import sys
+Max_island_area=-sys.maxsize
+class Solution:
+    
+    def Count_the_area_of_an_island(self,islands,i,j,count):
+            
+        if(i<0 or i>=len(islands) or j<0 or j>=len(islands[0]) or not islands[i][j]):
+            
+            return(0)
+
+        
+        count=1
+        islands[i][j]=0
+        
+        count+=self.Count_the_area_of_an_island(islands,i+1,j,count)
+        count+=self.Count_the_area_of_an_island(islands,i-1,j,count)
+        count+=self.Count_the_area_of_an_island(islands,i,j-1,count)
+        count+=self.Count_the_area_of_an_island(islands,i,j+1,count)
+        
+        return(count)
+
+
+    def maxAreaOfIsland(self, grid):
+
+        Max_area=0
+        for i in range(0,len(grid)):
+            
+            for j in range(0,len(grid[0])):
+                
+                if(grid[i][j]):
+                    #import pdb;pdb.set_trace()
+                    x=self.Count_the_area_of_an_island(grid,i,j,0)
+
+                    if(x>Max_area):
+
+                        Max_area=x
+
+        return(Max_area)
+    
