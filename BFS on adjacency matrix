@@ -1,0 +1,46 @@
+from collections import defaultdict
+from collections import deque
+class Graph:
+    def __init__(self,vertices):
+        self.graph=defaultdict()
+        self.vertices=vertices
+
+    def BFS_on_adjacency_matrix(self,grid,start):
+
+        q=deque()
+        
+        visited=[0 for i in range(0,len(grid))]
+
+        q.append(start)
+
+        visited[start]=1
+
+        while(len(q)):
+
+            node=q.pop()
+
+            print(node)
+            
+            for i in range(0,len(grid[0])):
+
+                if(grid[node][i] and not visited[i]):
+
+                    q.append(i)
+
+                    visited[i]=1
+
+                    
+
+
+g=Graph(6)
+grid=[[0,1,1,0],
+      [1,0,0,1],
+      [1,0,0,0],
+      [0,1,0,0]]
+g.BFS_on_adjacency_matrix(grid,0)
+
+
+                    
+                
+
+        
