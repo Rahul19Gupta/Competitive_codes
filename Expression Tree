@@ -1,0 +1,75 @@
+class Node:
+
+    def __init__(self,data):
+
+        self.data=data
+        self.left=None
+        self.right=None
+
+def Expression_Tree(root):
+
+    if(not root):
+        return
+
+    if(not root.left and not root.right):
+
+        return(root.data)
+    # post order traversal
+
+
+    temp1=Expression_Tree(root.left)
+
+
+    temp2=Expression_Tree(root.right)
+
+    if(temp1 and temp2):
+
+        if (root.data == '*'):
+
+            return(temp1 * temp2)
+
+        elif(root.data == '/'):
+
+            return(temp1 / temp2)
+
+        elif(root.data == '+'):
+
+            return(temp1 + temp2)
+
+        elif(root.data == '-'):
+
+            return(temp1 - temp2)
+
+
+
+
+
+Node1=Node('+')
+Node2=Node('/')
+Node3=Node('-')
+Node4=Node('*')
+Node5=Node(5)
+Node6=Node(100)
+Node7=Node('*')
+Node8=Node(10)
+Node9=Node(2)
+Node10=Node(3)
+Node11=Node(30)
+
+
+Node1.left=Node2
+Node1.right=Node3
+Node2.left=Node4
+Node2.right=Node5
+Node4.left=Node8
+Node4.right=Node9
+Node3.left=Node6
+Node3.right=Node7
+Node7.left=Node10
+Node7.right=Node11
+
+
+x=Expression_Tree(Node1)
+print(x)
+
+
