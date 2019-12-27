@@ -1,0 +1,43 @@
+def DFS_util_on_adjacency_matrix(grid,node,visited,n):
+
+    for neighbour in range(0,n):
+
+        if(not visited[neighbour] and grid[node][neighbour]):
+
+            print(neighbour)
+
+            visited[neighbour]=1
+
+            DFS_util_on_adjacency_matrix(grid,neighbour,visited,n)
+
+            
+
+def DFS_on_adjacency_matrix(grid,n):
+
+    visited=[0 for i in range(0,n)]
+
+    for i in range(0,n):
+
+        if(not visited[i]):
+
+            visited[i]=1
+
+            print(i)
+
+            DFS_util_on_adjacency_matrix(grid,i,visited,n)
+
+
+
+
+
+                
+grid=[[0,1,1,0],
+      [1,0,0,1],
+      [1,0,0,0],
+      [0,1,0,0]]
+DFS_on_adjacency_matrix(grid,4)    
+
+
+
+
+
