@@ -1,0 +1,20 @@
+
+
+def Fast_Power(a,b):
+
+    #BASE CASE
+    if(b==0):
+        return(1)
+
+    #RECURSIVE CASE
+
+    smallans=Fast_Power(a,b//2)
+    smallans*=smallans
+
+    if(b%2==0):
+        return(smallans)
+
+    return(a*smallans)
+
+print(Fast_Power(2,9))
+
