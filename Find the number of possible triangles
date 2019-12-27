@@ -1,0 +1,26 @@
+#DECLARE THE ARRAY
+a=[6,7,8,10,12,14,50]
+
+count=0
+def number_of_possible_triangles(a):
+    import pdb;pdb.set_trace()
+    global count
+    for i in range(0,len(a)):
+        print(i)
+
+        for j in range(i+1,len(a)-1):
+            print(j)
+            for k in range(j+1,len(a)):
+                k=x
+                print(k)
+                print(a[i])
+                print(a[j])
+                print(a[k])
+                if(a[i]+a[j]>a[k]):
+                    count=count+1
+                else:
+                    break
+                x=k
+            count=count+(k-j-1)
+
+number_of_possible_triangles(a)
