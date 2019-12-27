@@ -1,0 +1,61 @@
+class Node:
+
+    def __init__(self,data):
+
+        self.data=data
+        self.left=None
+        self.right=None
+
+
+def Diameter_of_tree(root):
+    #import pdb;pdb.set_trace()
+
+    global max_diameter
+    if(not root):
+
+        return(0)
+
+
+
+    x=Diameter_of_tree(root.left)
+    y=Diameter_of_tree(root.right)
+    p=x+y
+    z=1+max(x,y)
+    if(p>max_diameter):
+
+        max_diameter=p
+
+    return(z)
+
+
+Node1=Node(1)
+Node2=Node(2)
+Node3=Node(3)
+Node4=Node(4)
+Node5=Node(5)
+Node6=Node(6)
+Node7=Node(7)
+Node8=Node(8)
+Node9=Node(9)
+Node10=Node(10)
+Node11=Node(11)
+Node12=Node(12)
+
+
+Node1.left=Node2
+Node1.right=Node3
+Node2.left=Node4
+Node2.right=Node5
+Node5.right=Node8
+Node8.right=Node9
+Node9.right=Node10
+Node10.right=Node11
+Node4.left=Node6
+Node4.right=Node7
+Node6.left=Node12
+
+max_diameter=0
+Diameter_of_tree(Node1)
+print(max_diameter)
+
+
