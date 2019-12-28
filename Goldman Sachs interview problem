@@ -1,0 +1,32 @@
+
+def Find_no_of_Possible_triangles(a, Area,P):
+    #import pdb;pdb.set_trace()
+    count=0
+    for b in range(1,P-a):
+        #print(b)
+        c=P-b-a
+
+        if(Forming_valid_triangle_or_nor(a,b,c,Area,P)):
+
+            count+=1
+
+    print(count)
+
+
+def Forming_valid_triangle_or_nor(a,b,c,Area,P):
+    #import pdb;pdb.set_trace()
+    s=P/2
+    x=bool(a+b>c)
+    y=bool(b+c>a)
+    z=bool(a+c>b)
+
+    calculated_area=(s*(s-a)*(s-b)*(s-c)) ** 0.5
+
+    if(x and y and z and bool(P== a+b+c) and  calculated_area>=Area):
+
+        return(1)
+
+    return(0)
+
+
+Find_no_of_Possible_triangles(5,10,15)
