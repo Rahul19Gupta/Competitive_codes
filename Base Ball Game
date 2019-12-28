@@ -1,0 +1,48 @@
+class Solution:
+    def calPoints(self, ops: List[str]) -> int:
+        
+        n=len(ops)
+        
+        stack=[]
+        
+        Sum=0
+        
+        for i in range(0,n):
+            
+            if(ops[i]=='C'):
+                
+                score=stack.pop()
+                
+                Sum-=int(score)
+                
+            elif(ops[i]=='D'):
+                
+                score=2*(int(stack[-1]))
+                
+                stack.append(score)
+                
+                Sum+=score
+                
+            elif(ops[i]=='+'):
+                
+                if(len(stack)>=1):
+                    score1=int(stack[-1])
+                if(len(stack)>=2):
+                    score2=int(stack[-2])
+                Sum+=score1
+                Sum+=score2
+                
+                stack.append(score1+score2)
+                
+                
+            else:
+                
+                Sum+=int(ops[i])
+                stack.append(ops[i])
+                
+        print(Sum)
+        return(Sum)
+                    
+                
+                
+        
