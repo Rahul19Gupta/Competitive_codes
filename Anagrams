@@ -1,0 +1,53 @@
+
+#import pdb ; pdb.set_trace()
+string1=list("fcrxzwscanmligyxyvym")
+string1_copy=list("fcrxzwscanmligyxyvym")
+string2=list("jxwtrhvujlmrpdoqbisbwhmgpmeoke")
+string2_copy=list("jxwtrhvujlmrpdoqbisbwhmgpmeoke")
+count=0
+for char1 in string1_copy:
+
+    if(char1 not in string2):
+        x=string1.count(char1)
+        for i in range(0,x):
+            string1.remove(char1)
+            count=count+1
+    else:
+        x1=string1.count(char1)
+        x2=string2.count(char1)
+        if(x1>x2):
+            diff = x1 - x2
+            for i in range(0,diff):
+
+                string1.remove(char1)
+                count=count+1
+        else:
+            diff=x2-x1
+            for i in range(0,diff):
+                string2.remove(char1)
+                count=count+1
+
+
+for char2 in string2_copy:
+
+    if (char2 not in string1_copy):
+        y=string2.count(char2)
+        for i in range(0,y):
+            string2.remove(char2)
+            count=count+1
+
+    else:
+        x1 = string1.count(char2)
+        x2 = string2.count(char2)
+        if (x1 > x2):
+            diff = x1 - x2
+            for i in range(0, diff):
+                string1.remove(char2)
+                count = count + 1
+        else:
+            diff = x2 - x1
+            for i in range(0, diff):
+                string2.remove(char2)
+                count = count + 1
+
+print(count)
