@@ -1,0 +1,73 @@
+from collections import defaultdict
+
+
+class Graph:
+
+    def __init__(self):
+        #import pdb;pdb.set_trace()
+        self.graph=defaultdict(list)
+
+
+    def addEdge(self,u,v):
+        self.graph[u].append(v)
+        self.graph[v].append(u)
+
+    def AP_Util(self,AP,Discovery_Time,Low_Time,Parent,no_of_vertices,u,visited,children):
+
+
+        self.Time=0
+
+        self.Discovery_Time=self.Time
+        self.Low_Time=self.Time
+        self.Time+=1
+
+        #Vist that particular node
+        visited[u]=True
+
+        #I need to visit the neighbours of that node
+        for neighbours in self.graph[u]:
+
+            if(visited[neighbours]==False):
+
+                Parent[neighbours]=u
+                self.AP_Util(AP,Discovery_Time,Low_Time,Parent,no_of_vertices,neighbours,visited,children)
+
+                if(Parent[neighbours]==-2):
+                    children+=1
+
+                Low_Time[u]=min(Low_Time[u],Low_Time[neighbours])
+
+                if(Parent[u]==-2 and children>1):
+                    AP[u]=True
+
+                elif(Parent[u]!=-2 and Low_Time[neighbours]>=Discovery_Time[u]):
+                    AP[u]=True
+
+            elif(neighbours!=Parent[u]):
+                """This is Possible only when there is a backEdge in a  graph"""
+                Low_Time[u]=min(Discovery_Time[neighbours],Low_Time[u])
+
+
+    def AP(self,no_of_vertices):
+        infinity=10000
+        AP=[False for i in range(0,no_of_vertices)]
+        Discovery_Time=[infinity for i in range(0,no_of_vertices)]
+        Low_Time=[infinity for i in range(0,no_of_vertices)]
+        Parent=[-1 for i in range(no_of_vertices)]
+        root=0
+        Parent[root]=-2
+        visited=[False for i in range(no_of_vertices)]
+        self.AP_Util(AP,Discovery_Time,Low_Time,Parent,no_of_vertices,root,visited,0)
+        print(AP)
+
+
+
+g1 = Graph()
+g1.addEdge(0, 1)
+g1.addEdge(0, 3)
+g1.addEdge(1, 2)
+g1.addEdge(1, 3)
+g1.addEdge(1,4)
+g1.addEdge(2, 4)
+g1.AP(5)
+
