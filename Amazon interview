@@ -1,0 +1,33 @@
+def optimalUtilization(maxTravelDist, forwardRouteList, returnRouteList):
+    ans=[]
+    result1=[]
+    result2=[]
+
+    i=0
+    while(i<len(forwardRouteList)):
+
+        for j in range(0,len(returnRouteList)):
+
+            if(forwardRouteList[i][1] + returnRouteList[j][1] < maxTravelDist):
+
+                result1.append([forwardRouteList[i][0],returnRouteList[j][0]])
+
+            elif(forwardRouteList[i][1] + returnRouteList[j][1] == maxTravelDist):
+
+                result2.append([forwardRouteList[i][0],returnRouteList[j][0]])
+
+
+        i+=1
+
+
+
+
+    for i in range(0,len(result2)):
+
+        print(result2[i],end=" ")
+        print()
+
+
+
+
+optimalUtilization(20,[[1,8],[2,15],[3,9]],[[1,8],[2,11],[3,12]])
