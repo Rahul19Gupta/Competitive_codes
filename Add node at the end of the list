@@ -1,0 +1,32 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.link=None
+
+class Slinkedlist:
+    def __init__(self):
+        self.root=None
+
+    def printlist(self):
+        temp=self.root
+        while(temp != None):
+            print(temp.data)
+            temp=temp.link
+
+    def addnodeatend(self,newdata):
+        Newnode=Node(newdata)
+        p=self.root
+        while(p.link != None):
+            p=p.link
+        p.link=Newnode
+
+list1=Slinkedlist()
+list1.root=Node("Mon")
+e2=Node("Tue")
+e3=Node("Wed")
+# connect node 1 and node 2
+list1.root.link=e2
+e2.link=e3
+list1.addnodeatend("Sat")
+list1.printlist()
+
