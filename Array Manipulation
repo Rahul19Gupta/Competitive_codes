@@ -1,0 +1,32 @@
+# Step1: Array declaration
+#import pdb;pdb.set_trace()
+queries=[[1, 2, 100], [2, 5, 100], [3, 4, 100]]
+m=len(queries)
+
+n=10
+
+j=0
+array=[]
+for i in range(0, n):
+    array.append(0)
+array.insert(0, "dummy")
+for i in range(0,m):
+
+    a=queries[i][j]
+    print(a)
+    b=queries[i][j+1]
+    print(b)
+    k=queries[i][j+2]
+    print(k)
+
+    # Step2: Add elements from index a to b to array
+
+    for p in range(a,b+1):
+
+        temp=array[p]
+        array[p]=temp+k
+
+print(array)
+
+
+
