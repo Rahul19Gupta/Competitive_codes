@@ -1,0 +1,29 @@
+import sys
+DP=[0 for i in range(0,10000000)]
+
+def min_Coin_Change_Problem(coins,amount):
+
+    global DP
+
+    if(amount==0):
+        return(0)
+
+    if(DP[amount]):
+        return(DP[amount])
+
+    Min=sys.maxsize
+    for k in range(0,len(coins)):
+
+        if(amount>=coins[k]):
+            
+            x=min_Coin_Change_Problem(coins,amount-coins[k])
+            
+            Min=min(Min,x+1)
+
+    DP[amount]=Min
+
+    return(DP[amount])
+
+coins=[1,2,5]
+amount=11
+print(min_Coin_Change_Problem(coins,amount))
