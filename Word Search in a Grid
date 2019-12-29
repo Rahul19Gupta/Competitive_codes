@@ -1,0 +1,75 @@
+from collections import deque
+
+class Solution:
+    
+    def is_word_found(self,board,word,k,stack,visited):
+
+        #import pdb;pdb.set_trace()
+        
+        while(len(stack)):
+
+            node=stack[-1]
+            
+            i=node[0]
+        
+            j=node[1]
+            
+            if(k==len(word)):
+                
+                return(True)
+        
+            for neighbour in [(i-1,j),(i+1,j),(i,j-1),(i,j+1)]:
+  
+                if(neighbour[0]>=0 and neighbour[0]<len(board) and neighbour[1]>=0 and neighbour[1]<len(board[0])):
+                    if(board[neighbour[0]][neighbour[1]]==word[k] and neighbour not in visited):
+
+                        stack.append(neighbour)
+
+                        visited.add(neighbour)
+
+                        k+=1
+
+                        break
+                    
+
+            else:
+
+                node=stack.pop()
+                
+                k-=1
+            
+        return(False)
+              
+        
+    def exist(self, board, word):
+        #import pdb;pdb.set_trace()
+        visited=set()
+        
+        q=deque()
+        
+        stack=[]
+        
+        for i in range(0,len(board)):
+            
+            for j in range(0,len(board[0])):
+                
+                k=0
+            
+                if(board[i][j]==word[k] and word[k] not in visited):
+                    
+                    visited.add((i,j))
+                    
+                    stack.append((i,j))
+                    
+                    k+=1
+                    
+                    if(self.is_word_found(board,word,k,stack,visited)):
+                        
+                        return(True)
+                    
+                    "EMPTY THE STACK"
+                    while(len(stack)):
+                        
+                        stack.pop()
+                        
+        return(False)
