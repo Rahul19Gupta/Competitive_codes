@@ -1,0 +1,21 @@
+class Solution:
+    def minMoves2(self, nums: List[int]) -> int:
+        
+        n=len(nums)-1
+        
+        nums.sort()
+        
+        middle=(0+n)//2
+        
+        Sum=0
+        
+        for i in range(0,middle):
+            
+            Sum+=(nums[middle]-nums[i])
+            
+        for i in range(middle+1,n+1):
+            
+            Sum+=(-nums[middle]+nums[i])
+            
+        return(Sum)
+        
